@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\ClientResource;
-use App\Http\Requests\StoreClientRequest;
-use App\Models\Client;
+use App\Http\Resources\UserResource;
+use App\Http\Requests\StoreUserRequest;
+use App\Models\User;
 
-class ClientController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,22 +16,22 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        // $clients = Client::all();
-    	// return response()->json($clients);
+        // $users = User::all();
+    	// return response()->json($users);
 
-        // return ClientResource::collection(Client::all());
+        // return UserResource::collection(User::all());
 
-        // return Client::orderBy('fname', 'asc')->get();
+        // return User::orderBy('fname', 'asc')->get();
 
-        // return ClientResource::collection(Client::orderBy('fname', 'asc')->paginate(2));
+        // return UserResource::collection(User::orderBy('fname', 'asc')->paginate(2));
 
-        // return Client::offset(0)->limit(2)->get();
-        // return ClientResource::collection(Client::offset(0)->limit(2)->get());
+        // return User::offset(0)->limit(2)->get();
+        // return UserResource::collection(User::offset(0)->limit(2)->get());
 
         //$page = $request->has('page') ? $request->get('page') : 1;
         //$limit = $request->has('limit') ? $request->get('limit') : 5;
-        //return ClientResource::collection(Client::limit($limit)->offset(($page - 1) * $limit)->get());
-        return ClientResource::collection(Client::get());
+        //return UserResource::collection(User::limit($limit)->offset(($page - 1) * $limit)->get());
+        return UserResource::collection(User::get());
     }
 
     /**
@@ -51,19 +51,19 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function store(Request $request)
-    public function store(StoreClientRequest $request)
+    public function store(StoreUserRequest $request)
     {
-        // $client = new Client;
-        // $client->fname = $request->fname;
-        // $client->lname = $request->lname;
-        // $client->email = $request->email;
-        // $client->password = $request->password;
-        // $client->save();
+        // $user = new User;
+        // $user->fname = $request->fname;
+        // $user->lname = $request->lname;
+        // $user->email = $request->email;
+        // $user->password = $request->password;
+        // $user->save();
         // return response()->json([
-        //     "message" => "Client record created"
+        //     "message" => "User record created"
         // ], 201);
 
-        return ClientResource::make(Client::create($request->validated()));
+        return UserResource::make(User::create($request->validated()));
     }
 
     /**
@@ -74,7 +74,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return ClientResource::make(Client::where('id', $id)->firstOrFail());
+        return UserResource::make(User::where('id', $id)->firstOrFail());
     }
 
     /**
@@ -97,19 +97,19 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Client::where('id', $id)->exists()) {
-            $client = Client::find($id);
-            $client->fname = $request->fname;
-            $client->lname = $request->lname;
-            $client->email = $request->email;
-            $client->password = $request->password;
-            $client->save();
+        if (User::where('id', $id)->exists()) {
+            $user = User::find($id);
+            $user->fname = $request->fname;
+            $user->lname = $request->lname;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->save();
             return response()->json([
-              "message" => "Client updated successfully"
+              "message" => "User updated successfully"
             ], 200);
           } else {
             return response()->json([
-              "message" => "Client not found"
+              "message" => "User not found"
             ], 404);
           }
     }
@@ -122,15 +122,15 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        if(Client::where('id', $id)->exists()) {
-            $client = Client::find($id);
-            $client->delete();
+        if(User::where('id', $id)->exists()) {
+            $user = User::find($id);
+            $user->delete();
             return response()->json([
-              "message" => "Client deleted"
+              "message" => "User deleted"
             ], 202);
           } else {
             return response()->json([
-              "message" => "Client not found"
+              "message" => "User not found"
             ], 404);
           }
     }

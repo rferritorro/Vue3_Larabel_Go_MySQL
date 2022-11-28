@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ use App\Http\Controllers\ClientController;
 
 //ROUTES TO API/BD GET DATA TO DATABSES LARAVEL OR GO
 //LARAVEL --> PANEL ADMIN
-Route::resource('clients', ClientController::class);
+Route::resource('users', UserController::class);
 
 
 //GO --> SERVER TO DATA WEB RESTAURANT

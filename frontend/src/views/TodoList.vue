@@ -6,15 +6,15 @@
             </div>
         </div>
         <div class="card card-default card-borderless">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <ul class="list-group">
-                        <TodoItem v-for="todoitem in state.todolist" :key="todoitem.id" :todoitem="todoitem" />
-                    </ul>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group">
+                            <TodoItem v-for="todoitem in state.todolist" :key="todoitem.id" :todoitem="todoitem" />
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </template>
@@ -30,7 +30,11 @@ import CategoryService from "@/services/CategoryService"
 export default {
     components : { TodoItem },
     setup() {
-        console.log(CategoryService.getAll())
+        const data = CategoryService.getAll()
+        //console.log(data)
+        data.then(function(result) {
+            console.log(result.data.data)
+        });
         const store = useStore();
         const router = useRouter();
 

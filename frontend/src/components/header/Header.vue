@@ -1,25 +1,14 @@
 <template>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark" >
+    <nav class="header_nav">
         <router-link class="nav-link" to="/home">
             <span class="navbar-brand">UsedNapkin Restaurant</span>
-        </router-link>    
+        </router-link>
         <button class="navbar-toggler" type="button" @click="changeIsNavShow">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div :class="navClass">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/home">Home</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/about">About</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/tables">Tables</router-link>
-                </li>
-            </ul>
-        </div>
+        <router-link class="nav-link" to="/home">Home</router-link>
+        <router-link class="nav-link" to="/about">About</router-link>
+        <router-link class="nav-link" to="/tables">Tables</router-link>   
     </nav>
 </template>
 
