@@ -33,7 +33,8 @@ export default {
         const data = CategoryService.getAll()
         //console.log(data)
         data.then(function(result) {
-            console.log(result.data.data)
+            console.log(result.data[0])
+            //console.log(result.data.data)
         });
         const store = useStore();
         const router = useRouter();
