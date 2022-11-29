@@ -23,7 +23,7 @@ func BuildDBConfig() *DBConfig {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		DBName:   "go_db",
+		DBName:   "restaurant",
 	}
 	return &dbConfig
 }
