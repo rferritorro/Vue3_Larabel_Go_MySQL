@@ -3,12 +3,10 @@
         <span>BY SERGI BIOSCA & RAFA FERRI</span> 
     </nav>
 </template>
-<script></script>
 
 <style>
-
 .footer_nav {
-    background-color: rgb(164, 255, 146);
+    background-color:#b88d61;
     text-align: center;
     position: absolute;
     bottom: 0;
@@ -16,3 +14,4 @@
     padding: 1%;
 }
 </style>
+<script></script>
