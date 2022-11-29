@@ -1,7 +1,7 @@
 <template>
     <nav class="header_nav">
         <router-link class="nav-link" to="/home">
-            <span class="navbar-brand">UsedNapkin Restaurant</span>
+            <span class="navbar-brand">UsedNapkin Japanese Restaurant</span>
         </router-link>
         <button class="navbar-toggler" type="button" @click="changeIsNavShow">
             <span class="navbar-toggler-icon"></span>
@@ -31,5 +31,10 @@ export default {
 </script>
 
 <style>
-
+.header_nav {
+    background-color: rgb(164, 255, 146);
+    display: flex;
+    flex-direction: row;
+    padding: 0.5%;
+}
 </style>
