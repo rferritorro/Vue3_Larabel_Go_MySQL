@@ -2,7 +2,6 @@ package Config
 
 import (
 	"fmt"
-
 	"github.com/jinzhu/gorm"
 )
 

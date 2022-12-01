@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql_container:3306
--- Tiempo de generación: 29-11-2022 a las 16:07:03
+-- Tiempo de generación: 01-12-2022 a las 17:53:03
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 8.0.19
 
@@ -51,8 +51,6 @@ INSERT INTO `Menu` (`id`, `nombre`) VALUES
 
 CREATE TABLE `Table_` (
   `id` int(11) NOT NULL,
-  `n_people` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
   `reserved` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -60,23 +58,23 @@ CREATE TABLE `Table_` (
 -- Volcado de datos para la tabla `Table_`
 --
 
-INSERT INTO `Table_` (`id`, `n_people`, `tipo`, `reserved`) VALUES
-(1, 4, 1, 0),
-(2, 4, 2, 0),
-(3, 4, 3, 0),
-(4, 4, 4, 0),
-(5, 6, 5, 0),
-(6, 6, 4, 0),
-(7, 6, 3, 0),
-(8, 10, 2, 0),
-(9, 4, 1, 0),
-(10, 4, 2, 0),
-(11, 4, 3, 0),
-(12, 4, 4, 0),
-(13, 6, 5, 0),
-(14, 6, 4, 0),
-(15, 6, 3, 0),
-(16, 10, 2, 0);
+INSERT INTO `Table_` (`id`, `reserved`) VALUES
+(1, 0),
+(2, 0),
+(3, 0),
+(4, 0),
+(5, 0),
+(6, 0),
+(7, 0),
+(8, 0),
+(9, 0),
+(10, 0),
+(11, 0),
+(12, 0),
+(13, 0),
+(14, 0),
+(15, 0),
+(16, 0);
 
 -- --------------------------------------------------------
 
@@ -115,6 +113,22 @@ CREATE TABLE `User_table_reserved` (
   `menu_id` int(11) NOT NULL,
   `date` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Disparadores `User_table_reserved`
+--
+DELIMITER $$
+CREATE TRIGGER `Delete_Reserved_User` AFTER DELETE ON `User_table_reserved` FOR EACH ROW begin
+	UPDATE Table_ t SET reserved=0 WHERE t.id=OLD.table_id;
+end
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `Reserved_Table_to_User` AFTER INSERT ON `User_table_reserved` FOR EACH ROW BEGIN
+	UPDATE Table_ t SET reserved=1 WHERE t.id = NEW.table_id;
+END
+$$
+DELIMITER ;
 
 --
 -- Índices para tablas volcadas
@@ -156,7 +170,7 @@ ALTER TABLE `User_table_reserved`
 -- AUTO_INCREMENT de la tabla `Menu`
 --
 ALTER TABLE `Menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `Table_`
@@ -174,7 +188,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT de la tabla `User_table_reserved`
 --
 ALTER TABLE `User_table_reserved`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
