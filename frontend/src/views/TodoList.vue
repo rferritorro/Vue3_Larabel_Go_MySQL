@@ -25,16 +25,16 @@ import TodoItem from '../components/TodoItem';
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
-import CategoryService from "@/services/CategoryService"
+import UserService from "@/services/UserService"
 
 export default {
     components : { TodoItem },
     setup() {
-        const data = CategoryService.getAll()
+        const data = UserService.getAll()
         //console.log(data)
         data.then(function(result) {
-            console.log(result.data[0])
-            //console.log(result.data.data)
+            //console.log(result.data[0])
+            console.log(result.data.data)
         });
         const store = useStore();
         const router = useRouter();

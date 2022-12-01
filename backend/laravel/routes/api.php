@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TableController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ReservedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,9 @@ use App\Http\Controllers\UserController;
 //ROUTES TO API/BD GET DATA TO DATABSES LARAVEL OR GO
 //LARAVEL --> PANEL ADMIN
 Route::resource('users', UserController::class);
+Route::resource('tables', TableController::class);
+Route::resource('menus', MenuController::class);
+Route::resource('reserved', ReservedController::class);
 
 
 //GO --> SERVER TO DATA WEB RESTAURANT

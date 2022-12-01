@@ -1,11 +1,11 @@
 <template>
     <nav class="header_nav">
-        <router-link class="nav-link" to="/home">
+        <!-- <router-link class="nav-link" to="/home">
             <span class="name">UsedNapkin Sushi Experience</span>
-        </router-link>
-        <!-- <button class="navbar-toggler" type="button" @click="changeIsNavShow">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
+        </router-link> -->
+        <button class="navbar-toggler" type="button" @click="changeIsNavShow">
+            <img src="../assets/KAIZEN/2.png" style="width: 35%;" />
+        </button>
         <router-link class="nav-link" to="/home">
             <span class="span">Home</span>
         </router-link>
@@ -18,21 +18,23 @@
     </nav>
 </template>
 <style>
+.navbar-toggler {
+    margin-left: -8%;
+}
 .span {
     color: rgb(34, 32, 29);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.name {
-    font-size: 115%;
-    color: black;
-}
-.name:hover, .span:hover {
+.span:hover {
     color: #ead1b8;
+    
 }
 .header_nav {
     background-color: #b88d61;
     display: flex;
     flex-direction: row;
-    padding: 0.5%;
+    padding: 0.8%;
+    
 }
 </style>
 

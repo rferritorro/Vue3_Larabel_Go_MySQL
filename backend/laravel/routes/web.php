@@ -18,5 +18,5 @@ Route::get('/bd', function () {
 
 
 Route::get('/', function () {
-    return "HELLO SERGI";
+    return "HELLO SERGIs";
 });

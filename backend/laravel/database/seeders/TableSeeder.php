@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Table;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class TableSeeder extends Seeder
 {
     public function run()
     {
-        User::factory()
+        Table::factory()
             ->count(10)
             ->create();
     }

@@ -3,7 +3,7 @@ package Models
 import (
 	"first-api/Config"
 	"fmt"
-	"github.com/go-sql-driver/mysql"
+	//"github.com/go-sql-driver/mysql"
 )
 
 //GetAllUsers Fetch all user data
