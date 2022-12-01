@@ -1,9 +1,10 @@
 package Routes
 
 import (
-	"first-api/Controllers"
-	"github.com/gin-gonic/gin"
+	"go-restaurant/Controllers"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func CORS(c *gin.Context) {
@@ -26,8 +27,23 @@ func AddRouter() *gin.Engine {
 		grp1.GET("user", Controllers.GetUsers)
 		grp1.GET("user/:id", Controllers.GetUserByID)
 		grp1.POST("user", Controllers.CreateUser)
-		grp1.PUT("user/:id", Controllers.UpdateUser)
-		grp1.DELETE("user/:id", Controllers.DeleteUser)
+		// grp1.PUT("user/:id", Controllers.UpdateUser)
+		// grp1.DELETE("user/:id", Controllers.DeleteUser)
+	}
+	grp2 := r.Group("/table-api")
+	{
+		grp2.GET("table", Controllers.GetTables)
+		grp2.GET("table/:id", Controllers.GetTableByID)
+	}
+	grp3 := r.Group("/menu-api")
+	{
+		grp3.GET("menu", Controllers.GetMenus)
+		grp3.GET("menu/:id", Controllers.GetMenuByID)
+	}
+	grp4 := r.Group("/reserved-api")
+	{
+		grp4.GET("reserved", Controllers.GetReserved)
+		grp4.GET("reserved/:id", Controllers.GetReservedByID)
 	}
 	return r
 }

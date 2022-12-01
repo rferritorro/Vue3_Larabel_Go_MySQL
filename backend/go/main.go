@@ -1,13 +1,14 @@
 package main
 
 import (
-	"first-api/Config"
+	"go-restaurant/Config"
 	//"first-api/Models"
-	"first-api/Routes"
+	"go-restaurant/Routes"
 	//"fmt"
 	//"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	//"github.com/gin-contrib/cors"
+	_ "github.com/go-sql-driver/mysql"
 	//"time"
 )
 

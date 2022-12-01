@@ -1,21 +1,22 @@
 package Controllers
 
 import (
-	"first-api/Models"
-	"fmt"
+	"go-restaurant/Models"
+	"go-restaurant/Services"
 	"net/http"
+
+	//"fmt"
 	"github.com/gin-gonic/gin"
 )
 
 //GetUsers ... Get all users
 func GetUsers(c *gin.Context) {
-	var user []Models.User
-	err := Models.GetAllUsers(&user)
-	//fmt.Println("GetUsers Function")
+	var users []Models.User
+	err := Services.GetAllUsers(&users)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, user)
+		c.JSON(http.StatusOK, users)
 	}
 }
 
@@ -23,9 +24,9 @@ func GetUsers(c *gin.Context) {
 func CreateUser(c *gin.Context) {
 	var user Models.User
 	c.BindJSON(&user)
-	err := Models.CreateUser(&user)
+	err := Services.CreateUser(&user)
 	if err != nil {
-		fmt.Println(err.Error())
+		//fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
 		c.JSON(http.StatusOK, user)
@@ -36,7 +37,7 @@ func CreateUser(c *gin.Context) {
 func GetUserByID(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var user Models.User
-	err := Models.GetUserByID(&user, id)
+	err := Services.GetUserByID(&user, id)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
@@ -48,12 +49,12 @@ func GetUserByID(c *gin.Context) {
 func UpdateUser(c *gin.Context) {
 	var user Models.User
 	id := c.Params.ByName("id")
-	err := Models.GetUserByID(&user, id)
+	err := Services.GetUserByID(&user, id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, user)
 	}
 	c.BindJSON(&user)
-	err = Models.UpdateUser(&user, id)
+	err = Services.UpdateUser(&user, id)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
@@ -65,7 +66,7 @@ func UpdateUser(c *gin.Context) {
 func DeleteUser(c *gin.Context) {
 	var user Models.User
 	id := c.Params.ByName("id")
-	err := Models.DeleteUser(&user, id)
+	err := Services.DeleteUser(&user, id)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
