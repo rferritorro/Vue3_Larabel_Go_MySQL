@@ -6,12 +6,28 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ReservedResource;
 use App\Http\Requests\StoreReservedRequest;
 use App\Models\Reserved;
+use Illuminate\Support\Facades\DB;
 
 class ReservedController extends Controller
 {
     //GET ALL DATA INTO TABLE RESERVED
     public function index() {
-        return ReservedResource::collection(Reserved::get());
+      // SELECT User.username, Table_id, Menu.nombre, User_table_reserved.date 
+        // FROM `User_table_reserved`
+        // INNER JOIN User
+        //   ON User.id = User_table_reserved.user_id
+        //   INNER JOIN Table_
+        //   ON Table_.id = User_table_reserved.table_id
+        //   INNER JOIN Menu
+        //   ON Menu.id = User_table_reserved.menu_id;
+        $reserved = DB::table('User_table_reserved')
+                  ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour')
+                  ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+                  ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
+                  ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
+                  ->get();
+        return $reserved;
+        //return ReservedResource::ReservedResource(Reserved::get());
     }
 
     //CREATE DATA INTO TABLE RESERVED

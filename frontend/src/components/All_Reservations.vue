@@ -1,14 +1,15 @@
 <template>
-    <li>
-        <span >
-            {{allReservations.todo}}
-            {{allReservations.done ? "": ""}}
-        </span>
-        <div class="float-right">
-            <span class="badge badge-secondary pointer ml-1" @click.stop="editTodo(allReservations.id)">EDIT</span> 
-            <span class="badge badge-secondary pointer ml-1" @click.stop="deleteTodo(allReservations.id)">DELETE</span>
-        </div>
-    </li>
+    <tbody>
+        <td>{{ allreservation.username }}</td>
+        <td>{{ allreservation.Table_id }}</td>
+        <td>{{ allreservation.nombre }}</td>
+        <td>{{ allreservation.date }}</td>
+        <td>{{ allreservation.hour }}</td>
+        <td>
+            <span class="badge badge-secondary pointer ml-1" @click.stop="editall(allreservation.id)">EDIT</span>
+            <span class="badge badge-secondary pointer ml-1" @click.stop="deleteall(allreservation.id)">DELETE</span>
+        </td>
+    </tbody>
 </template>
 
 <script>
@@ -18,7 +19,7 @@ import { useRouter } from 'vue-router';
 
 export default {
     props: {
-        allReservations: Object
+        allreservation: Object
     },
     setup(props) {
         
@@ -31,12 +32,12 @@ export default {
         const getReservation = (id) => {
             store.dispatch("reservation/" + Constant.GET_RESERVATION, { id });
         }
+        const editall = (id) => {
+            store.dispatch("reservation/" + Constant.UPDATE_RESERVATION, { allReservations: { ...props.allreservation } });
+            router.push({ name: 'UpdateReservation', params: { id } })
+        }
         const deleteReservation = (id) => {
             store.dispatch("reservation/" + Constant.DELETE_RESERVATION, { id });
-        }
-        const editall = (id) => {
-            store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { allReservations: { ...props.allReservations } });
-            router.push({ name: 'updateTodo', params: { id } })
         }
 
         return { getReservation, deleteReservation, editall, checked }
@@ -45,5 +46,9 @@ export default {
 </script>
 
 <style>
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
 
 </style>

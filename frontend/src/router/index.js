@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AddReservation from '../views/AddReservation';
-//import UpdateTodo from '../views/UpdateTodo';
+import UpdateReservation from '../views/UpdateReservation';
 import Reservation from '../views/Reservations';
 import Home from '../views/Home';
 import About from '../views/About';
@@ -12,7 +12,7 @@ const routes = [
     { path:"/about", name:"about", component: About },
     { path:"/tables", name:"Reservations", component: Reservation },
     { path:"/tables/add", name:"addReservation", component: AddReservation },
-    //{ path:"/tables/update/:id", name:"updateTodo", component: UpdateTodo },
+    { path:"/tables/update/:id", name:"UpdateReservation", component: UpdateReservation },
     { path:"/:catchAll(.*)", component: NotFound },
 ];
 

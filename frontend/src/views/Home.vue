@@ -1,5 +1,5 @@
 <template>
-    <div className="card">
+    <div class="card">
         <img src="../assets/img/banner.jpeg" alt="">
     </div>
     <div id="menu_ids" class="menus">

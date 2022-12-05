@@ -1,16 +1,26 @@
 <template>
-    <div style="mt-2">
+    <div class="reservation">
         <div class="row">
             <div class="col p-3">
                 <router-link class="btn btn-primary" to="/tables/add">ADD RESERVATION</router-link>
             </div>
         </div>
-        <div class="card card-default card-borderless">
+        <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
                         <ul class="list-group">
-                            <AllReservations v-for="allreservation in state.reservationList" :key="allreservation.id" :allreservation="allreservation" />
+                            <table>
+                                <thead>
+                                    <th>RESERVATION NAME:</th>
+                                    <th>TABLE:</th>
+                                    <th>MENU TYPE:</th>
+                                    <th>DATE:</th>
+                                    <th>HOUR:</th>
+                                    <th>OPERATIONS:</th>
+                                </thead>
+                                <AllReservations v-for="allreservation in state.reservationList.reservation" :key="allreservation.id" :allreservation="allreservation" />
+                            </table>
                         </ul>
                     </div>
                 </div>
@@ -26,27 +36,21 @@ import AllReservations from '../components/All_Reservations';
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 //import { useRouter } from 'vue-router';
-//import Reservation_All from "@/services/admin/ReservationServiceAdmin"
 
 export default {
     components : { AllReservations },
     setup() {
-        //const data = Reservation_All.getReserved()
         const store = useStore();
-
-        //const router = useRouter();
-        // data.then(function(result) {
-        //     return result.data.data; })
         const state = reactive({ 
-            reservationList : computed(()=> store.getters["reservation/getTable"]) 
+            reservationList : computed(() => store.getters["reservation/getReserved"]) 
         });
-        const goAddReservation = () => {
-            store.dispatch("reservation/"+ Constant.INITIALIZE_ALLRESERVATIONS);
-            //router.push({ name:"addReservation" });
-        }
-       
+        store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS);
+        console.log(state.reservationList)
+        
+        //RUTA GO HOME
+        //router.push({ name:"home"});      
 
-        return { state, goAddReservation }
+        return { state }
     }
 }
 </script>

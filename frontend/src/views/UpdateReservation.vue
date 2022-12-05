@@ -20,7 +20,7 @@
             <input type="checkbox" v-model="state.todoitemlocal.done" />   
         </div>
         <div class="form-group">
-            <button type="button" class="btn btn-primary m-1" @click="updateTodo">UPDATE</button>
+            <button type="button" class="btn btn-primary m-1" @click="UpdateReservation">UPDATE</button>
             <button type="button" class="btn btn-primary m-1" @click="cancel">CANCEL</button>
         </div>
       </div>
@@ -39,23 +39,21 @@ export default {
         const store = useStore();
         const router = useRouter();
         const currentRoute = useRoute();
-
-        const todoitem = store.state.todolist.find((item)=> item.id === currentRoute.params.id)
-        console.log
+        console.log(store.state.reservation)
+        const todoitem = store.state.reservation.find((item)=> item.id === currentRoute.params.id)
         const state = reactive({ 
-            todoitemlocal : { ...todoitem } 
+            thisReservations : { ...todoitem } 
         });
-
-        const updateTodo = () => {
+        const UpdateReservation = () => {
             router.push({ name:"todoList" });
-            store.dispatch(Constant.UPDATE_TODO, { todoitem: state.todoitemlocal });
+            store.dispatch(Constant.UPDATE_TODO, { todoitem: state.thisReservations });
         }
 
         const cancel = () => {
             router.push({ name:"todoList"});
         }
 
-        return { state, updateTodo, cancel };
+        return { state, UpdateReservation, cancel };
     }
 }
 </script>

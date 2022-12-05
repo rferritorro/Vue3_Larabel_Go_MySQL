@@ -5,7 +5,7 @@ const URL = "http://localhost:8000";
 export default {
     //check the correct CONNECTION TO CORS Vue--Laravel
     addReserved() {
-        return Api(URL).get("api/reserved")
+        return Api(URL).post("api/reserved")
     },
 
     getReserved() {
@@ -13,10 +13,10 @@ export default {
     },
 
     putReserved() {
-        return Api(URL).get("api/reserved")
+        return Api(URL).put("api/reserved")
     },
 
     deleteReserved() {
-        return Api(URL).get("api/reserved")
+        return Api(URL).delete("api/reserved")
     }
 }
