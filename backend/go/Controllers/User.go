@@ -14,7 +14,7 @@ func GetUsers(c *gin.Context) {
 	var users []Models.User
 	err := Services.GetAllUsers(&users)
 	if err != nil {
-		fmt.Println("Error")
+		//fmt.Println("Error")
 		//c.AbortWithStatus(http.StatusNotFound)
 	} else {
 		c.JSON(http.StatusOK, users)

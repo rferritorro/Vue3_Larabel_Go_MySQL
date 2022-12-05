@@ -6,11 +6,12 @@
 
 <style>
 .footer_nav {
+    display: none;
     background-color:#b88d61;
     text-align: center;
-    position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 94%;
+    position: fixed;
     padding: 1%;
 }
 </style>

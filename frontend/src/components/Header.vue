@@ -1,21 +1,35 @@
 <template>
-    <nav class="header_nav">
+    <nav id="header_nav" class="header_nav">
         <img src="../assets/KAIZEN/2.png" @click="changeIsNavShow"/>
-        <router-link class="nav-link" to="/home">
-            <span class="span">Home</span>
-        </router-link>
-        <router-link class="nav-link" to="/about">
-            <span class="span">About</span>
-        </router-link>
-        <router-link class="nav-link" to="/tables/add">
-            <span class="span">Reservation</span>
-        </router-link>
+        <div>
+            <router-link class="nav-link" to="/home">
+                <span class="span">Home</span>
+            </router-link>
+            <router-link class="nav-link" to="/about">
+                <span class="span">About</span>
+            </router-link>
+            <router-link class="nav-link" to="/tables/add">
+                <span class="span">Reservation</span>
+            </router-link>
+        </div>
     </nav>
 </template>
 
 <script>
 import { reactive, computed } from 'vue';
 
+function menu_scrolled() {
+    window.addEventListener('scroll',() => {
+        let menu = document.getElementById("header_nav")
+        if (window.scrollY > 80) {
+            menu.classList.remove("header_nav")
+            menu.classList.add("header_scroll_nav")
+        } else {
+            menu.classList.add("header_nav")
+            menu.classList.remove("header_scroll_nav")
+        }
+    })
+}
 export default {
     setup() {
         const state = reactive({
@@ -28,27 +42,80 @@ export default {
         
         return { state, changeIsNavShow, navClass };
     }
+
 }
+menu_scrolled()
+
 </script>
 
 <style>
+@font-face {
+    font-family: "Chinese-letter";
+    src: url("../assets/letter_style/Tecnojap.ttf");
+}
 img {
-    width: 10%;
+    width: 5.5%;
 }
-.span {
-    color: rgb(34, 32, 29);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 180%;
-    margin: 1.5cm; 
-}
-.span:hover {
-    color: #ead1b8;
-    
-}
+
 .header_nav {
-    background-color: #b88d61;
+    height: 100px;
+    position: absolute;
+    z-index: 101;
+    width: 97%;
+}
+
+.header_scroll_nav {
+    background-color: #17191b;
+    border-radius: 50px;
+    opacity: 0.5;
+    height: 100px;
+    position: fixed;
+    z-index: 101;
+    width: 97%;
+}
+.header_scroll_nav:hover {
+    opacity: 1;
+}
+
+.header_scroll_nav img {
+    display: inline-block;
+    padding: 0.5%;
+    border-radius: 50px;
+}
+.header_scroll_nav div {
+    float: right;
+    width: 30%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    padding: 0.8%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.header_scroll_nav div * {
+    padding: 0.5%;
+    padding-left: 5.5%;
+    color: white;
+    font-family: Chinese-letter;
+    font-size: 25px;
+}
+.header_nav img {
+    display: inline-block;
+    padding: 0.5%;
+}
+.header_nav div {
+    float: right;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.header_nav div * {
+    padding: 0.5%;
+    padding-left: 5.5%;
+    color: white;
+    font-family: Chinese-letter;
+    font-size: 25px;
 }
 </style>
