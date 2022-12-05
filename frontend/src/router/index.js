@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AddTodo from '../views/AddTodo';
-import UpdateTodo from '../views/UpdateTodo';
-import TodoList from '../views/TodoList';
+import AddReservation from '../views/AddReservation';
+//import UpdateTodo from '../views/UpdateTodo';
+import Reservation from '../views/Reservations';
 import Home from '../views/Home';
 import About from '../views/About';
 import NotFound from '../views/NotFound';
@@ -10,9 +10,9 @@ const routes = [
     { path:"", redirect:{ name:"home" } },
     { path:"/home", name:"home", component: Home },
     { path:"/about", name:"about", component: About },
-    { path:"/tables", name:"todoList", component: TodoList },
-    { path:"/tables/add", name:"addTodo", component: AddTodo },
-    { path:"/tables/update/:id", name:"updateTodo", component: UpdateTodo },
+    { path:"/tables", name:"Reservations", component: Reservation },
+    { path:"/tables/add", name:"addReservation", component: AddReservation },
+    //{ path:"/tables/update/:id", name:"updateTodo", component: UpdateTodo },
     { path:"/:catchAll(.*)", component: NotFound },
 ];
 

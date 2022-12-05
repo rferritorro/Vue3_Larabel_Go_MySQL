@@ -20,3 +20,8 @@ yarn serve --open
 
 ### 참조 
 * https://github.com/chenxeed/vue3-boilerplate
+
+
+
+### INSTALLATION:
+npm install --save vue3-datepicker
