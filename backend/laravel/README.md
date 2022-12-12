@@ -70,3 +70,13 @@ php artisan serve --host "ip-address" or php artisan serve
 php artisan migrate
 php artisan db:seed --class=ClientSeeder
 php artisan route:list
+
+
+### CREATE RESERVED IN POSTMAN:
+{
+    "user_id": 1,
+    "table_id": 8,
+    "menu_id": 2,
+    "date": 3,
+    "hour": "19:20:00"
+}

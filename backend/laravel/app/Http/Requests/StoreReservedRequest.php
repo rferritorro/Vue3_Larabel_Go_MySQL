@@ -17,7 +17,8 @@ class StoreReservedRequest extends FormRequest
             "user_id" => ["required"],
             "table_id" => ["required"],
             "menu_id" => ["required"],
-            "date" => ["required"]
+            "date" => ["required"],
+            "hour" => ["required"]
         ];
     }
 

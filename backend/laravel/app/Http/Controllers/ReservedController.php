@@ -40,9 +40,10 @@ class ReservedController extends Controller
         if (Reserved::where('id', $id)->exists()) {
             $reserved = Reserved::find($id);
             $reserved->user_id = $request->user_id;
-            $reserved->user_id = $request->table_id;
-            $reserved->user_id = $request->menu_id;
-            $reserved->user_id = $request->date;
+            $reserved->table_id = $request->table_id;
+            $reserved->menu_id = $request->menu_id;
+            $reserved->date = $request->date;
+            $reserved->hour = $request->hour;
             $reserved->save();
             return response()->json([
               "message" => "Reserved updated successfully"

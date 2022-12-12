@@ -13,7 +13,8 @@ class ReservedResource extends JsonResource
             'user_id' => $this->user_id,
             'table_id' => $this->table_id,
             'menu_id' => $this->menu_id,
-            'date' => $this->date
+            'date' => $this->date,
+            'hour' => $this->hour
         ];
     }
 }

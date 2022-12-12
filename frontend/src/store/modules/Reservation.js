@@ -46,9 +46,10 @@ export const reservation = {
         //         console.log(error);
         //       });
         // },
-        [Constant.UPDATE_RESERVATION]: (store) => {
-          ReservationService.putReserved()
+        [Constant.UPDATE_RESERVATION]: (store, payload) => {
+          ReservationService.putReserved(payload.reservationitem.id)
             .then(function (result) {
+              console.log(result)
               store.commit(Constant.UPDATE_RESERVATION, result.data);
             })
             .catch(function (error) {

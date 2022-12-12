@@ -15,7 +15,8 @@ class ReservedFactory extends Factory
             'user_id' => $this->faker->number(),
             'table_id' => $this->faker->number(),
             'menu_id' => $this->faker->number(),
-            'date' => $this->faker->name()
+            'date' => $this->faker->name(),
+            'hour' => $this->faker->number(),
         ];
     }
 }

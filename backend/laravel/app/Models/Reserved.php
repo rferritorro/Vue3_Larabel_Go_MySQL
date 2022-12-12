@@ -10,5 +10,5 @@ class Reserved extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'User_table_reserved';
-    protected $fillable = ['user_id', 'table_id', 'menu_id', 'date'];
+    protected $fillable = ['user_id', 'table_id', 'menu_id', 'date', 'hour'];
 }

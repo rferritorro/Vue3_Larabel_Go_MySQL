@@ -9,18 +9,22 @@
       <div class="col">
         <div class="form-group">
           <label htmlFor="todo">NAME :</label>
-          <input type="text" class="form-control" v-model="state.todoitemlocal.todo" />
+          <input type="text" class="form-control" v-model="state.thisReservations.username" />
         </div>
         <div class="form-group">
             <label htmlFor="desc">DESCR :</label>
-            <textarea class="form-control" rows="3" id="desc" v-model="state.todoitemlocal.desc"></textarea>  
+            <textarea class="form-control" rows="3" id="desc" v-model="state.thisReservations.desc"></textarea>  
+        </div>
+        <div class="form-group">
+            <label htmlFor="hour">HOUR : </label>&nbsp;
+            <input type="text" v-model="state.thisReservations.hour" />   
         </div>
         <div class="form-group">
             <label htmlFor="desc">CHECK : </label>&nbsp;
-            <input type="checkbox" v-model="state.todoitemlocal.done" />   
+            <input type="checkbox" v-model="state.thisReservations.done" />   
         </div>
         <div class="form-group">
-            <button type="button" class="btn btn-primary m-1" @click="UpdateReservation">UPDATE</button>
+            <button type="button" class="btn btn-primary m-1" @click="updateReservation">UPDATE</button>
             <button type="button" class="btn btn-primary m-1" @click="cancel">CANCEL</button>
         </div>
       </div>
@@ -39,21 +43,23 @@ export default {
         const store = useStore();
         const router = useRouter();
         const currentRoute = useRoute();
-        console.log(store.state.reservation)
-        const todoitem = store.state.reservation.find((item)=> item.id === currentRoute.params.id)
+        console.log(store.state.reservation.reservation)
+        
+        const todoitem = store.state.reservation.reservation.find((item) => item.id.toString() === currentRoute.params.id)
+
         const state = reactive({ 
             thisReservations : { ...todoitem } 
         });
-        const UpdateReservation = () => {
-            router.push({ name:"todoList" });
-            store.dispatch(Constant.UPDATE_TODO, { todoitem: state.thisReservations });
+        const updateReservation = () => {
+            //router.push({ name:"tables" });
+            store.dispatch("reservation/" +  Constant.UPDATE_RESERVATION, { reservationitem: state.thisReservations });
         }
 
         const cancel = () => {
-            router.push({ name:"todoList"});
+            router.push({ name:"Reservations"});
         }
 
-        return { state, UpdateReservation, cancel };
+        return { state, updateReservation, cancel };
     }
 }
 </script>

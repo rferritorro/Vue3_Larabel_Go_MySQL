@@ -6,8 +6,8 @@
         <td>{{ allreservation.date }}</td>
         <td>{{ allreservation.hour }}</td>
         <td>
-            <span class="badge badge-secondary pointer ml-1" @click.stop="editall(allreservation.id)">EDIT</span>
-            <span class="badge badge-secondary pointer ml-1" @click.stop="deleteall(allreservation.id)">DELETE</span>
+            <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>
+            <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">DELETE</span>
         </td>
     </tbody>
 </template>
@@ -21,7 +21,7 @@ export default {
     props: {
         allreservation: Object
     },
-    setup(props) {
+    setup() {
         
         const store = useStore();
         const router = useRouter();
@@ -32,15 +32,15 @@ export default {
         const getReservation = (id) => {
             store.dispatch("reservation/" + Constant.GET_RESERVATION, { id });
         }
-        const editall = (id) => {
-            store.dispatch("reservation/" + Constant.UPDATE_RESERVATION, { allReservations: { ...props.allreservation } });
+        const updateReservation = (id) => {
+            //store.dispatch("reservation/" + Constant.UPDATE_RESERVATION, { allReservations: { ...props.allreservation } });
             router.push({ name: 'UpdateReservation', params: { id } })
         }
         const deleteReservation = (id) => {
             store.dispatch("reservation/" + Constant.DELETE_RESERVATION, { id });
         }
 
-        return { getReservation, deleteReservation, editall, checked }
+        return { getReservation, deleteReservation, updateReservation, checked }
     }
 }
 </script>

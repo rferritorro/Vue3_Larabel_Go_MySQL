@@ -8,12 +8,21 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <label htmlFor="name">NAME</label>
+          <label htmlFor="name">NAME:</label>
           <input type="text" class="form-control" v-model="form.reservation_form.name" />
         </div>
         <div class="form-group">
-            <label htmlFor="desc">DESCRIPTION</label>
+            <label htmlFor="desc">DESCRIPTION:</label>
             <textarea class="form-control" rows="3" id="desc" v-model="form.reservation_form.desc"></textarea>  
+        </div>
+        <div class="form-group">
+            <label htmlFor="hour">HOUR: </label>
+            <input type="text" v-model="form.reservation_form.hour"/>
+        </div>
+        <div>
+            <select>
+              <option>Menu</option>
+            </select>
         </div>
         <Datepicker v-model="date" 
           :clearable="true" 
