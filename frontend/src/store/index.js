@@ -1,8 +1,10 @@
 import Vuex from "vuex";
-import {reservation}  from "./modules/Reservation"
+import {reservation}  from "./modules/admin/Reservation"
+import {menu}  from "./modules/admin/MenuAdmin"
 
 export default Vuex.createStore({
     modules: {
-        reservation: reservation
+        reservation: reservation,
+        menu: menu
     }
 });

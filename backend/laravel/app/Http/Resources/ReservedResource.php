@@ -14,7 +14,8 @@ class ReservedResource extends JsonResource
             'table_id' => $this->table_id,
             'menu_id' => $this->menu_id,
             'date' => $this->date,
-            'hour' => $this->hour
+            'hour' => $this->hour,
+            'n_comensales' => $this->n_comensales
         ];
     }
 }

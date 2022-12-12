@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AddReservation from '../views/AddReservation';
 import UpdateReservation from '../views/UpdateReservation';
-import Reservation from '../views/Reservations';
+import Reservation from '../views/Admin/Reservations';
 import Home from '../views/Home';
 import About from '../views/About';
 import NotFound from '../views/NotFound';

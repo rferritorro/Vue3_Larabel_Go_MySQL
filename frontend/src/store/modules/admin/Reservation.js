@@ -1,14 +1,20 @@
-import Constant from '../../Constant';
+import Constant from '../../../Constant';
 import ReservationService from "@/services/admin/ReservationServiceAdmin"
 
 export const reservation = {
     namespaced: true,
-    state: {},
+    state: {
+      //menus: []
+    },
     mutations : {
         // [Constant.GET_RESERVATION]: (state, payload) => {
         //     console.log(state);
         //     state.reservation.push({ ...payload });
         // },
+        [Constant.ADD_RESERVATION]: (state) => {
+          console.log(state.reservation)
+          //state.reservation.push({ ...payload});
+        },
         [Constant.UPDATE_RESERVATION]: (state, payload) => {
           let index = state.reservation.findIndex(
             (item) => item.table_id === payload.table_id
@@ -46,6 +52,16 @@ export const reservation = {
         //         console.log(error);
         //       });
         // },
+        [Constant.ADD_RESERVATION]: (store, payload) => {
+          ReservationService.addReserved(payload.reservation_form)
+            .then(function (result) {
+              console.log(result)
+              store.commit(Constant.ADD_RESERVATION, result.data.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
         [Constant.UPDATE_RESERVATION]: (store, payload) => {
           ReservationService.putReserved(payload.reservationitem.id)
             .then(function (result) {
@@ -80,5 +96,8 @@ export const reservation = {
       getReserved(state) {
         return state;
       },
+      // getMenus(state) {
+      //   return state.menus;
+      // },
     }
 };

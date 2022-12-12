@@ -17,6 +17,7 @@ class ReservedFactory extends Factory
             'menu_id' => $this->faker->number(),
             'date' => $this->faker->name(),
             'hour' => $this->faker->number(),
+            'n_comensales' => $this->faker->number()
         ];
     }
 }

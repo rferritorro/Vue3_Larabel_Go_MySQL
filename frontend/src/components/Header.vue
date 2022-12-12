@@ -114,7 +114,7 @@ img {
 .header_nav div * {
     padding: 0.5%;
     padding-left: 5.5%;
-    color: white;
+    color: rgb(232, 25, 25);
     font-family: Chinese-letter;
     font-size: 25px;
 }

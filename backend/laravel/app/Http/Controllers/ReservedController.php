@@ -21,7 +21,7 @@ class ReservedController extends Controller
         //   INNER JOIN Menu
         //   ON Menu.id = User_table_reserved.menu_id;
         $reserved = DB::table('User_table_reserved')
-                  ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour')
+                  ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
                   ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
                   ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
                   ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
@@ -44,6 +44,7 @@ class ReservedController extends Controller
             $reserved->menu_id = $request->menu_id;
             $reserved->date = $request->date;
             $reserved->hour = $request->hour;
+            $reserved->n_comensales = $request->n_comensales;
             $reserved->save();
             return response()->json([
               "message" => "Reserved updated successfully"

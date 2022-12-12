@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="card card-body">
     <div class="row">
       <div class="col p-3">
         <h2>ADD RESERVATION</h2>
@@ -8,26 +8,45 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <label htmlFor="name">NAME:</label>
-          <input type="text" class="form-control" v-model="form.reservation_form.name" />
+          <label htmlFor="user_id">NAME:</label>
+          <input type="text" class="form-control" v-model="form.reservation_form.user_id" />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label htmlFor="desc">DESCRIPTION:</label>
             <textarea class="form-control" rows="3" id="desc" v-model="form.reservation_form.desc"></textarea>  
+        </div> -->
+        <div class="form-group">
+            <label htmlFor="n_comensales">N_COMENSALES:</label>
+            <input type="number" v-model="form.reservation_form.n_comensales" />
         </div>
         <div class="form-group">
             <label htmlFor="hour">HOUR: </label>
             <input type="text" v-model="form.reservation_form.hour"/>
         </div>
-        <div>
-            <select>
-              <option>Menu</option>
-            </select>
-        </div>
-        <Datepicker v-model="date" 
+        <div class="form-group">
+          <label>Choose a Date:</label>
+          <Datepicker v-model="form.reservation_form.date"
           :clearable="true" 
           :typeable="true" 
           :disabledDates="{dates: [disabledDate]}"/><br>
+        </div>
+        <div class="form-group">
+          <label>Choose a menu:</label>
+          <select v-model="form.reservation_form.menu_id">
+            <option disabled value="" selected>MENU: </option>
+            <option v-for="forms in form.menu" :key="forms.id" :value="forms.id">
+              {{forms.nombre}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Choose a table:</label>
+          <select v-model="form.reservation_form.table_id">
+            <option :value="1">1</option>
+            <option :value="2">2</option>
+            <option :value="3">3</option>
+          </select>
+        </div>
         <div class="form-group">
             <button type="button" class="btn btn-primary m-1" @click="addReservation">ADD</button>
             <button type="button" class="btn btn-primary m-1" @click="cancel">CANCEL</button>
@@ -38,8 +57,9 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
-//import { useStore } from 'vuex'
+import { computed, reactive } from 'vue'
+import { useStore } from 'vuex'
+import Constant from '../Constant';
 import Datepicker from "vue3-datepicker";
 import { useRouter } from 'vue-router';
 import { add } from 'date-fns'
@@ -54,25 +74,28 @@ export default {
         Datepicker,
     },
     setup() {
-        //const store = useStore();
+        const store = useStore();
         const router = useRouter();
+
+        
         const form = reactive({ 
-            reservation_form : { no:"", name:"", desc:"", dat:"",  done:false } 
+          reservation_form : { user_id:"1", table_id:"", menu_id:"", date:"", hour: "", n_comensales: "" },
+          menu: computed(() => store.getters['menu/getMenus'])
         });
 
+        if (!form.menu){
+          store.dispatch("menu/" +  Constant.INITIALIZE_ALLMENUS);
+        }
+        console.log(form)
         const addReservation = () => {
           console.log(form.reservation_form)
-          // if (state.reservation_form.todo.trim().length >= 2) {
-          //   store.dispatch(Constant.ADD_TODO, { todoitem : state.reservation_form })
-          //   router.push({ name:"todoList" });
-          // } else {
-          //   alert('ERROR');
-          // }
+          store.dispatch("reservation/" +Constant.ADD_RESERVATION, { reservation_form : form.reservation_form })
+          //this.$toast.show(`Hey! I'm here`);
+          router.push({ name:"home" });
         }
         const cancel = () => {
             router.push({ name:"home"});
         }
-        //
         const disabledDate = reactive(add(new Date(), {days : -1 }))
         return { form, addReservation, cancel, disabledDate}
     }
@@ -80,5 +103,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

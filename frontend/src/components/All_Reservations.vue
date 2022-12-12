@@ -5,6 +5,7 @@
         <td>{{ allreservation.nombre }}</td>
         <td>{{ allreservation.date }}</td>
         <td>{{ allreservation.hour }}</td>
+        <td>{{ allreservation.n_comensales }}</td>
         <td>
             <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>
             <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">DELETE</span>

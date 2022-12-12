@@ -6,4 +6,11 @@ export default {
     GET_RESERVATION : "getReservation",
     DELETE_RESERVATION : "deleteReservation",
     INITIALIZE_ALLRESERVATIONS : "initializeAllReservations",
+
+    //MENU CONSTANT
+    ADD_MENU : "addMenu",
+    UPDATE_MENU : "updateMenu",
+    GET_MENU : "getMenu",
+    DELETE_MENU : "deleteMenu",
+    INITIALIZE_ALLMENUS : "initializeAllMenus",
 }

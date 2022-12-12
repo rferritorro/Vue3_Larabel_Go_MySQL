@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="card card-body">
     <div class="row">
       <div class="col p-3">
         <h2>UPDATE TABLE</h2>
@@ -18,6 +18,10 @@
         <div class="form-group">
             <label htmlFor="hour">HOUR : </label>&nbsp;
             <input type="text" v-model="state.thisReservations.hour" />   
+        </div>
+        <div class="form-group">
+            <label htmlFor="comen">N_COMENSALES : </label>&nbsp;
+            <input type="number" v-model="state.thisReservations.n_comensales" />   
         </div>
         <div class="form-group">
             <label htmlFor="desc">CHECK : </label>&nbsp;

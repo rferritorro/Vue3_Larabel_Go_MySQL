@@ -17,6 +17,7 @@
                                     <th>MENU TYPE:</th>
                                     <th>DATE:</th>
                                     <th>HOUR:</th>
+                                    <th>N_COMENSALES:</th>
                                     <th>OPERATIONS:</th>
                                 </thead>
                                 <AllReservations v-for="allreservation in state.reservationList.reservation" :key="allreservation.id" :allreservation="allreservation" />
@@ -31,8 +32,8 @@
 </template>
 
 <script>
-import Constant from '../Constant';
-import AllReservations from '../components/All_Reservations';
+import Constant from '../../Constant';
+import AllReservations from '../../components/All_Reservations';
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 //import { useRouter } from 'vue-router';
