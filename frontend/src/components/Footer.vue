@@ -1,16 +1,16 @@
 <template>
-    <nav class="footer_nav">
-        <span>BY SERGI BIOSCA & RAFA FERRI</span> 
+    <nav class="card card-body footer_nav ">
+        <span style="color: aliceblue;">BY SERGI BIOSCA & RAFA FERRI</span> 
     </nav>
 </template>
 
 <style>
 .footer_nav {
     display: none;
-    background-color:#b88d61;
+    background-image: url("../assets/img/footer.jpg");
     text-align: center;
     bottom: 0;
-    width: 94%;
+    width: 97%;
     position: fixed;
     padding: 1%;
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql_container:3306
--- Tiempo de generación: 13-12-2022 a las 19:15:26
+-- Tiempo de generación: 01-12-2022 a las 17:53:03
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 8.0.19
 
@@ -41,8 +41,7 @@ INSERT INTO `Menu` (`id`, `nombre`) VALUES
 (2, 'children'),
 (3, 'fatallity'),
 (4, 'premium'),
-(5, 'special'),
-(6, 'NOT SPECIFY');
+(5, 'special');
 
 -- --------------------------------------------------------
 
@@ -65,12 +64,12 @@ INSERT INTO `Table_` (`id`, `reserved`) VALUES
 (3, 0),
 (4, 0),
 (5, 0),
-(6, 1),
+(6, 0),
 (7, 0),
-(8, 1),
+(8, 0),
 (9, 0),
-(10, 1),
-(11, 1),
+(10, 0),
+(11, 0),
 (12, 0),
 (13, 0),
 (14, 0),
@@ -112,21 +111,8 @@ CREATE TABLE `User_table_reserved` (
   `user_id` int(11) NOT NULL,
   `table_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
-  `date` varchar(500) NOT NULL,
-  `hour` time NOT NULL,
-  `n_comensales` int(11) NOT NULL
+  `date` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `User_table_reserved`
---
-
-INSERT INTO `User_table_reserved` (`id`, `user_id`, `table_id`, `menu_id`, `date`, `hour`, `n_comensales`) VALUES
-(1, 1, 6, 1, '22-12-2002', '19:25:00', 2),
-(2, 9, 3, 4, '2', '00:00:00', 0),
-(3, 2, 10, 4, '2', '00:00:00', 0),
-(6, 1, 8, 2, '3', '19:20:00', 0),
-(7, 2, 11, 3, '3', '19:20:00', 4);
 
 --
 -- Disparadores `User_table_reserved`
@@ -184,7 +170,7 @@ ALTER TABLE `User_table_reserved`
 -- AUTO_INCREMENT de la tabla `Menu`
 --
 ALTER TABLE `Menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `Table_`
@@ -202,7 +188,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT de la tabla `User_table_reserved`
 --
 ALTER TABLE `User_table_reserved`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

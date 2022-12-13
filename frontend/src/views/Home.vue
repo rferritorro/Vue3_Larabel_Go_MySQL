@@ -1,42 +1,59 @@
 <template>
-    <div class="card">
-        <img src="../assets/img/banner.jpeg" alt="">
+    <Carousel></Carousel>
+    <div class="card card-body div_menu">
+        <div id="menu_ids" class="menus">
+            <h1 class="h1_menu" title="MENU">Menu:</h1>
+            <span class="information">
+                Buffet Menu: 
+            </span><p></p>
+            <span class="information">
+                From 1:00 p.m. to 4:30 p.m. / From 8:00 p.m. to 12:00 a.m.
+            </span>
+            <Menu class="menu_component"></Menu>
+        </div>
     </div>
-    <div id="menu_ids" class="menus">
-
-    </div>
-    <Carousel :autoplay="2000" :wrap-around="true">
-    <Slide v-for="slide in 10" :key="slide">
-        <img src="../assets/img/banner.jpeg" alt="">
-    </Slide>
-
-    <template #addons>
-      <Pagination />
-    </template>
-  </Carousel>
+    
+    
 </template>
 
 <script>
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import Carousel from '../components/Carousel'
+import Menu from '../components/Menu'
 export default {
-    name: 'Autoplay',
-    components: {
+    components: { 
         Carousel,
-        Slide,
-        Pagination,
-    },
+        Menu
+     },
 }
 </script>
 
 <style>
     .card {
-        width: 100%;
-        height: 800px;
         margin: 0;
+    }
+    .information {
+        color: beige;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .h1_menu {
+        color: beige;
+        text-align: center;
+        font-family: "Chinese-letter";
+        src: url("../assets/letter_style/Tecnojap.ttf");
+    }
+    .div_menu {
+        width: 100%;
+        background-image: url("../assets/img/home_minimal.jpg");
+        margin-top: 5%;
+        margin-bottom: 5%;
     }
     .card img {
         width: 100%;
-        height: 100%;
     }
+
+    .menu_component {
+        margin-top: 2%;
+    }
+
 </style>

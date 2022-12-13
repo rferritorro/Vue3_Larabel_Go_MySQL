@@ -11,8 +11,6 @@
 <script>
 import Header from './components/Header';
 import Footer from './components/Footer';
-
-
 export default {
   components  : { Header, Footer }
 }
@@ -23,7 +21,7 @@ export default {
     margin: 0% 1.5%;
     height: 1500px;
     z-index: 100;
-  } 
+  }
   img.background {
     width: 100%;
     height: 100%;

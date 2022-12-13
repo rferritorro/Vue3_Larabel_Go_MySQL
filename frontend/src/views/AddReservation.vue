@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-body">
+  <div class="card card-body div_reservation">
     <div class="row">
       <div class="col p-3">
         <h2>ADD RESERVATION</h2>

@@ -3,13 +3,13 @@
         <img src="../assets/KAIZEN/2.png" @click="changeIsNavShow"/>
         <div>
             <router-link class="nav-link" to="/home">
-                <span class="span">Home</span>
+                <span class="span" title="HOME">Home</span>
             </router-link>
             <router-link class="nav-link" to="/about">
-                <span class="span">About</span>
+                <span class="span" title="ABOUT">About</span>
             </router-link>
             <router-link class="nav-link" to="/tables/add">
-                <span class="span">Reservation</span>
+                <span class="span" title="RESERVATION">Reservation</span>
             </router-link>
         </div>
     </nav>
@@ -65,7 +65,8 @@ img {
 }
 
 .header_scroll_nav {
-    background-color: #17191b;
+    /* background-color: #17191b; */
+    background-image: url("../assets/img/footer.jpg");
     border-radius: 50px;
     opacity: 0.5;
     height: 100px;
