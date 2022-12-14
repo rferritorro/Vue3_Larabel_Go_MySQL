@@ -10,7 +10,9 @@ class TableResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'reserved' => $this->reserved
+            'reserved' => $this->reserved,
+            'place' => $this->place,
+            'img' => $this->img
         ];
     }
 }

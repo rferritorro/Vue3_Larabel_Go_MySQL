@@ -10,5 +10,5 @@ class Table extends Model
     use HasFactory;
     public $timestamps  = false;
     protected $table = 'Table_';
-    protected $fillable = ['reserved'];
+    protected $fillable = ['reserved', 'place', 'img'];
 }

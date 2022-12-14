@@ -8,7 +8,10 @@
             <router-link class="nav-link" to="/about">
                 <span class="span" title="ABOUT">About</span>
             </router-link>
-            <router-link class="nav-link" to="/tables/add">
+            <router-link class="nav-link" to="/tables">
+                <span class="span" title="TABLES">Table</span>
+            </router-link>
+            <router-link class="nav-link" to="/reserved">
                 <span class="span" title="RESERVATION">Reservation</span>
             </router-link>
         </div>
@@ -85,7 +88,7 @@ img {
 }
 .header_scroll_nav div {
     float: right;
-    width: 30%;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -105,7 +108,7 @@ img {
 }
 .header_nav div {
     float: right;
-    width: 30%;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -113,8 +116,6 @@ img {
     align-items: center;
 }
 .header_nav div * {
-    padding: 0.5%;
-    padding-left: 5.5%;
     color: rgb(232, 25, 25);
     font-family: Chinese-letter;
     font-size: 25px;

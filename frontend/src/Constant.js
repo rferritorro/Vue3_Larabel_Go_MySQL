@@ -13,4 +13,11 @@ export default {
     GET_MENU : "getMenu",
     DELETE_MENU : "deleteMenu",
     INITIALIZE_ALLMENUS : "initializeAllMenus",
+
+    //TABLES CONSTANT
+    ADD_TABLES: "addTables",
+    UPDATE_TABLES : "updateTables",
+    GET_TABLES : "getTables",
+    DELETE_TABLES : "deleteTables",
+    INITIALIZE_ALLTABLES : "initializeAllTables",
 }

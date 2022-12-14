@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: mysql_container:3306
--- Tiempo de generación: 13-12-2022 a las 19:15:26
+-- Servidor: bd:3306
+-- Tiempo de generación: 14-12-2022 a las 17:50:05
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 8.0.19
 
@@ -29,20 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Menu` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL
+  `nombre` varchar(20) NOT NULL,
+  `img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Menu`
 --
 
-INSERT INTO `Menu` (`id`, `nombre`) VALUES
-(1, 'traditional'),
-(2, 'children'),
-(3, 'fatallity'),
-(4, 'premium'),
-(5, 'special'),
-(6, 'NOT SPECIFY');
+INSERT INTO `Menu` (`id`, `nombre`, `img`) VALUES
+(1, 'TRADITIONAL', 'traditional_menu.455364b0.jpg'),
+(2, 'CHILDREN', 'children_menu.75044df4.jpg'),
+(3, 'STAR', 'star_menu.8d4de97b.jpg'),
+(4, 'PREMIUM', 'premium_menu.f2bac333.jpg'),
+(5, 'SPECIAL', 'special_menu.6f360dbc.jpg'),
+(6, 'NOT SPECIFY', '');
 
 -- --------------------------------------------------------
 
@@ -52,30 +53,32 @@ INSERT INTO `Menu` (`id`, `nombre`) VALUES
 
 CREATE TABLE `Table_` (
   `id` int(11) NOT NULL,
-  `reserved` tinyint(1) NOT NULL DEFAULT '0'
+  `reserved` tinyint(1) NOT NULL DEFAULT '0',
+  `place` varchar(200) NOT NULL,
+  `img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Table_`
 --
 
-INSERT INTO `Table_` (`id`, `reserved`) VALUES
-(1, 0),
-(2, 0),
-(3, 0),
-(4, 0),
-(5, 0),
-(6, 1),
-(7, 0),
-(8, 1),
-(9, 0),
-(10, 1),
-(11, 1),
-(12, 0),
-(13, 0),
-(14, 0),
-(15, 0),
-(16, 0);
+INSERT INTO `Table_` (`id`, `reserved`, `place`, `img`) VALUES
+(1, 0, 'First Floor', 'table_first-floor.2fc177bf.jpg'),
+(2, 0, 'First Floor', 'table_first-floor.2fc177bf.jpg'),
+(3, 0, 'First Floor', 'table_first-floor.2fc177bf.jpg'),
+(4, 0, 'First Floor', 'table_first-floor.2fc177bf.jpg'),
+(5, 0, 'First Floor', 'table_first-floor.2fc177bf.jpg'),
+(6, 1, 'First Floor', 'table_first-floor.2fc177bf.jpg'),
+(7, 0, 'Second Floor', 'table_second-floor.b1625382.jpg'),
+(8, 1, 'Second Floor', 'table_second-floor.b1625382.jpg'),
+(9, 0, 'Second Floor', 'table_second-floor.b1625382.jpg'),
+(10, 1, 'Second Floor', 'table_second-floor.b1625382.jpg'),
+(11, 1, 'Second Floor', 'table_second-floor.b1625382.jpg'),
+(12, 0, 'Terrace', 'table_terrace.bb371679.jpg'),
+(13, 0, 'Terrace', 'table_terrace.bb371679.jpg'),
+(14, 0, 'Terrace', 'table_terrace.bb371679.jpg'),
+(15, 0, 'Terrace', 'table_terrace.bb371679.jpg'),
+(16, 0, 'Terrace', 'table_terrace.bb371679.jpg');
 
 -- --------------------------------------------------------
 
@@ -202,7 +205,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT de la tabla `User_table_reserved`
 --
 ALTER TABLE `User_table_reserved`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

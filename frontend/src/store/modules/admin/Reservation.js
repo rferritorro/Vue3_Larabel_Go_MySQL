@@ -94,6 +94,7 @@ export const reservation = {
     },
     getters : {
       getReserved(state) {
+        console.log(state)
         return state;
       },
       // getMenus(state) {

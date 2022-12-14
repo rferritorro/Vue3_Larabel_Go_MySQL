@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Constant from '../Constant';
+import Constant from '../../Constant';
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
 
@@ -23,7 +23,6 @@ export default {
         allreservation: Object
     },
     setup() {
-        
         const store = useStore();
         const router = useRouter();
 

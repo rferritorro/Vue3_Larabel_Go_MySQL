@@ -24,6 +24,8 @@ class TableController extends Controller
         if (Table::where('id', $id)->exists()) {
             $table = Table::find($id);
             $table->reserved = $request->reserved;
+            $table->place = $request->place;
+            $table->img = $request->img;
             $table->save();
             return response()->json([
               "message" => "Table updated successfully"

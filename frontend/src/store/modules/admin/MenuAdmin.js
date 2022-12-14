@@ -28,5 +28,8 @@ export const menu = {
         console.log(state.menu)
         return state.menu;
       },
+      getAllMenus(state) {
+        return state;
+      },
     }
 };

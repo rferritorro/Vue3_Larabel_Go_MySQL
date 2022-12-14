@@ -10,7 +10,8 @@ class MenuResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre
+            'nombre' => $this->nombre,
+            'img' => $this->img
         ];
     }
 }

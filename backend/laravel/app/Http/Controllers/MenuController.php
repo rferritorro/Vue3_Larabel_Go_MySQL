@@ -24,6 +24,7 @@ class MenuController extends Controller
         if (Menu::where('id', $id)->exists()) {
             $menu = Menu::find($id);
             $menu->nombre = $request->nombre;
+            $menu->img = $request->img;
             $menu->save();
             return response()->json([
               "message" => "Menu updated successfully"

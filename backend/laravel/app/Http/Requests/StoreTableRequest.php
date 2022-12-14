@@ -14,7 +14,9 @@ class StoreTableRequest extends FormRequest
     public function rules()
     {
         return [
-            "reserved" => ["required"]
+            "reserved" => ["required"],
+            "place" => ["required"],
+            "img" => ["required"]
         ];
     }
 

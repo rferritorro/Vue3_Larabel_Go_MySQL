@@ -1,8 +1,7 @@
 <template>
-    <div className="m-3">
-        <h3>ERROR NOT FOUND</h3>
-        <p> {{fullPath}}
-        </p>
+    <div class="card card-body not_founddiv">
+        <h2 class="about_h2">PAGE NOT FOUND:</h2>
+        <span class="about_h2"> {{fullPath}} </span>
     </div>
 </template>
 
@@ -19,5 +18,12 @@ export default {
 </script>
 
 <style>
+    .not_founddiv {
+        background-image: url("../assets/img/home_minimal.jpg");
+    }
+    .about_h2 {
+        margin-top: 5%;
+        color: beige
+    }
 
 </style>

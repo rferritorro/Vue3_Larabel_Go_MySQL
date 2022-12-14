@@ -19,11 +19,28 @@
 <script>
 import Carousel from '../components/Carousel'
 import Menu from '../components/Menu'
+//import Constant from '../Constant';
+// import { reactive, computed } from 'vue'
+// import { useStore } from 'vuex'
 export default {
     components: { 
         Carousel,
         Menu
      },
+     setup() {
+        window.scroll({
+            top: 0
+        })
+        // const store = useStore();
+        // const state = reactive({ 
+        //     menuList : computed(() => store.getters["menu/getAllMenus"]) 
+        // });
+        // store.dispatch("menu/" + Constant.INITIALIZE_ALLMENUS);
+        // console.log(state.menuList)
+
+        // return { state }
+
+     }
 }
 </script>
 

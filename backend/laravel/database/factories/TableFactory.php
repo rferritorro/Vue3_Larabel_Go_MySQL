@@ -12,7 +12,9 @@ class TableFactory extends Factory
     public function definition()
     {
         return [
-            'reserved' => $this->faker->boolean()
+            'reserved' => $this->faker->boolean(),
+            'place' => $this->faker->name(),
+            'img' => $this->faker->name()
         ];
     }
 }
