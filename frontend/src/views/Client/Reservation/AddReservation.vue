@@ -10,7 +10,7 @@
         <div class="col">
           <div class="form-group">
             <label htmlFor="user_id">NAME:</label>
-            <input type="text" class="form-control" v-model="form.reservation_form.user_id" />
+            <input type="text" v-model="form.reservation_form.user_id" />
           </div>
           <!-- <div class="form-group">
               <label htmlFor="desc">DESCRIPTION:</label>
@@ -61,9 +61,9 @@
 <script>
 import { computed, reactive } from 'vue'
 import { useStore } from 'vuex'
-import Constant from '../../Constant';
-import Datepicker from "vue3-datepicker";
+import Constant from '../../../Constant';
 import { useRouter } from 'vue-router';
+import Datepicker from "vue3-datepicker";
 import { add } from 'date-fns'
 export default {
     data() {
@@ -94,12 +94,12 @@ export default {
         console.log(form)
         const addReservation = () => {
           console.log(form.reservation_form)
-          store.dispatch("reservation/" +Constant.ADD_RESERVATION, { reservation_form : form.reservation_form })
+          store.dispatch("reservation/" + Constant.ADD_RESERVATION, { reservation_form : form.reservation_form })
           //this.$toast.show(`Hey! I'm here`);
           router.push({ name:"home" });
         }
         const cancel = () => {
-            router.push({ name:"Reservations"});
+            router.push({ name:"home"});
         }
         const disabledDate = reactive(add(new Date(), {days : -1 }))
         return { form, addReservation, cancel, disabledDate}
@@ -109,7 +109,7 @@ export default {
 
 <style>
   .div_reservation {
-    background-image: url("../../assets/img/home_minimal.jpg");
+    background-image: url("../../../assets/img/home_minimal.jpg");
   }
   .add_reservationclass {
     margin-top: 5%;

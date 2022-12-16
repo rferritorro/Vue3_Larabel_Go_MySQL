@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReservedController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,11 @@ use App\Http\Controllers\ReservedController;
 // });
 
 
-//ROUTES TO API/BD GET DATA TO DATABSES LARAVEL OR GO
+//ROUTES TO API/BD GET DATA TO DATABSES LARAVEL
 //LARAVEL --> PANEL ADMIN
 Route::resource('users', UserController::class);
 Route::resource('tables', TableController::class);
 Route::resource('menus', MenuController::class);
 Route::resource('reserved', ReservedController::class);
+Route::get('/public/{image}', [ImageController::class, 'getImages']);
 
-
-//GO --> SERVER TO DATA WEB RESTAURANT

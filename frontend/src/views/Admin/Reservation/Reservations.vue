@@ -2,8 +2,10 @@
     <div class="card card-body reservation">
         <div class="text_reservation">       
             <div class="row">
-                <div class="col p-3">
-                    <router-link class="btn btn-primary" to="/reserved/add">ADD RESERVATION</router-link>
+                <div class="col">
+                    <h2>ALL RESERVATIONS</h2>
+                    <!-- <router-link class="btn btn-primary" to="/reserved/add">ADD RESERVATION</router-link> -->
+                    <!-- <img src="../../assets/img/lazyload.gif"  /> -->
                 </div>
             </div>
             <div class="card">
@@ -33,14 +35,18 @@
 </template>
 
 <script>
-import Constant from '../../Constant';
-import { reactive, computed } from 'vue'
+import Constant from '../../../Constant';
+import { reactive, computed, defineAsyncComponent } from 'vue'
 import { useStore } from 'vuex'
-import AllReservations from '../../components/Admin/All_Reservations';
+//import AllReservations from '../../components/Admin/All_Reservations';
 //import { useRouter } from 'vue-router';
 
 export default {
-    components : { AllReservations },
+    components : { 
+        AllReservations: defineAsyncComponent(()  =>
+        import('../../../components/Admin/All_Reservations')
+        ),
+    },
     setup() {
         window.scroll({
             top: 0
@@ -54,15 +60,15 @@ export default {
         
         //RUTA GO HOME
         //router.push({ name:"home"});      
-
-        return { state }
+        const show = true;
+        return { state, show }
     }
 }
 </script>
 
 <style>
     .reservation {
-        background-image: url("../../assets/img/home_minimal.jpg");
+        background-image: url("../../../assets/img/fondo_white_admin.jpg");
     }
     .text_reservation {
         margin-top: 5%;

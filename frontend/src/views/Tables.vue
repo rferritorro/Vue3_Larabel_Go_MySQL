@@ -6,7 +6,6 @@
         </div>
         <div class="tables_infor">
             <AllTables v-for="alltables in state.tableList.tables" :key="alltables.id" :alltables="alltables" class="alltables"></AllTables>
-            <!-- <Tables v-for="alltables in state.tableList.tables" :key="alltables.id" :alltables="alltables"></Tables> -->
         </div>
     </div>
 </template>

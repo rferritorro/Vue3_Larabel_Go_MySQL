@@ -1,21 +1,54 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AddReservation from '../views/Reservation/AddReservation';
-import UpdateReservation from '../views/Reservation/UpdateReservation';
-import Reservation from '../views/Admin/Reservations';
+import AddReservation from '../views/Client/Reservation/AddReservation';
+import UpdateReservation from '../views/Admin/Reservation/UpdateReservation';
+import Reservation from '../views/Admin/Reservation/Reservations';
+import AddMenu from '../views/Admin/Menu/AddMenu';
+import UpdateMenu from '../views/Admin/Menu/UpdateMenu';
 import Home from '../views/Home';
+import HomeAdmin from '../views/Admin/HomeAdmin';
 import About from '../views/About';
 import Tables from '../views/Tables';
 import NotFound from '../views/NotFound';
 
+// const routes = [
+//     { path:"", redirect:{ name:"home" } },
+//     { path:"/home", name:"home", component: Home },
+//     { path:"/about", name:"about", component: About },
+//     { path:"/dashboard/menu/add", name:"addMenu", component: AddMenu },
+//     { path:"/dashboard/menu/update/:id", name:"updateMenu", component: UpdateMenu },
+//     { path:"/dashboard/reserved", name:"Reservations", component: Reservation },
+//     { path:"/reserved/add", name:"addReservation", component: AddReservation },
+//     { path:"/reserved/update/:id", name:"UpdateReservation", component: UpdateReservation },
+//     { path:"/tables", name:"Tables", component: Tables },
+//     { path:"/:catchAll(.*)", component: NotFound },
+// ];
+
 const routes = [
-    { path:"", redirect:{ name:"home" } },
-    { path:"/home", name:"home", component: Home },
-    { path:"/about", name:"about", component: About },
-    { path:"/reserved", name:"Reservations", component: Reservation },
-    { path:"/reserved/add", name:"addReservation", component: AddReservation },
-    { path:"/reserved/update/:id", name:"UpdateReservation", component: UpdateReservation },
-    { path:"/tables", name:"Tables", component: Tables },
-    { path:"/:catchAll(.*)", component: NotFound },
+  { path:"", redirect:{ name:"home" } },
+  { path:"/home", name:"home", component: Home },
+  { path:"/about", name:"about", component: About },
+  { path:"/reserved/add", name:"addReservation", component: AddReservation },
+  { path:"/tables", name:"Tables", component: Tables },
+  { path:"/:catchAll(.*)", component: NotFound },
+  { 
+    path:"/dashboard", 
+    name:"dashboard", 
+    component: HomeAdmin,
+    children: [
+      {
+        path:"menu/add", name:"addMenu", component: AddMenu
+      },
+      {
+        path:"menu/update/:id", name:"updateMenu", component: UpdateMenu 
+      },
+      {
+        path:"reserved", name:"Reservations", component: Reservation
+      },
+      { 
+        path:"reserved/update/:id", name:"UpdateReservation", component: UpdateReservation 
+      },
+    ]
+  }
 ];
 
 const router = createRouter({

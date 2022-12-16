@@ -11,8 +11,8 @@
             <router-link class="nav-link" to="/tables">
                 <span class="span" title="TABLES">Table</span>
             </router-link>
-            <router-link class="nav-link" to="/reserved">
-                <span class="span" title="RESERVATION">Reservation</span>
+            <router-link class="nav-link" to="/dashboard">
+                <font-awesome-icon icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser"/>
             </router-link>
         </div>
     </nav>

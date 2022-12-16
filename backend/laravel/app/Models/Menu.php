@@ -10,5 +10,5 @@ class Menu extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'Menu';
-    protected $fillable = ['nombre', 'img'];
+    protected $fillable = ['nombre', 'img', 'descr'];
 }

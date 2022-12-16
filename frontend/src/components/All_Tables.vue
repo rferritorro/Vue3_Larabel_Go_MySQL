@@ -1,7 +1,7 @@
 <template>
     <div class="div_table">
         <span class="tables_span">{{ alltables.place }}</span>
-        <!-- <img src="../assets/img/table_first-floor.jpg"> -->
+        <!-- <img src="../assets/img/table_terrace.jpg"> -->
         <img :src="'/img/'+ alltables.img" class="img_tables"/>
     </div>
     <!-- <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>

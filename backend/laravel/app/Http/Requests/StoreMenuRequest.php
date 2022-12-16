@@ -15,6 +15,7 @@ class StoreMenuRequest extends FormRequest
     {
         return [
             "nombre" => ["required"],
+            "descr" => ["required"],
             "img" => ["required"]
         ];
     }

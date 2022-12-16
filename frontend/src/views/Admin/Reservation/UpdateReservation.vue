@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Constant from '../../Constant';
+import Constant from '../../../Constant';
 import { reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router';
@@ -74,7 +74,7 @@ export default {
 <style>
 
   .update_div {
-    background-image: url("../../assets/img/home_minimal.jpg");
+    background-image: url("../../../assets/img/home_minimal.jpg");
   }
   .update_text {
     margin-top: 5%;

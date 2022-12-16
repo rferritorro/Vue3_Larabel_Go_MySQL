@@ -13,6 +13,7 @@ class MenuFactory extends Factory
     {
         return [
             'nombre' => $this->faker->name(),
+            'descr' => $this->faker->name(),
             'img' => $this->faker->name()
         ];
     }

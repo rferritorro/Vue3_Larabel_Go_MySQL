@@ -10,6 +10,9 @@ import { useRoute } from 'vue-router';
 
 export default {
     setup() {
+        window.scroll({
+            top: 0
+        })
         const route = useRoute();
         const fullPath  = route.fullPath
         return { fullPath };
