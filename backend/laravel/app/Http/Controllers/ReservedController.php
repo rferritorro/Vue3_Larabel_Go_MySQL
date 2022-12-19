@@ -12,7 +12,19 @@ class ReservedController extends Controller
 {
     //GET ALL DATA INTO TABLE RESERVED
     public function index() {
-      // SELECT User.username, Table_id, Menu.nombre, User_table_reserved.date 
+        $reserved = DB::table('User_table_reserved')
+          ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+          ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
+          ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
+          ->orderBy("User.username")
+          ->get();
+
+        return $reserved;
+    }
+
+    public function show($id) {
+      // SELECT User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales
         // FROM `User_table_reserved`
         // INNER JOIN User
         //   ON User.id = User_table_reserved.user_id
@@ -20,13 +32,48 @@ class ReservedController extends Controller
         //   ON Table_.id = User_table_reserved.table_id
         //   INNER JOIN Menu
         //   ON Menu.id = User_table_reserved.menu_id;
-        $reserved = DB::table('User_table_reserved')
-                  ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
-                  ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
-                  ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
-                  ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
-                  ->get();
-        return $reserved;
+      switch ($id) {
+      case '1':
+        $order = "User.username";
+        break;
+      case '2':
+        $order = "Table_id";
+        break;
+      case '3':
+        $order = "Menu.nombre";
+        break;
+      case '4':
+        $order = "User_table_reserved.date";
+        break;
+      case '5':
+        $order = "User_table_reserved.hour";
+        break;
+      case '6':
+        $order = "User_table_reserved.n_comensales";
+        break;
+
+      default:
+        break;
+      }
+
+        $reserved_asc = DB::table('User_table_reserved')
+          ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+          ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
+          ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
+          ->orderBy($order)
+          ->get();
+        $reserved_desc = DB::table('User_table_reserved')
+          ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+          ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
+          ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
+          ->orderByDesc($order)
+          ->get();
+       
+        return $reserved_asc;
+        //filter ASC OR DESC:
+        //ORDER BY `User`.`username` ASC
         //return ReservedResource::ReservedResource(Reserved::get());
     }
 

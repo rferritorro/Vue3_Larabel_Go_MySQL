@@ -7,10 +7,6 @@ export const reservation = {
       //menus: []
     },
     mutations : {
-        // [Constant.GET_RESERVATION]: (state, payload) => {
-        //     console.log(state);
-        //     state.reservation.push({ ...payload });
-        // },
         [Constant.ADD_RESERVATION]: (state) => {
           console.log(state.reservation)
           //state.reservation.push({ ...payload});
@@ -42,16 +38,6 @@ export const reservation = {
         },
     },
     actions : {
-        // [Constant.GET_RESERVATION]: (store) => {
-        //     console.log(store)
-        //     ReservationService.getReserved()
-        //       .then(function (result) {
-        //         store.commit(Constant.GET_RESERVATION, result.data);
-        //       })
-        //       .catch(function (error) {
-        //         console.log(error);
-        //       });
-        // },
         [Constant.ADD_RESERVATION]: (store, payload) => {
           ReservationService.addReserved(payload.reservation_form)
             .then(function (result) {
@@ -82,8 +68,9 @@ export const reservation = {
               console.log(error);
             });
         },
-        [Constant.INITIALIZE_ALLRESERVATIONS]: (store) => {
-          ReservationService.getReserved()
+        [Constant.INITIALIZE_ALLRESERVATIONS]: (store, payload) => {
+          console.log(payload)
+          ReservationService.getReserved(payload.reservationid)
             .then(function (result) {
               store.commit(Constant.INITIALIZE_ALLRESERVATIONS, result.data);
             })
