@@ -1,16 +1,18 @@
 <template>
-    <div class="div_table">
-        <span class="tables_span">{{ alltables.place }}</span>
-        <!-- <img src="../assets/img/table_terrace.jpg"> -->
-        <img :src="'/img/'+ alltables.img" class="img_tables"/>
+
+    <div class="div_table" v-for="table in alltables" :key="table.id">
+        <span class="tables_span">{{ table.place }}</span>
+        <!-- <img src="../assets/img/table_second-floor.jpg"> -->
+        <!-- <img :src="'/img/'+ alltables.img" class="img_tables"/> -->
+        <img src="https://thumbs.dreamstime.com/b/el-demersus-africano-del-spheniscus-ping%C3%BCino-de-la-colonia-en-los-cantos-rodados-vara-cerca-cape-town-sur%C3%A1frica-que-se-vue-139731054.jpg" alt="">
     </div>
     <!-- <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>
     <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">DELETE</span> -->
 </template>
 
 <script>
-import Constant from '../Constant';
-import { useStore } from 'vuex'
+//import Constant from '../Constant';
+//import { useStore } from 'vuex'
 //import { useRouter } from 'vue-router';
 
 export default {
@@ -18,23 +20,12 @@ export default {
         alltables: Object
     },
     setup() {
-        const store = useStore();
-        //const router = useRouter();
-        const getTables = (id) => {
-            store.dispatch("reservation/" + Constant.GET_RESERVATION, { id });
-        }
-        // const checked = (done) => {
-        //     return { "list-group-item":true, "list-group-item-success":done };
+        //const store = useStore();
+            //const router = useRouter();
+        // const getTables = (id) => {
+        //     store.dispatch("reservation/" + Constant.GET_RESERVATION, { id });
         // }
-        // const updateReservation = (id) => {
-        //     //store.dispatch("reservation/" + Constant.UPDATE_RESERVATION, { allReservations: { ...props.allreservation } });
-        //     router.push({ name: 'UpdateReservation', params: { id } })
-        // }
-        // const deleteReservation = (id) => {
-        //     store.dispatch("reservation/" + Constant.DELETE_RESERVATION, { id });
-        // }
-
-        return { getTables, /*deleteReservation, updateReservation, checked*/ }
+        // return { getTables, /*deleteReservation, updateReservation, checked*/ }
     }
 }
 </script>
