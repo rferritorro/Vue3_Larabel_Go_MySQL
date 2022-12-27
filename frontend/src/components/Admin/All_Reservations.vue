@@ -1,5 +1,5 @@
 <template>
-    <tbody>
+    <tbody >
         <td>{{ allreservation.username }}</td>
         <td>{{ allreservation.Table_id }}</td>
         <td>{{ allreservation.nombre }}</td>

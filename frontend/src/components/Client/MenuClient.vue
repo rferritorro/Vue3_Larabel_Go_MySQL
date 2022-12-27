@@ -1,14 +1,14 @@
 <template>
     <h1 class="h1_menu" title="MENU">Menu:</h1>
     <p class="information">
-        Buffet Menu:
+        Buffet Menus:
     </p>
     <p class="information">
         From 1:00 p.m. to 4:30 p.m. / From 8:00 p.m. to 12:00 a.m.
     </p>
    <div class="container" v-for="allmenus in state.menuList.menu" :key="allmenus.id" :allmenus="allmenus.id">
         <div class="div1" v-if="allmenus.nombre != 'NOT SPECIFY'">
-            <!-- <img class="menu_img" src="../../assets/img/premium_menu.jpg"/> -->
+            <!-- <img class="menu_img" src="../../assets/img/star_menu.jpg"/> -->
             <img class="menu_img" :src="allmenus.img"/>
             <div class="infor_menu">
                 <span>For More Information:</span>

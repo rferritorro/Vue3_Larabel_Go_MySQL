@@ -7,8 +7,8 @@ import router from "./router";
 import store from "./store";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faGear, faPen, faTrash, faPlus, faUser, faBackwardStep , faForwardStep} from '@fortawesome/free-solid-svg-icons'
-library.add( faGear, faPen, faTrash, faPlus, faUser, faBackwardStep ,faForwardStep)
+import { faGear, faPen, faTrash, faPlus, faUser, faSpinner, faArrowUp, faArrowDown, faBackwardStep , faForwardStep } from '@fortawesome/free-solid-svg-icons'
+library.add( faGear, faPen, faTrash, faPlus, faUser, faSpinner, faArrowUp, faArrowDown,  faBackwardStep ,faForwardStep )
 
 createApp(App)
   .use(router)
