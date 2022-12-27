@@ -1,9 +1,5 @@
 <template>
     <div class="card card-body tables_div">
-        <div class="title_Tables">
-            <h2 class="tables_h2">Tables</h2>
-            <span class="tables_h2">FILTERS</span>
-        </div>
         <div class="tables_infor">
             <AllTables :alltables="state.tableList.tablesclient.filter(e=> e.place == list[selected])" class="alltables"></AllTables>
         </div>
@@ -46,10 +42,18 @@ export default {
 
 <style>
 .tables_div {
+    background-color: transparent;
+    position: relative;
+    top: 15%;
     background-image: url("../assets/img/home_minimal.jpg");
 }
 
-.tables_infor,
+.tables_infor {
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 .title_Tables {
     margin-top: 5%;
 }
