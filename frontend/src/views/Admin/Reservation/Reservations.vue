@@ -15,35 +15,47 @@
                             <ul class="list-group">
                                 <table>
                                     <thead>
-                                        <th @click="order(1)">
+                                        <th @click="order(1)" >
                                             RESERVATION NAME:
-                                            <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="up === true" size="1x" />
-                                            <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="down === true" size="1x" />
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 1" size="1x" />
+                                                <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 1" size="1x" />
+                                            </div>
                                         </th>
                                         <th @click="order(2)">
                                             TABLE:
-                                            <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="up === true" size="1x" />
-                                            <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="down === true" size="1x" />
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 2" size="1x" />
+                                                <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 2" size="1x" />
+                                            </div>
                                         </th>
                                         <th @click="order(3)">
                                             MENU TYPE:
-                                            <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="up === true" size="1x" />
-                                            <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="down === true" size="1x" />
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 3" size="1x" />
+                                                <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 3" size="1x" />
+                                            </div>
                                         </th>
                                         <th @click="order(4)">
                                             DATE:
-                                            <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="up === true" size="1x" />
-                                            <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="down === true" size="1x" />
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 4" size="1x" />
+                                                <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 4" size="1x" />
+                                            </div>
                                         </th>
                                         <th @click="order(5)">
                                             HOUR:
-                                            <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="up === true" size="1x" />
-                                            <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="down === true" size="1x" />
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 5" size="1x" />
+                                                <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 5" size="1x" />
+                                            </div>
                                         </th>
                                         <th @click="order(6)">
                                             N_COMENSALES:
-                                            <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="up === true" size="1x" />
-                                            <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="down === true" size="1x" />
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 6" size="1x" />
+                                                <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 6" size="1x" />
+                                            </div>
                                         </th>
                                         <th>OPERATIONS:</th>
                                     </thead>
@@ -62,7 +74,7 @@
 import Constant from '../../../Constant';
 import { reactive, computed, defineAsyncComponent } from 'vue'
 import { useStore } from 'vuex'
-//import useFilters from '../../../composables/useFilter';
+//import useFilters from '../../../composables/useFilters';
 //import AllReservations from '../../components/Admin/All_Reservations';
 //import { useRouter } from 'vue-router';
 
@@ -79,25 +91,25 @@ export default {
         const store = useStore();
         const state = reactive({ 
             reservationList : computed(() => store.getters["reservation/getReserved"]),
+            orderList : computed(() => store.getters["order/getOrders"]),
+            //orderID: useFilters(1)
         });
-        store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: 1 });
-        console.log(state.reservationList)
+        //state.orderID = useFilters(1);
+        
+        store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: 6 });
+        store.dispatch("order/" + Constant.INITIALIZE_ALLORDER);
+
         
         const order = (id) => {
-            let up = true;
-            let down = false;
-            console.log(id)
-            if (up === true) {
-                down = true;
-                up = false;
-            } else if (up === false) {
-                down = false;
-                up = true;
+            let infor_order = {
+                "order_": 1,
+                "order_old": 1,
+                "order_old2": -1,
+                "order_new": 0
             }
             store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: id });
-            console.log("DOWN: " + down)
-            console.log("UP: "+ up)
-            return { up, down}
+            store.dispatch("order/" + Constant.UPDATE_ORDER, { orderid: id,  infor_order: infor_order  });
+            console.log(state.orderList.order)
         }    
         // console.log("DOWN: " + down)
         // console.log("UP: "+ up)

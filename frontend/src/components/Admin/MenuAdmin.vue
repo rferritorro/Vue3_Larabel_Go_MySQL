@@ -9,7 +9,7 @@
     </p>
     <div class="containeradmin" v-for="allmenus in state.menuList.menu" :key="allmenus.id" :allmenus="allmenus.id">
         <div class="div1admin" v-if="allmenus.nombre != 'NOT SPECIFY'">
-            <!-- <img class="menu_img" src="../../assets/img/premium_menu.jpg"/> -->
+            <!-- <img class="menu_img" src="../../assets/img/star_menu.jpg"/> -->
             <img class="menu_img" :src="allmenus.img" />
             <div class="infor_menuadmin">
                 <span>For More Information:</span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReservedController;
+use App\Http\Controllers\OrderReservedController;
 use App\Http\Controllers\ImageController;
 
 /*
@@ -30,5 +31,7 @@ Route::resource('users', UserController::class);
 Route::resource('tables', TableController::class);
 Route::resource('menus', MenuController::class);
 Route::resource('reserved', ReservedController::class);
+Route::resource('order_reserved', OrderReservedController::class);
 Route::get('/public/{image}', [ImageController::class, 'getImages']);
+Route::get('/_reserved/', [OrderReservedController::class, 'get_order']);
 

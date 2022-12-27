@@ -3,7 +3,7 @@
     <Slide v-for="img in imgs" :key="img">
         <div class="carousel__item">
             <img :src="'/img/' +img" alt="" class="img_carousel"/>
-            <!-- <img src="../assets/img/banner22.jpg" alt="" class="img_carousel"/> -->
+            <!-- <img src="../assets/img/banner.jpg" alt="" class="img_carousel"/> -->
         </div>
     </Slide>
 

@@ -20,4 +20,9 @@ export default {
     GET_TABLES : "getTables",
     DELETE_TABLES : "deleteTables",
     INITIALIZE_ALLTABLES : "initializeAllTables",
+
+    //ORDER CONSTANT
+    UPDATE_ORDER : "updateOrder",
+    GET_ORDER : "getOrder",
+    INITIALIZE_ALLORDER : "initializeAllOrder",
 }
