@@ -1,5 +1,5 @@
 <template>
-    <div class="card card-body tables_div">
+    <div class="card card-body tables_div w-100">
         <div class="tables_infor">
             <AllTables :alltables="state.tableList.tablesclient.filter(e=> e.place == list[selected])" class="alltables"></AllTables>
         </div>
@@ -49,7 +49,7 @@ export default {
 }
 
 .tables_infor {
-    height: 800px;
+    height: 1000px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

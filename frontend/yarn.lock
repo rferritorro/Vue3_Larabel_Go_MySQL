@@ -43,7 +43,7 @@
   "resolved" "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.20.5.tgz"
   "version" "7.20.5"
 
-"@babel/core@^7.12.16":
+"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.12.16", "@babel/core@^7.13.0", "@babel/core@^7.4.0-0":
   "integrity" "sha512-UdOWmk4pNWTm/4DlPUl/Pt4Gz4rcEMb7CY0Y3eJl5Yz1vI8ZJGmHWaVE55LoxRjdpx0z259GE9U5STA9atUinQ=="
   "resolved" "https://registry.npmjs.org/@babel/core/-/core-7.20.5.tgz"
   "version" "7.20.5"
@@ -979,7 +979,7 @@
   "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.2.1.tgz"
   "version" "6.2.1"
 
-"@fortawesome/fontawesome-svg-core@^6.2.1":
+"@fortawesome/fontawesome-svg-core@^6.2.1", "@fortawesome/fontawesome-svg-core@~1 || ~6":
   "integrity" "sha512-HELwwbCz6C1XEcjzyT1Jugmz2NNklMrSPjZOWMlc+ZsHIVk+XOvOXLGGQtFBwSyqfJDNgRq4xBCwWOaZ/d9DEA=="
   "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.2.1.tgz"
   "version" "6.2.1"
@@ -1380,6 +1380,11 @@
   dependencies:
     "vue" "^2.0.0"
 
+"@types/webpack-env@^1.18.0":
+  "integrity" "sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg=="
+  "resolved" "https://registry.npmjs.org/@types/webpack-env/-/webpack-env-1.18.0.tgz"
+  "version" "1.18.0"
+
 "@types/ws@^8.5.1":
   "version" "8.5.3"
   dependencies:
@@ -1513,7 +1518,7 @@
 "@vue/cli-plugin-vuex@^5.0.8":
   "version" "5.0.8"
 
-"@vue/cli-service@^5.0.8":
+"@vue/cli-service@^3.0.0 || ^4.0.0 || ^5.0.0-0", "@vue/cli-service@^5.0.8":
   "version" "5.0.8"
   dependencies:
     "@babel/helper-compilation-targets" "^7.12.16"
@@ -1814,7 +1819,7 @@
 "acorn-walk@^8.0.0", "acorn-walk@^8.0.2":
   "version" "8.2.0"
 
-"acorn@^7.1.1", "acorn@^7.4.0":
+"acorn@^6.0.0 || ^7.0.0 || ^8.0.0", "acorn@^7.1.1", "acorn@^7.4.0":
   "version" "7.4.0"
 
 "acorn@^8.0.4":
@@ -1826,7 +1831,7 @@
 "acorn@^8.5.0":
   "version" "8.8.1"
 
-"acorn@^8.7.1":
+"acorn@^8", "acorn@^8.7.1":
   "version" "8.8.1"
 
 "address@^1.1.2":
@@ -1863,7 +1868,7 @@
   dependencies:
     "fast-deep-equal" "^3.1.3"
 
-"ajv@^6.10.0", "ajv@^6.12.4", "ajv@^6.12.5":
+"ajv@^6.10.0", "ajv@^6.12.4", "ajv@^6.12.5", "ajv@^6.9.1":
   "version" "6.12.6"
   dependencies:
     "fast-deep-equal" "^3.1.1"
@@ -1887,7 +1892,7 @@
     "require-from-string" "^2.0.2"
     "uri-js" "^4.2.2"
 
-"ajv@^8.8.0":
+"ajv@^8.8.0", "ajv@^8.8.2":
   "version" "8.11.2"
   dependencies:
     "fast-deep-equal" "^3.1.1"
@@ -2126,7 +2131,7 @@
   dependencies:
     "fill-range" "^7.0.1"
 
-"browserslist@^4.0.0", "browserslist@^4.14.5", "browserslist@^4.16.3", "browserslist@^4.16.6", "browserslist@^4.21.3", "browserslist@^4.21.4":
+"browserslist@^4.0.0", "browserslist@^4.14.5", "browserslist@^4.16.3", "browserslist@^4.16.6", "browserslist@^4.21.3", "browserslist@^4.21.4", "browserslist@>= 4.21.0":
   "version" "4.21.4"
   dependencies:
     "caniuse-lite" "^1.0.30001400"
@@ -2521,7 +2526,7 @@
 "css-declaration-sorter@^6.3.1":
   "version" "6.3.1"
 
-"css-loader@^6.5.0":
+"css-loader@*", "css-loader@^6.5.0":
   "version" "6.7.3"
   dependencies:
     "icss-utils" "^5.1.0"
@@ -2873,7 +2878,7 @@
     "normalize-path" "^3.0.0"
     "schema-utils" "^4.0.0"
 
-"eslint@^7.32.0":
+"eslint@^6.2.0 || ^7.0.0", "eslint@^7.0.0 || ^8.0.0", "eslint@^7.32.0", "eslint@>= 4.12.1", "eslint@>=5.0.0", "eslint@>=7.5.0":
   "version" "7.32.0"
   dependencies:
     "@babel/code-frame" "7.12.11"
@@ -3659,6 +3664,11 @@
     "@sideway/address" "^4.1.3"
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
+
+"jquery@1.9.1 - 3":
+  "integrity" "sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.3.tgz"
+  "version" "3.6.3"
 
 "js-message@1.0.7":
   "version" "1.0.7"
@@ -4622,6 +4632,11 @@
   dependencies:
     "find-up" "^4.0.0"
 
+"popper.js@^1.16.1":
+  "integrity" "sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ=="
+  "resolved" "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1.tgz"
+  "version" "1.16.1"
+
 "portfinder@^1.0.26":
   "version" "1.0.32"
   dependencies:
@@ -4814,18 +4829,18 @@
 "postcss-value-parser@^4.1.0", "postcss-value-parser@^4.2.0":
   "version" "4.2.0"
 
-"postcss@^7.0.36":
-  "version" "7.0.39"
-  dependencies:
-    "picocolors" "^0.2.1"
-    "source-map" "^0.6.1"
-
-"postcss@^8.1.10", "postcss@^8.2.6", "postcss@^8.3.5", "postcss@^8.4.14", "postcss@^8.4.19":
+"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.10", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.2.6", "postcss@^8.3.5", "postcss@^8.4.14", "postcss@^8.4.19":
   "version" "8.4.20"
   dependencies:
     "nanoid" "^3.3.4"
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.2"
+
+"postcss@^7.0.36":
+  "version" "7.0.39"
+  dependencies:
+    "picocolors" "^0.2.1"
+    "source-map" "^0.6.1"
 
 "prelude-ls@^1.2.1":
   "version" "1.2.1"
@@ -5485,7 +5500,7 @@
     "lodash.clonedeep" "^4.5.0"
     "when" "~3.6.x"
 
-"stylus@^0.59.0":
+"stylus@^0.59.0", "stylus@>=0.52.4":
   "version" "0.59.0"
   dependencies:
     "@adobe/css-tools" "^4.0.1"
@@ -5764,8 +5779,10 @@
 "vue-router@^4.0.0-beta.13":
   "version" "4.0.0-beta.13"
 
-"vue-select@^3.20.0":
-  "version" "3.20.0"
+"vue-select@^4.0.0-beta.6":
+  "integrity" "sha512-K+zrNBSpwMPhAxYLTCl56gaMrWZGgayoWCLqe5rWwkB8aUbAUh7u6sXjIR7v4ckp2WKC7zEEUY27g6h1MRsIHw=="
+  "resolved" "https://registry.npmjs.org/vue-select/-/vue-select-4.0.0-beta.6.tgz"
+  "version" "4.0.0-beta.6"
 
 "vue-style-loader@^4.1.0", "vue-style-loader@^4.1.3":
   "version" "4.1.3"
@@ -5776,13 +5793,7 @@
 "vue-template-es2015-compiler@^1.9.0":
   "version" "1.9.1"
 
-"vue@^2.0.0":
-  "version" "2.7.14"
-  dependencies:
-    "@vue/compiler-sfc" "2.7.14"
-    "csstype" "^3.1.0"
-
-"vue@^3.2.45":
+"vue@*", "vue@^2 || ^3.2.13", "vue@^3.0.0", "vue@^3.0.0-beta.10", "vue@^3.2.0", "vue@^3.2.45", "vue@>= 3.0.0 < 4", "vue@3.2.45", "vue@3.x":
   "version" "3.2.45"
   dependencies:
     "@vue/compiler-dom" "3.2.45"
@@ -5790,6 +5801,12 @@
     "@vue/runtime-dom" "3.2.45"
     "@vue/server-renderer" "3.2.45"
     "@vue/shared" "3.2.45"
+
+"vue@^2.0.0":
+  "version" "2.7.14"
+  dependencies:
+    "@vue/compiler-sfc" "2.7.14"
+    "csstype" "^3.1.0"
 
 "vue3-carousel@^0.2.9":
   "version" "0.2.9"
@@ -5896,13 +5913,13 @@
     "clone-deep" "^4.0.1"
     "wildcard" "^2.0.0"
 
-"webpack-sources@^3.2.3":
+"webpack-sources@*", "webpack-sources@^3.2.3":
   "version" "3.2.3"
 
 "webpack-virtual-modules@^0.4.2":
   "version" "0.4.6"
 
-"webpack@^5.54.0":
+"webpack@^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0", "webpack@^3.0.0 || ^4.1.0 || ^5.0.0-0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.1.0 || ^5.0.0-0", "webpack@^4.27.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^5.0.0", "webpack@^5.1.0", "webpack@^5.20.0", "webpack@^5.54.0", "webpack@>=2":
   "version" "5.75.0"
   dependencies:
     "@types/eslint-scope" "^3.7.3"

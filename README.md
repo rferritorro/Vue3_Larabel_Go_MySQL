@@ -8,3 +8,9 @@ CONTRIBUTORS:
     -> RAFA FERRI TORRó
 
 PROYECT RESTAURANT WEB PAGE --- 2DAW
+
+
+vSelect -> 
+npm install --force --save vue-select   
+npm install --save @types/webpack-env --force
+

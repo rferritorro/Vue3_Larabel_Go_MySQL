@@ -34,7 +34,6 @@ export default {
             change_floor(floor.value+1)
         }
         function change_floor(n) {
-            console.log(n)
             if ( n == 0 ) {
                 document.getElementById('less').classList.add('d-none')
             } else if ( n == 2) {

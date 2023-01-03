@@ -8,29 +8,38 @@
                 <img class="card-img-top"
                     src="https://thumbs.dreamstime.com/b/el-demersus-africano-del-spheniscus-ping%C3%BCino-de-la-colonia-en-los-cantos-rodados-vara-cerca-cape-town-sur%C3%A1frica-que-se-vue-139731054.jpg"
                     alt="">
-                <button class="btn btn-dark mt-2" @click="detail(table.id)" >Reserved</button>
+                <button class="btn btn-dark mt-2" @click="detail(table)" >Reserved</button>
             </div>
         </div>
     </div>
-
+    <Details :table="state"></Details>
 </template>
 
 <script>
 //import Constant from '../Constant';
+import { ref} from 'vue'
 //import { useStore } from 'vuex'
-//import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
+import Details from '../components/Details.vue'
 
 export default {
     props: {
-        alltables: Object
+        alltables: Object,
     },
+    components: { Details},
     setup() {
+        const state = ref({}) 
+        function detail(table) {
+            state.value = table
+        }
+        return {detail , state}
         //const store = useStore();
         //const router = useRouter();
         // const getTables = (id) => {
         //     store.dispatch("reservation/" + Constant.GET_RESERVATION, { id });
         // }
         // return { getTables, /*deleteReservation, updateReservation, checked*/ }
+
     }
 }
 </script>
