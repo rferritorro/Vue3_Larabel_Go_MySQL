@@ -1,6 +1,6 @@
 <template>
     <nav id="header_nav" class="header_nav">
-        <img src="../assets/KAIZEN/2.png" @click="changeIsNavShow"/>
+        <img src="../assets/KAIZEN/2.png" @click="changeIsNavShow" />
         <div>
             <router-link class="nav-link" to="/home">
                 <span class="span" title="HOME">Home</span>
@@ -12,7 +12,7 @@
                 <span class="span" title="TABLES">Table</span>
             </router-link>
             <router-link class="nav-link" to="/dashboard">
-                <font-awesome-icon icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser"/>
+                <font-awesome-icon icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
         </div>
     </nav>
@@ -21,18 +21,6 @@
 <script>
 import { reactive, computed } from 'vue';
 
-function menu_scrolled() {
-    window.addEventListener('scroll',() => {
-        let menu = document.getElementById("header_nav")
-        if (window.scrollY > 80) {
-            menu.classList.remove("header_nav")
-            menu.classList.add("header_scroll_nav")
-        } else {
-            menu.classList.add("header_nav")
-            menu.classList.remove("header_scroll_nav")
-        }
-    })
-}
 export default {
     setup() {
         const state = reactive({
@@ -41,13 +29,24 @@ export default {
         const navClass = computed(() => state.isNavShow ? "collapse navbar-collapse show" : "collapse navbar-collapse")
         const changeIsNavShow = () => {
             state.isNavShow = !state.isNavShow;
-        } 
-        
-        return { state, changeIsNavShow, navClass };
+        }
+        function menu_scrolled() {
+            window.addEventListener('scroll', () => {
+                let menu = document.getElementById("header_nav")
+                if (window.scrollY > 80) {
+                    menu.classList.remove("header_nav")
+                    menu.classList.add("header_scroll_nav")
+                } else {
+                    menu.classList.add("header_nav")
+                    menu.classList.remove("header_scroll_nav")
+                }
+            })
+        }
+
+        return { state, changeIsNavShow ,menu_scrolled, navClass };
     }
 
 }
-menu_scrolled()
 
 </script>
 
@@ -56,6 +55,7 @@ menu_scrolled()
     font-family: "Chinese-letter";
     src: url("../assets/letter_style/Tecnojap.ttf");
 }
+
 img {
     width: 5.5%;
 }
@@ -77,6 +77,7 @@ img {
     z-index: 101;
     width: 97%;
 }
+
 .header_scroll_nav:hover {
     opacity: 1;
 }
@@ -86,6 +87,7 @@ img {
     padding: 0.5%;
     border-radius: 50px;
 }
+
 .header_scroll_nav div {
     float: right;
     width: 40%;
@@ -95,6 +97,7 @@ img {
     justify-content: center;
     align-items: center;
 }
+
 .header_scroll_nav div * {
     padding: 0.5%;
     padding-left: 5.5%;
@@ -102,10 +105,12 @@ img {
     font-family: Chinese-letter;
     font-size: 25px;
 }
+
 .header_nav img {
     display: inline-block;
     padding: 0.5%;
 }
+
 .header_nav div {
     float: right;
     width: 40%;
@@ -115,6 +120,7 @@ img {
     justify-content: center;
     align-items: center;
 }
+
 .header_nav div * {
     color: rgb(232, 25, 25);
     font-family: Chinese-letter;

@@ -77,7 +77,7 @@ export const tables = {
     },
     getters : {
       getTables(state) {
-        console.log(state)
+        //console.log(state)
         return state;
       },
       // getMenus(state) {

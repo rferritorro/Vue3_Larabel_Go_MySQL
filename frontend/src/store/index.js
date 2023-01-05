@@ -1,8 +1,9 @@
 import Vuex from "vuex";
 import {reservation}  from "./modules/admin/Reservation"
 import {menu}  from "./modules/admin/MenuAdmin"
-import {menuclient}  from "./modules/client/MenuClient"
 import {tables}  from "./modules/admin/TablesAdmin"
+import {menuclient}  from "./modules/client/MenuClient"
+import {tablesclient}  from "./modules/client/TablesClient"
 import {order}  from "./modules/admin/OrderAdmin"
 
 export default Vuex.createStore({
@@ -11,6 +12,7 @@ export default Vuex.createStore({
         menu: menu,
         menuclient: menuclient,
         tables: tables,
+        tablesclient: tablesclient,
         order: order
     }
 });
