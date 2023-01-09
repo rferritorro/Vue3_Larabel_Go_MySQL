@@ -10,19 +10,6 @@ import About from '../views/About';
 import Tables from '../views/Tables';
 import NotFound from '../views/NotFound';
 
-// const routes = [
-//     { path:"", redirect:{ name:"home" } },
-//     { path:"/home", name:"home", component: Home },
-//     { path:"/about", name:"about", component: About },
-//     { path:"/dashboard/menu/add", name:"addMenu", component: AddMenu },
-//     { path:"/dashboard/menu/update/:id", name:"updateMenu", component: UpdateMenu },
-//     { path:"/dashboard/reserved", name:"Reservations", component: Reservation },
-//     { path:"/reserved/add", name:"addReservation", component: AddReservation },
-//     { path:"/reserved/update/:id", name:"UpdateReservation", component: UpdateReservation },
-//     { path:"/tables", name:"Tables", component: Tables },
-//     { path:"/:catchAll(.*)", component: NotFound },
-// ];
-
 const routes = [
   { path:"", redirect:{ name:"home" } },
   { path:"/home", name:"home", component: Home },
@@ -48,7 +35,9 @@ const routes = [
         path:"reserved/update/:id", name:"UpdateReservation", component: UpdateReservation 
       },
     ]
-  }
+  },
+  // { path: "/login", name: "login", component: () => import('../views/Login/Login.vue') },
+  // { path: "/register", name: "register", component: () => import('../views/Login/Register.vue') }
 ];
 
 const router = createRouter({
