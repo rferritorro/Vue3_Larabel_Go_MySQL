@@ -2,7 +2,6 @@ package main
 
 import (
 	"go-restaurant/Config"
-	//"first-api/Models"
 	"go-restaurant/Routes"
 	//"fmt"
 	//"github.com/gin-gonic/gin"
@@ -15,7 +14,7 @@ import (
 var err error
 
 func main() {
-	Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
+	Config.DB, err = gorm.Open("mysql",Config.DbURL(Config.BuildDBConfig()))
 	r := Routes.AddRouter()
 	r.Run(":3000")
 }
