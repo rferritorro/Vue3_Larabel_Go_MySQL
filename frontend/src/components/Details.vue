@@ -1,6 +1,9 @@
-<template v-if="table">
-   <div class="bg-primary w-50 text-white p-3">
-      <div class="h-100 w-100">
+<template>
+   <div v-if="Object.keys(table).length === 0" class="bg-primary w-50 text-white p-3">
+      <h1>Select table</h1>
+   </div>
+   <div v-else class="bg-primary w-50 text-white p-3">
+      <form class="h-100 w-100">
          <!-- <img src="{{ table.img }}" alt=""> -->
          <img class="float-left w-50 p-2" src="https://thumbs.dreamstime.com/b/el-demersus-africano-del-spheniscus-ping%C3%BCino-de-la-colonia-en-los-cantos-rodados-vara-cerca-cape-town-sur%C3%A1frica-que-se-vue-139731054.jpg" alt="">
          
@@ -11,17 +14,18 @@
             <Datepicker
             v-model="event"
             :disabledDates="state.disabledDates"
-            v-on="get_data_selected(event)"
+            v-on="get_data_selected(event,table.id)"
             />
-            <v-select class="bg-light text-dark" :options="hour_options"></v-select>
+            <v-select class="bg-light text-dark" :options="hour_options" :selectable="hour=> !hour.disabled" label="name"></v-select>
          </div>
-      </div>
+      </form>
       <span id="table_id" style="display:none">{{ table }}</span>
    </div>
 </template>
 
 <script>
 // import { onUpdated } from 'vue';
+import Constant from '../Constant';
 import { computed, reactive } from 'vue';
 import { useStore } from 'vuex'
 import Datepicker from "vue3-datepicker";
@@ -30,23 +34,13 @@ import Datepicker from "vue3-datepicker";
 export default {
    props: {
         table: Object,
-        date: Date
+        date: Date,
    },
     components: {
         Datepicker,
    },
    data() {
       return {
-         hour_options: [
-            '13:00-14:00', 
-            '14:00-15:00',
-            '14:00-15:00',
-            '15:00-16:00',
-            '20:00-21:00',
-            '21:00-22:00',
-            '22:00-23:00',
-            '23:00-24:00'
-         ],
          event: new Date()
       }
    },
@@ -54,25 +48,66 @@ export default {
       // onUpdated(() => {
       // console.log(document.getElementById('table_id').textContent)
       // })
+      const hour_options=[
+         {
+            name: '13:00-14:00',
+            disabled: false 
+         },
+         {
+            name: '14:00-15:00',
+            disabled: false 
+         },
+         {
+            name: '15:00-16:00',
+            disabled: false 
+         },
+         {
+            name: '20:00-21:00',
+            disabled: false 
+         },
+         {
+            name: '21:00-22:00',
+            disabled: false 
+         },
+         {
+            name: '23:00-24:00',
+            disabled: false 
+         }]
       var array = []
-      for (let i=0;i <= new Date().getDay();i++) {
+      for (let i=1;i <= new Date().getDate();i++) {
          array.push(new Date(new Date().getFullYear(),new Date().getMonth(),i))
       }
-      var state = {
-         disabledDates: {
-            dates: array
-         }
-      }
-      console.log(array)
+
       const store = useStore();
-      const timebydate = reactive(
-         computed(() => store.getters['tablesclient/getTables'])      
-      )
-      function get_data_selected(date) {
-         let fulldate=[date.getDate(),(date.getMonth()+1),date.getFullYear()]
-         console.log(fulldate)
-      }
-      return {state, timebydate, get_data_selected}
+      // const timebydate = reactive(
+      //    computed(() => store.getters['tablesclient/getTables'])      
+      // )
+      const state = reactive({
+            allreservation: computed(() => store.getters['reservationclient/getAllReservation']),
+            disabledDates: {
+               dates: array
+            }
+        });
+
+         function transform_data(fulldate) {
+            let day=fulldate.getDate() < 10 ? ''+fulldate.getDate() : fulldate.getDate()
+            let month= fulldate.getMonth()+1 < 10 ? ''+fulldate.getMonth()+1 : fulldate.getMonth()+1
+            let year=fulldate.getFullYear()
+            return year+'-'+month+'-'+day
+         }
+      function get_data_selected(date,table_id) {  
+         hour_options.map(i=>i.disabled=false)
+         // console.log(transform_data(date))
+         // console.log(state.allreservation[1].date.split('T00')[0])
+         var current_tables=state.allreservation.filter(i=> i.Table_id == table_id  && transform_data(date)===i.date.split('T00')[0])     
+         current_tables.forEach(e => {
+            hour_options[e.hour].disabled = true
+         });
+         console.log(hour_options)
+      }  
+      store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
+
+      return {state,hour_options, get_data_selected}
    },
 
 }

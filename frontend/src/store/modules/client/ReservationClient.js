@@ -1,7 +1,7 @@
 import Constant from '../../../Constant';
 import ReservationService from "@/services/client/ReservationServiceClient"
 
-export const reservation = {
+export const reservationclient = {
     namespaced: true,
     state: {
       //menus: []
@@ -17,6 +17,11 @@ export const reservation = {
             (item) => item.table_id === payload.id
           );
           state.reservation.splice(index, 1);
+        },
+        [Constant.INITIALIZE_ALLRESERVATIONS]: (state, payload) => {
+          if (payload) {
+            state.allreservation = payload;
+          } 
         },
     },
     actions : {
@@ -40,8 +45,31 @@ export const reservation = {
               console.log(error);
             });
         },
-
+        [Constant.GET_RESERVATION]: (store, payload) => {
+          ReservationService.getReserved(payload.table_id)
+            .then(function (result) {
+              store.commit(Constant.INITIALIZE_ALLRESERVATIONS, result.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
+        [Constant.INITIALIZE_ALLRESERVATIONS]: (store) => {
+          ReservationService.getReservation()
+            .then(function (result) {
+              store.commit(Constant.INITIALIZE_ALLRESERVATIONS, result.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
     },
     getters : {
+      getReserved(state) {
+        return state;
+      },
+      getAllReservation(state) {
+        return state.allreservation
+      }
     }
 };

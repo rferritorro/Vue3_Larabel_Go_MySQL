@@ -7,7 +7,7 @@ export default {
     addReserved(data) {
         return Api(URL).post("api/reserved/", data)
     },
-
+    
     getReserved(id) {
         return Api(URL).get("api/reserved/" + id)
     },
