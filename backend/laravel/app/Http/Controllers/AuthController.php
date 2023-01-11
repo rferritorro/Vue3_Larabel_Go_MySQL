@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\AuthResource;
-use App\Http\Requests\StoreAuthRequest;
+// use App\Http\Resources\AuthResource;
+// use App\Http\Requests\StoreAuthRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Auth;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -44,27 +45,31 @@ class AuthController extends Controller
 
     public function register(Request $request){
         $request->validate([
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
-        $user = Auth::create([
-            'name' => $request->name,
-            'email' => $request->email,
+        //return $request;
+        $user = User::create([
+            'username' => $request->username,
             'password' => Hash::make($request->password),
+            'email' => $request->email,
+            'avatar' => $request->avatar,
+            'type' => $request->type
         ]);
 
         $token = Auth::login($user);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+        return $token;
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => 'User created successfully',
+        //     'user' => $user,
+        //     'authorisation' => [
+        //         'token' => $token,
+        //         'type' => 'bearer',
+        //     ]
+        // ]);
     }
 
     public function logout()

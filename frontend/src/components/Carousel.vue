@@ -3,7 +3,7 @@
     <Slide v-for="img in imgs" :key="img">
         <div class="carousel__item">
             <img :src="'/img/' +img" alt="" class="img_carousel"/>
-            <img src="../assets/img/banner22.jpg" alt="" class="img_carousel"/>
+            <!-- <img src="../assets/img/banner.jpg" alt="" class="img_carousel"/> -->
         </div>
     </Slide>
 
@@ -24,7 +24,7 @@ export default {
         //Pagination,
     },
     setup() {
-        let imgs = ["banner.7d1ca38b.jpg", "banner1.45f06abe.jpg", "banner22.a99d922f.jpg", "banner2.969fab58.jpg"];
+        let imgs = ["banner.b0a2d167.jpg", "banner1.604aaf9e.jpg", "banner22.7dd417e3.jpg", "banner2.2c15c70a.jpg"];
         return {imgs}
     }
 }
