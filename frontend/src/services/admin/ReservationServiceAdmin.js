@@ -1,22 +1,21 @@
 import Api from '@/services/Api'
-const URL = "http://localhost:8000";
-//const URL = "http://192.168.1.26:8000"
+import secret from '../../secret.json'
 
 export default {
     //check the correct CONNECTION TO CORS Vue--Laravel
     addReserved(data) {
-        return Api(URL).post("api/reserved/", data)
+        return Api(`${secret.url_admin}`).post("api/reserved/", data)
     },
     
     getReserved(id) {
-        return Api(URL).get("api/reserved/" + id)
+        return Api(`${secret.url_admin}`).get("api/reserved/" + id)
     },
 
     putReserved(id) {
-        return Api(URL).put("api/reserved/" + id)
+        return Api(`${secret.url_admin}`).put("api/reserved/" + id)
     },
 
     deleteReserved(id) {
-        return Api(URL).delete("api/reserved/" + id)
+        return Api(`${secret.url_admin}`).delete("api/reserved/" + id)
     }
 }

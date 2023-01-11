@@ -96,7 +96,7 @@ export default {
         });
         //state.orderID = useFilters(1);
         
-        store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: 6 });
+        store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: 2 });
         store.dispatch("order/" + Constant.INITIALIZE_ALLORDER);
 
         

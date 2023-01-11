@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Http\Resources\AuthResource;
-// use App\Http\Requests\StoreAuthRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -13,16 +11,16 @@ class AuthController extends Controller
 {
   public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        //$this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
         $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
@@ -50,7 +48,6 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        //return $request;
         $user = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -60,16 +57,30 @@ class AuthController extends Controller
         ]);
 
         $token = Auth::login($user);
-        return $token;
-        // return response()->json([
-        //     'status' => 'success',
-        //     'message' => 'User created successfully',
-        //     'user' => $user,
-        //     'authorisation' => [
-        //         'token' => $token,
-        //         'type' => 'bearer',
-        //     ]
-        // ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User created successfully',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
+    public function isAdmin() 
+    {
+        $isAdmin = auth()->user();
+
+        if(!$isAdmin){
+            return response('error', 404);
+        } else {
+            if($isAdmin->type!="admin"){
+                return response('error', 404);
+            } else {
+                return response()->json("ok");
+            }
+        }
     }
 
     public function logout()

@@ -1,9 +1,9 @@
 import Api from '@/services/Api'
-const URL = "http://localhost:3000";
-//const URL = "http://192.168.1.26:3000"
+import secret from '../../secret.json'
+
 
 export default {
     getMenu() {
-        return Api(URL).get("menu-api/menu")
+        return Api(`${secret.url_client}`).get("menu-api/menu")
     }
 }

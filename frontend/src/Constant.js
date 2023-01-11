@@ -25,4 +25,11 @@ export default {
     UPDATE_ORDER : "updateOrder",
     GET_ORDER : "getOrder",
     INITIALIZE_ALLORDER : "initializeAllOrder",
+
+    //USER CONSTANT
+    REGISTER_CLIENT: "registerClient",
+    LOGIN_CLIENT: "loginClient",
+    LOGOUT: "logout",
+    LOGIN_ADMIN: "loginAdmin",
+    PROFILE: "profile"
 }

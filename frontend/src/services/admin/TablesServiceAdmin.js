@@ -1,22 +1,22 @@
 import Api from '@/services/Api'
-const URL = "http://localhost:8000";
-//const URL = "http://192.168.1.26:8000"
+import secret from '../../secret.json'
+
 
 export default {
     //check the correct CONNECTION TO CORS Vue--Laravel
     addTable(data) {
-        return Api(URL).post("api/tables/", data)
+        return Api(`${secret.url_admin}`).post("api/tables/", data)
     },
 
     getTable() {
-        return Api(URL).get("api/tables")
+        return Api(`${secret.url_admin}`).get("api/tables")
     },
 
     putTable(id) {
-        return Api(URL).put("api/tables/" + id)
+        return Api(`${secret.url_admin}`).put("api/tables/" + id)
     },
 
     deleteTable(id) {
-        return Api(URL).delete("api/tables/" + id)
+        return Api(`${secret.url_admin}`).delete("api/tables/" + id)
     }
 }
