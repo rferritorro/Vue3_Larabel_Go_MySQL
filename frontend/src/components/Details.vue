@@ -9,7 +9,7 @@
          
          <div class="float-right w-50 bg-dark d-flex justify-content-center flex-column">
             <input class="w-50" type="text" name="name" id="name" placeholder="Name">
-            <input class="w-50" type="number" name="comander" id="comander">
+            <input class="w-50" type="number" v-model="value_comensal" name="comander" id="comander" :max="5" :min="1" >
             <!-- carrousel-menu -->
             <Datepicker
             v-model="event"
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-// import { onUpdated } from 'vue';
+import { ref } from 'vue';
 import Constant from '../Constant';
 import { computed, reactive } from 'vue';
 import { useStore } from 'vuex'
@@ -48,6 +48,7 @@ export default {
       // onUpdated(() => {
       // console.log(document.getElementById('table_id').textContent)
       // })
+      const value_comensal = ref(1)
       const hour_options=[
          {
             name: '13:00-14:00',
@@ -107,7 +108,7 @@ export default {
       }  
       store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
 
-      return {state,hour_options, get_data_selected}
+      return {state,hour_options,value_comensal, get_data_selected}
    },
 
 }
