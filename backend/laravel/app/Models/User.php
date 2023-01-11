@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class Auth extends Model
+class User extends Authenticatable /*implements JWTSubject*/
 {
     // use HasFactory;
     // public $timestamps = false;
@@ -20,9 +22,11 @@ class Auth extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'avatar',
+        'type'
     ];
 
     /**

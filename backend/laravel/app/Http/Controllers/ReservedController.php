@@ -13,11 +13,11 @@ class ReservedController extends Controller
     //GET ALL DATA INTO TABLE RESERVED
     public function index() {
         $reserved = DB::table('User_table_reserved')
-          ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
-          ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+          ->selectRaw('User_table_reserved.id, users.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->join('users', 'users.id', '=', 'User_table_reserved.user_id')
           ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
           ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
-          ->orderBy("User.username")
+          ->orderBy("users.username")
           ->get();
 
         return $reserved;
@@ -34,7 +34,7 @@ class ReservedController extends Controller
         //   ON Menu.id = User_table_reserved.menu_id;
       switch ($id) {
       case '1':
-        $order = "User.username";
+        $order = "users.username";
         break;
       case '2':
         $order = "Table_id";
@@ -57,15 +57,15 @@ class ReservedController extends Controller
       }
 
         $reserved_asc = DB::table('User_table_reserved')
-          ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
-          ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+          ->selectRaw('User_table_reserved.id, users.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->join('users', 'users.id', '=', 'User_table_reserved.user_id')
           ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
           ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
           ->orderBy($order)
           ->get();
         $reserved_desc = DB::table('User_table_reserved')
-          ->selectRaw('User_table_reserved.id, User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
-          ->join('User', 'User.id', '=', 'User_table_reserved.user_id')
+          ->selectRaw('User_table_reserved.id, users.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->join('users', 'users.id', '=', 'User_table_reserved.user_id')
           ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
           ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
           ->orderByDesc($order)
