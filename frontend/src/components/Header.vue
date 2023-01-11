@@ -12,6 +12,9 @@
                 <span class="span" title="TABLES">Table</span>
             </router-link>
             <router-link class="nav-link" to="/dashboard">
+                <span class="span" title="ADMIN">Admin</span>
+            </router-link>
+            <router-link class="nav-link" to="/login">
                 <font-awesome-icon icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
         </div>
@@ -30,20 +33,19 @@ export default {
         const changeIsNavShow = () => {
             state.isNavShow = !state.isNavShow;
         }
-        function menu_scrolled() {
-            window.addEventListener('scroll', () => {
-                let menu = document.getElementById("header_nav")
-                if (window.scrollY > 80) {
-                    menu.classList.remove("header_nav")
-                    menu.classList.add("header_scroll_nav")
-                } else {
-                    menu.classList.add("header_nav")
-                    menu.classList.remove("header_scroll_nav")
-                }
-            })
-        }
 
-        return { state, changeIsNavShow ,menu_scrolled, navClass };
+        window.addEventListener('scroll', () => {
+            let menu = document.getElementById("header_nav")
+            if (window.scrollY > 80) {
+                menu.classList.remove("header_nav")
+                menu.classList.add("header_scroll_nav")
+            } else {
+                menu.classList.add("header_nav")
+                menu.classList.remove("header_scroll_nav")
+            }
+        })
+
+        return { state, changeIsNavShow, navClass };
     }
 
 }
@@ -68,8 +70,8 @@ img {
 }
 
 .header_scroll_nav {
-    /* background-color: #17191b; */
-    background-image: url("../assets/img/footer.jpg");
+    background-color: #17191b;
+    /* background-image: url("../assets/img/footer.jpg"); */
     border-radius: 50px;
     opacity: 0.5;
     height: 100px;

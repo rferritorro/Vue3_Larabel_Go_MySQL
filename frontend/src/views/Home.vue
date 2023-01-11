@@ -4,9 +4,7 @@
         <div id="menu_ids" class="menus">
             <Menu class="menu_component"></Menu>
         </div>
-    </div>
-    
-    
+    </div> 
 </template>
 
 <script>
