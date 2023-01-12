@@ -3,6 +3,7 @@ package Controllers
 import (
 	"go-restaurant/Models"
 	"go-restaurant/Services"
+	"go-restaurant/Middlewares"
 	"net/http"
 
 	"fmt"
