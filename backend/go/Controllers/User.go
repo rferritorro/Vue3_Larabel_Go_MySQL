@@ -5,7 +5,7 @@ import (
 	"go-restaurant/Services"
 	"net/http"
 
-	//"fmt"
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,6 +26,7 @@ func CreateUser(c *gin.Context) {
 	var user Models.User
 	c.BindJSON(&user)
 	err := Services.CreateUser(&user)
+	fmt.Println(err)
 	if err != nil {
 		//fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)

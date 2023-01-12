@@ -12,3 +12,4 @@ type User struct {
 func (b *User) TableName() string {
 	return "User"
 }
+

@@ -1,7 +1,7 @@
 package Models
 
 type Menu struct {
-	Id     uint   `json:"id"`
+	Id     uint   `gorm:"primary_key"`
 	Nombre string `json:"nombre"`
 	Descr  string `json:"descr"`
 	Img    string `json:"img"`
