@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+	"go-restaurant/Models"
 )
 
 // Strips 'TOKEN ' prefix from token string
@@ -34,7 +35,7 @@ var MyAuth2Extractor = &request.MultiExtractor{
 
 // A helper to write user_id and user_model to the context
 func UpdateContextUserModel(c *gin.Context, my_user_id uint) {
-	var myUserModel UserModel
+	var myUserModel []Models.User
 	if my_user_id != 0 {
 		db := common.GetDB()
 		db.First(&myUserModel, my_user_id)

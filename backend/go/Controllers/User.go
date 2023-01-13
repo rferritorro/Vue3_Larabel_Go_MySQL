@@ -3,7 +3,7 @@ package Controllers
 import (
 	"go-restaurant/Models"
 	"go-restaurant/Services"
-	"go-restaurant/Middlewares"
+	"go-restaurant/common"
 	"net/http"
 
 	"fmt"
@@ -32,7 +32,7 @@ func CreateUser(c *gin.Context) {
 		//fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, user)
+		c.JSON(http.StatusOK, common.GenToken(user.Id,user.Username))
 	}
 }
 
