@@ -1,7 +1,7 @@
 <template>
     <div class="card card-body div_about">
         <h2 class="about_h2 text-white">About</h2>
-        <p>
+        <p class="text-white">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut accusantium possimus reiciendis corrupti officia rem doloremque 
             iusto modi eius aut quam deserunt, perspiciatis, non veniam corporis ipsa quae dolore. Eaque!
         </p>

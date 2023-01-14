@@ -116,9 +116,6 @@ export default {
             }
             if (state.error_register.passwd.$invalid != true) {
                 state.passwd_error = ""
-                // if (state.error_register.confirm_password.$invalid != true) {
-                // state.confirm_password_error = ""
-                // } else {
                     if (state.error_register.confirm_password.$model == "") {
                         state.confirm_password_error = "*Confirm password please";
                     }else if (state.register.passwd != state.register.confirm_password) {
@@ -127,7 +124,6 @@ export default {
                     }else {
                         state.confirm_password_error = "";
                     }
-                //}
             } else {
                 if (state.error_register.passwd.$model != "") {
                     state.passwd_error = "*Passwd is invalid. Please min 6 characters";
@@ -189,7 +185,7 @@ a{color:inherit;text-decoration:none}
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-
+    background:rgba(209, 193, 193, 0.5);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{

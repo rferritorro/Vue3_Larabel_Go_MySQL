@@ -4,6 +4,7 @@ import UpdateReservation from '../views/Admin/Reservation/UpdateReservation';
 import Reservation from '../views/Admin/Reservation/Reservations';
 import AddMenu from '../views/Admin/Menu/AddMenu';
 import UpdateMenu from '../views/Admin/Menu/UpdateMenu';
+import TablesAdmin from '../views/Admin/Tables/TablesAdmin';
 import Home from '../views/Home';
 import HomeAdmin from '../views/Admin/HomeAdmin';
 import About from '../views/About';
@@ -31,9 +32,15 @@ const routes = [
       {
         path:"reserved", name:"Reservations", component: Reservation
       },
+      {
+        path:"tables", name:"TablesAdmin", component: TablesAdmin
+      },
       { 
         path:"reserved/update/:id", name:"UpdateReservation", component: UpdateReservation 
       },
+      {
+        path:":search", name:"SearchMenu", component: HomeAdmin
+      }
     ]
   },
   { path: "/login", name: "login", component: () => import('../views/Login/Login.vue') },

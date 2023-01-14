@@ -34,6 +34,7 @@ export default {
         store.dispatch("menuclient/" + Constant.INITIALIZE_ALLMENUS);
 
         return { state }
+        
     }
 }
 </script>

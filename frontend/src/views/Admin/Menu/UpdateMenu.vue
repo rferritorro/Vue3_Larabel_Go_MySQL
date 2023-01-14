@@ -51,7 +51,7 @@ export default {
         console.log(state.thisMenu)
         const editMenu = () => {
             store.dispatch("menu/" +  Constant.UPDATE_MENU, { menuitem: state.thisMenu });
-            //router.push({ name:"home" });
+            router.push({ name:"dashboard" });
         }
 
         const cancel = () => {

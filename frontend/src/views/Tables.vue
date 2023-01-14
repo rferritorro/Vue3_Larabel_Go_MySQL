@@ -12,7 +12,7 @@ import Constant from '../Constant';
 import { reactive, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import Pagination from '../components/Pagination'
-import AllTables from '../components/All_Tables'
+import AllTables from '../components/Client/All_Tables'
 
 export default {
     components: { AllTables, Pagination },

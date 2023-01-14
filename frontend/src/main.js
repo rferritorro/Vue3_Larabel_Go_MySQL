@@ -8,8 +8,9 @@ import store from "./store";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import vSelect from 'vue-select'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faGear, faPen, faTrash, faPlus, faUser, faSpinner, faArrowUp, faArrowDown, faBackwardStep , faForwardStep } from '@fortawesome/free-solid-svg-icons'
-library.add( faGear, faPen, faTrash, faPlus, faUser, faSpinner, faArrowUp, faArrowDown,  faBackwardStep ,faForwardStep )
+import { faGear, faPen, faTrash, faPlus, faUser, faSpinner, faArrowUp, faArrowDown, faBackwardStep , faForwardStep, faSearch } from '@fortawesome/free-solid-svg-icons'
+library.add( faGear, faPen, faTrash, faPlus, faUser, faSpinner, faArrowUp, faArrowDown,  faBackwardStep ,faForwardStep, faSearch )
+
 
 createApp(App)
   .use(router)
@@ -18,3 +19,6 @@ createApp(App)
   .component('v-select', vSelect)
   .use(Toaster)
   .mount("#app");
+
+ 
+

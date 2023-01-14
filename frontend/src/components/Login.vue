@@ -9,6 +9,7 @@
         </form>
         <button v-on:click="go_register()">Register</button>
     </div> -->
+	
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -72,10 +73,10 @@ export default {
                     } else {
                         state.passwd_error = "*Passwd is required";
                     }
-                    //state.passwd_error = "a";
+                    
                     const data = { username: state.login.username, password: state.login.passwd };
                     console.log(data);
-                    //emit('onSubmit', data);
+                    
                 }
             } else {
                 if (state.error_login.username.$model != "") {
@@ -117,7 +118,7 @@ a{color:inherit;text-decoration:none}
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-
+	background:rgba(209, 193, 193, 0.5);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{

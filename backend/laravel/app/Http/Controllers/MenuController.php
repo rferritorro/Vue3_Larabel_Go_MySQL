@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Resources\MenuResource;
 use App\Http\Requests\StoreMenuRequest;
 use App\Models\Menu;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller 
 {
     //GET ALL DATA INTO TABLE MENU
     public function index() {
         return MenuResource::collection(Menu::get());
+    }
+
+    public function get_menus_search($data) {
+      $menu_search = DB::table('Menu')
+          ->selectRaw('*')
+          ->where('nombre', '=', $data)
+          ->get();
+      return $menu_search;
     }
 
     //CREATE DATA INTO TABLE MENU

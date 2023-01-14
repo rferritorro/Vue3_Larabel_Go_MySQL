@@ -66,6 +66,7 @@
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-primary m-1" @click="$router.replace({path: '/dashboard'})">CANCEL</button>
         </div>
     </div>
 </template>
