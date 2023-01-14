@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Constant from '../Constant';
+import Constant from '../../../Constant';
 import { reactive, computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import Pagination from '../components/Pagination'
-import AllTables from '../components/Client/All_Tables'
+import Pagination from '../../../components/Pagination'
+import AllTables from '../../../components/Client/All_Tables'
 
 export default {
     components: { AllTables, Pagination },
@@ -45,7 +45,7 @@ export default {
     background-color: transparent;
     position: relative;
     top: 15%;
-    background-image: url("../assets/img/home_minimal.jpg");
+    background-image: url("../../../assets/img/home_minimal.jpg");
 }
 
 .tables_infor {

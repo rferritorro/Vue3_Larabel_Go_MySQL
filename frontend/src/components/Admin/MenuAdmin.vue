@@ -1,5 +1,5 @@
 <template>
-    <Search @searches="menus_search" v-bind:menus_nombres="state.menuList.menu"/>
+    <Search @searches="menus_search" v-bind:menus_nombres="listMenu"/>
     <h1 class="h1_menu_admin" title="MENU">Menu:</h1>
     <p class="information1_admin">
         <router-link class="nav-link" to="/dashboard/menu/add">
@@ -28,9 +28,8 @@
             </div>
         </div>
     </div>
-    <button @click="passEvent(state.menuList.menu)">Click</button>
     <div v-if="state.menuSearch.length === 0" class="align_menu">
-        <div class="containeradmin" v-for="allmenus in state.menuList.menu" :key="allmenus.id" :allmenus="allmenus.id">
+        <div class="containeradmin" v-for="allmenus in listMenu" :key="allmenus.id" :allmenus="allmenus.id">
             <div class="div1admin" v-if="allmenus.nombre != 'NOT SPECIFY'">
                 <!-- <img class="menu_img" src="../../assets/img/traditional_menu.jpg"/> -->
                 <img class="menu_img" :src="allmenus.img" />
@@ -49,12 +48,12 @@
             </div>
         </div>
     </div>
-    
+    <button type="button" class="btn btn-primary m-1" style="width: 10%; margin-top: 24%;" @click="$router.replace({path: '/dashboard'})">CANCEL</button>
 </template>
 <script>
 import Constant from '../../Constant';
 import { useStore } from 'vuex'
-import { reactive, computed, defineAsyncComponent } from 'vue'
+import { reactive, defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router';
 
 export default {
@@ -63,25 +62,19 @@ export default {
         import('../../components/Search')
         )
     },
-    //state.menuList.menu.nombre
-    methods: {
-        passEvent (value){
-            this.$emit('name',value)
-        },
-        
+    props: {
+        listMenu: Object
     },
     
     setup() {
-        
-        
+        window.scroll({
+            top: 0
+        })
         const store = useStore();
         const router = useRouter();
         const state = reactive({ 
-            menuList : computed(() => store.getters["menu/getAllMenus"]),
             menuSearch : ""
         });
-        store.dispatch("menu/" + Constant.INITIALIZE_ALLMENUS);
-        console.log(state.menuList)
         const editMenu = (id) => {
             router.push({ name: 'updateMenu', params: { id } })
         }

@@ -4,11 +4,14 @@ import UpdateReservation from '../views/Admin/Reservation/UpdateReservation';
 import Reservation from '../views/Admin/Reservation/Reservations';
 import AddMenu from '../views/Admin/Menu/AddMenu';
 import UpdateMenu from '../views/Admin/Menu/UpdateMenu';
+import ListMenu from '../views/Admin/Menu/ListMenu';
 import TablesAdmin from '../views/Admin/Tables/TablesAdmin';
+import AddTables from '../views/Admin/Tables/AddTable';
+import UpdateTables from '../views/Admin/Tables/UpdateTable'
 import Home from '../views/Home';
 import HomeAdmin from '../views/Admin/HomeAdmin';
 import About from '../views/About';
-import Tables from '../views/Tables';
+import Tables from '../views/Client/Tables/Tables';
 import NotFound from '../views/NotFound';
 
 const routes = [
@@ -27,6 +30,9 @@ const routes = [
         path:"menu/add", name:"addMenu", component: AddMenu
       },
       {
+        path:"menu/list", name:"listMenu", component: ListMenu
+      },
+      {
         path:"menu/update/:id", name:"updateMenu", component: UpdateMenu 
       },
       {
@@ -34,6 +40,12 @@ const routes = [
       },
       {
         path:"tables", name:"TablesAdmin", component: TablesAdmin
+      },
+      {
+        path:"tables/add", name:"addTables", component: AddTables
+      },
+      {
+        path:"tables/update/:id", name:"updateTables", component: UpdateTables
       },
       { 
         path:"reserved/update/:id", name:"UpdateReservation", component: UpdateReservation 

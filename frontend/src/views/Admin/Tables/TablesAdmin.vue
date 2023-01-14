@@ -1,68 +1,53 @@
 <template>
-    <div class="card card-body reservation">
-        <div class="text_reservation">       
-            <div class="row">
-                <div class="col">
-                    <h2>ALL TABLES</h2>
-                    <!-- <router-link class="btn btn-primary" to="/reserved/add">ADD RESERVATION</router-link> -->
-                    <!-- <img src="../../assets/img/lazyload.gif"  /> -->
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    
-                </div>
-            </div>
-            <button type="button" class="btn btn-primary m-1" @click="$router.replace({path: '/dashboard'})">CANCEL</button>
-        </div>
+    <div class="card card-body div_admin2">
+        <div class="div_homeadmin2">
+            <Suspense>
+                <template #fallback>
+                    <img src="../../../assets/img/lazyload.gif" style="width: 25%; margin-left: 37.5%;" />
+                </template>
+                <template #default>
+                    <Tables class="tables_component" :listTables="state.tablesList.tables.filter(e=> e.place == list[selected])"></Tables>
+                </template>
+            </Suspense>
+        </div>        
+        <Pagination v-model="selected"></Pagination>
     </div>
 </template>
 
 <script>
 import Constant from '../../../Constant';
-import { reactive, computed } from 'vue'
+import { reactive, computed, defineAsyncComponent, ref } from 'vue'
 import { useStore } from 'vuex'
-//import useFilters from '../../../composables/useFilters';
-//import AllReservations from '../../components/Admin/All_Reservations';
-//import { useRouter } from 'vue-router';
 
 export default {
     components : { 
-        
+        Tables: defineAsyncComponent(() =>
+            import('../../../components/Admin/All_Tables')
+        ),
+        Pagination: defineAsyncComponent(() =>
+            import('../../../components/Pagination')
+        ),
     },
     setup() {
         window.scroll({
             top: 0
         })
+        const selected = ref(0);
+        const list = [
+            'First Floor',
+            'Second Floor',
+            'Terrace'
+        ];
         const store = useStore();
         const state = reactive({ 
-            reservationList : computed(() => store.getters["reservation/getReserved"]),
-            orderList : computed(() => store.getters["order/getOrders"]),
-            //orderID: useFilters(1)
+            tablesList : computed(() => store.getters["tables/getTables"]),
+            
         });
-        //state.orderID = useFilters(1);
+        console.log(state.tablesList)
         
-        store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: 2 });
-        store.dispatch("order/" + Constant.INITIALIZE_ALLORDER);
-
-        
-        const order = (id) => {
-            let infor_order = {
-                "order_": 1,
-                "order_old": 1,
-                "order_old2": -1,
-                "order_new": 0
-            }
-            store.dispatch("reservation/" + Constant.INITIALIZE_ALLRESERVATIONS, { reservationid: id });
-            store.dispatch("order/" + Constant.UPDATE_ORDER, { orderid: id,  infor_order: infor_order  });
-            console.log(state.orderList.order)
-        }    
-        // console.log("DOWN: " + down)
-        // console.log("UP: "+ up)
-        //RUTA GO HOME
-        //router.push({ name:"home"});      
+        store.dispatch("tables/" + Constant.INITIALIZE_ALLTABLES);   
        
-        return { state, order }
+        return { state, selected, list }
     }
 }
 </script>

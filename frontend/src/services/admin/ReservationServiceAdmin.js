@@ -11,8 +11,8 @@ export default {
         return Api(`${secret.url_admin_ip}`).get("api/reserved/" + id)
     },
 
-    putReserved(id) {
-        return Api(`${secret.url_admin_ip}`).put("api/reserved/" + id)
+    putReserved(id, data) {
+        return Api(`${secret.url_admin_ip}`).put("api/reserved/" + id, data)
     },
 
     deleteReserved(id) {
