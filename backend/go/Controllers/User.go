@@ -3,9 +3,10 @@ package Controllers
 import (
 	"go-restaurant/Models"
 	"go-restaurant/Services"
+	"go-restaurant/common"
 	"net/http"
 
-	//"fmt"
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,11 +27,12 @@ func CreateUser(c *gin.Context) {
 	var user Models.User
 	c.BindJSON(&user)
 	err := Services.CreateUser(&user)
+	fmt.Println(err)
 	if err != nil {
 		//fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, user)
+		c.JSON(http.StatusOK, common.GenToken(user.Id,user.Username))
 	}
 }
 

@@ -1,7 +1,7 @@
 package Models
 
 type Table_ struct {
-	Id       uint `json:"id"`
+	Id       uint `gorm:"primary_key"`
 	Reserved bool `json:"reserved"`
 	Place	 string `json:"place"`
 	Img		 string `json:"img"`

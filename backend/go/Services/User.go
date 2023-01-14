@@ -3,6 +3,9 @@ package Services
 import (
 	"go-restaurant/Config"
 	"go-restaurant/Models"
+	"errors"
+	// "fmt"
+	"golang.org/x/crypto/bcrypt"
 )
 
 //GetAllUsers Fetch all user data
@@ -14,12 +17,49 @@ func GetAllUsers(users *[]Models.User) (err error) {
 }
 
 //CreateUser ... Insert New data
+
+func SetPassword(user *Models.User, password string) error {
+	if len(password) == 0 {
+		return errors.New("Password should not be empty!")
+	}
+	bytePassword := []byte(password)
+	// Make sure the second param `bcrypt generator cost` between [4, 32)
+	PasswordHash, _ := bcrypt.GenerateFromPassword(bytePassword, bcrypt.DefaultCost)
+	user.Password = string(PasswordHash)
+	return nil
+}
+
+func FindOneUser(user *Models.User, username string) error {
+	count := 0
+	err := Config.DB.Model(&Models.User{}).Where("username = ?", username).Count(&count).Error
+	if err != nil {
+		return err
+	}
+	if count == 1 {
+		return errors.New("User already exist")
+	}
+	return nil
+}
+
 func CreateUser(user *Models.User) (err error) {
-	if err = Config.DB.Create(user).Error; err != nil {
+	err = SetPassword(user, user.Password)
+	if err == nil {
+		err = FindOneUser(user, user.Username)
+		if err == nil {
+			if err = Config.DB.Create(user).Error; err != nil {
+				return err
+			}
+		} else {
+			return err
+		}
+	} else {
 		return err
 	}
 	return nil
 }
+
+
+
 
 //GetUserByID ... Fetch only one user by Id
 func GetUserByID(user *Models.User, id string) (err error) {
@@ -40,3 +80,4 @@ func DeleteUser(user *Models.User, id string) (err error) {
 	Config.DB.Where("id = ?", id).Delete(user)
 	return nil
 }
+
