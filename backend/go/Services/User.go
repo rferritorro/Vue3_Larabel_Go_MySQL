@@ -5,6 +5,7 @@ import (
 	"go-restaurant/Models"
 	"errors"
 	// "fmt"
+	"log"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -17,6 +18,17 @@ func GetAllUsers(users *[]Models.User) (err error) {
 }
 
 //CreateUser ... Insert New data
+func CheckUser(user *Models.User) (id uint, err error) {
+    var userBBDD Models.User
+    Config.DB.Where("username = ?", user.Username).Find(&userBBDD)
+    // Comparar contraseñas
+    err = bcrypt.CompareHashAndPassword([]byte(userBBDD.Password), []byte(user.Password))
+    if err != nil {
+        log.Println("Error al comparar contraseñas: ", err)
+        return 0, err
+    }
+    return userBBDD.Id, nil
+}
 
 func SetPassword(user *Models.User, password string) error {
 	if len(password) == 0 {

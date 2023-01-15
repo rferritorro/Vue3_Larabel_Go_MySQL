@@ -36,6 +36,19 @@ func CreateUser(c *gin.Context) {
 	}
 }
 
+func LoginUser(c *gin.Context) {
+	var user Models.User
+	c.BindJSON(&user)
+	id, err := Services.CheckUser(&user)
+	fmt.Println(&user)
+	if err != nil {
+		//fmt.Println(err.Error())
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, common.GenToken(id,user.Username))
+	}
+}
+
 //GetUserByID ... Get the user by id
 func GetUserByID(c *gin.Context) {
 	id := c.Params.ByName("id")
