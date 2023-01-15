@@ -7,12 +7,13 @@ import (
 )
 
 
-func GenToken(id uint, username string ) string {
+func GenToken(id uint, username string, is_admin bool ) string {
 	jwt_token := jwt.New(jwt.GetSigningMethod("HS256"))
 	// Set some claims
 	jwt_token.Claims = jwt.MapClaims{
 		"id":  id,
 		"username":  username,
+		"type_": is_admin,
 		"exp": time.Now().Add(time.Hour * 24).Unix(),
 	}
 

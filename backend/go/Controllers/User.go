@@ -32,7 +32,7 @@ func CreateUser(c *gin.Context) {
 		//fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, common.GenToken(user.Id,user.Username))
+		c.JSON(http.StatusOK, common.GenToken(user.Id,user.Username,user.Type_))
 	}
 }
 
@@ -45,7 +45,7 @@ func LoginUser(c *gin.Context) {
 		//fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusOK, common.GenToken(id,user.Username))
+		c.JSON(http.StatusOK, common.GenToken(id,user.Username,user.Type_))
 	}
 }
 
