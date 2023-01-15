@@ -5,7 +5,7 @@
    <div v-else class="bg-primary w-50 text-white p-3">
       <form class="h-100 w-100">
          <!-- <img src="{{ table.img }}" alt=""> -->
-         <img class="float-left w-50 p-2" src="https://thumbs.dreamstime.com/b/el-demersus-africano-del-spheniscus-ping%C3%BCino-de-la-colonia-en-los-cantos-rodados-vara-cerca-cape-town-sur%C3%A1frica-que-se-vue-139731054.jpg" alt="">
+         <img class="float-left w-50 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
          
          <div class="float-right w-50 bg-dark d-flex justify-content-center flex-column">
             <input class="w-50" type="text" name="name" id="name" placeholder="Name">
@@ -25,7 +25,7 @@
 
 <script>
 import { ref } from 'vue';
-import Constant from '../Constant';
+import Constant from '../../Constant';
 import { computed, reactive } from 'vue';
 import { useStore } from 'vuex'
 import Datepicker from "vue3-datepicker";

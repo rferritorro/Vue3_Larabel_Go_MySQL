@@ -25,3 +25,5 @@ yarn serve --open
 
 ### INSTALLATION:
 npm install --save vue3-datepicker
+
+npm install @vuelidate/core @vuelidate/validators

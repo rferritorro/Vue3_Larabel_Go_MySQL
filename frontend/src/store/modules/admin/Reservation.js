@@ -49,7 +49,8 @@ export const reservation = {
             });
         },
         [Constant.UPDATE_RESERVATION]: (store, payload) => {
-          ReservationService.putReserved(payload.reservationitem.id)
+          console.log(payload.reservationitem)
+          ReservationService.putReserved(payload.reservationitem.id, payload.reservationitem)
             .then(function (result) {
               console.log(result)
               store.commit(Constant.UPDATE_RESERVATION, result.data);

@@ -13,7 +13,10 @@ class ReservedController extends Controller
     //GET ALL DATA INTO TABLE RESERVED
     public function index() {
         $reserved = DB::table('User_table_reserved')
-          ->selectRaw('User_table_reserved.id, users.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->selectRaw('User_table_reserved.id, User_table_reserved.user_id, User_table_reserved.table_id,
+            User_table_reserved.menu_id
+            ,users.username, Table_id, Menu.nombre,
+             User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
           ->join('users', 'users.id', '=', 'User_table_reserved.user_id')
           ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
           ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')
@@ -57,7 +60,10 @@ class ReservedController extends Controller
       }
 
         $reserved_asc = DB::table('User_table_reserved')
-          ->selectRaw('User_table_reserved.id, users.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
+          ->selectRaw('User_table_reserved.id, User_table_reserved.user_id,
+          User_table_reserved.menu_id
+          ,users.username, Table_id, Menu.nombre,
+           User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales')
           ->join('users', 'users.id', '=', 'User_table_reserved.user_id')
           ->join('Table_', 'Table_.id', '=', 'User_table_reserved.table_id')
           ->join('Menu', 'Menu.id', '=', 'User_table_reserved.menu_id')

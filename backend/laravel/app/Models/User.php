@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable /*implements JWTSubject*/
+class User extends Authenticatable implements JWTSubject
 {
     // use HasFactory;
     // public $timestamps = false;

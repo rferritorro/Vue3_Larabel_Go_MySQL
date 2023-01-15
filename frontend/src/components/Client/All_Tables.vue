@@ -6,7 +6,7 @@
             <div class="card-body">
                 <p class="card-text">Mesa {{ table.id }}</p>
                 <img class="card-img-top"
-                    src="https://thumbs.dreamstime.com/b/el-demersus-africano-del-spheniscus-ping%C3%BCino-de-la-colonia-en-los-cantos-rodados-vara-cerca-cape-town-sur%C3%A1frica-que-se-vue-139731054.jpg"
+                    :src="table.img"
                     alt="">
                 <button class="btn btn-dark mt-2" @click="detail(table)" >Reserved</button>
             </div>
@@ -20,7 +20,7 @@
 import { ref} from 'vue'
 //import { useStore } from 'vuex'
 // import { useRouter } from 'vue-router';
-import Details from '../components/Details.vue'
+import Details from './Details.vue'
 
 export default {
     props: {

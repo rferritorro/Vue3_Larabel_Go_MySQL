@@ -36,7 +36,7 @@ export const tables = {
     },
     actions : {
         [Constant.ADD_TABLES]: (store, payload) => {
-          TablesService.addTable(payload.tables_form)
+          TablesService.addTable(payload.table_form)
             .then(function (result) {
               console.log(result)
               store.commit(Constant.ADD_TABLES, result.data.data);
@@ -46,7 +46,7 @@ export const tables = {
             });
         },
         [Constant.UPDATE_TABLES]: (store, payload) => {
-          TablesService.putTable(payload.tablesitem.id)
+          TablesService.putTable(payload.tablesitem.id, payload.tablesitem)
             .then(function (result) {
               console.log(result)
               store.commit(Constant.UPDATE_TABLES, result.data);

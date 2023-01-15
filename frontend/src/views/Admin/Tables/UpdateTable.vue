@@ -1,22 +1,21 @@
 <template>
     <div class="card card-body div_updatemenu">
-        <h2 class="menu_h2">Update Menu Admin</h2>
+        <h2 class="menu_h2">Update Table Admin</h2>
         <div class="row">
         <div class="col">
+            <h4>TABLE: {{ state.thisTables.id }}</h4>
           <div class="form-group">
-            <label htmlFor="nombre">NAME:</label>&nbsp;
-            <input type="text" v-model="state.thisMenu.nombre"/>
-            <!-- <input type="text"/> -->
+            <label htmlFor="reserved">RESERVED:</label>&nbsp;
+            <input type="number" v-model="state.thisTables.reserved"/>
           </div>
           <div class="form-group">
-              <label htmlFor="descr">DESCRIPTION:</label><p></p>
-              <!-- <textarea rows="2" id="desc"></textarea> -->
-              <textarea rows="2" id="desc" v-model="state.thisMenu.descr"></textarea> 
+              <label htmlFor="place">PLACE:</label>&nbsp;
+              <!-- <input type="text" v-model="state.thisTables.place"/> -->
+              <v-select class="bg-light text-dark" style="width: 10%;"  v-model="state.thisTables.place" :options="place_options" label="name"></v-select>
           </div>
           <div class="form-group">
             <label htmlFor="img">URL IMG:</label>&nbsp;
-            <!-- <input type="text"/> -->
-            <input type="text" v-model="state.thisMenu.img"/>
+            <input type="text" v-model="state.thisTables.img"/>
           </div>
           <div class="form-group">
               <button type="button" class="btn btn-primary m-1" @click="editMenu">UPDATE</button>
@@ -42,15 +41,17 @@ export default {
             top: 0
         })
 
+        const place_options=["First Floor", "Second Floor","Terrace"]
+
         console.log(currentRoute.params.id)
-        const todoitem = store.state.menu.menu.find((item) => item.id.toString() === currentRoute.params.id)
+        const todoitem = store.state.tables.tables.find((item) => item.id.toString() === currentRoute.params.id)
 
         const state = reactive({ 
-            thisMenu : { ...todoitem } 
+            thisTables : { ...todoitem } 
         });
-        console.log(state.thisMenu)
+        console.log(state.thisTables)
         const editMenu = () => {
-            store.dispatch("menu/" +  Constant.UPDATE_MENU, { menuitem: state.thisMenu });
+            store.dispatch("tables/" +  Constant.UPDATE_TABLES, { tablesitem: state.thisTables });
             router.push({ name:"dashboard" });
         }
 
@@ -58,7 +59,7 @@ export default {
             router.push({ name:"dashboard"});
         }
 
-        return {cancel, editMenu , state}
+        return {cancel, editMenu , place_options, state}
     }
 
 }
