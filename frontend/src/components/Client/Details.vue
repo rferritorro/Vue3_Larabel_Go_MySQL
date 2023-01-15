@@ -3,7 +3,7 @@
       <h1>Select table</h1>
    </div>
    <div v-else class="bg-primary w-50 text-white p-3">
-      <form class="h-100 w-100">
+      <div class="h-100 w-100">
          <!-- <img src="{{ table.img }}" alt=""> -->
          <img class="float-left w-50 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
          
@@ -16,9 +16,10 @@
             :disabledDates="state.disabledDates"
             v-on="get_data_selected(event,table.id)"
             />
-            <v-select class="bg-light text-dark" :options="hour_options" :selectable="hour=> !hour.disabled" label="name"></v-select>
+            <v-select class="bg-light text-dark" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name"></v-select>
+            <button class="btn btn-dark" v-on:click="action_reserved(table,event,select)">Reserved</button>
          </div>
-      </form>
+      </div>
       <span id="table_id" style="display:none">{{ table }}</span>
    </div>
 </template>
@@ -90,12 +91,28 @@ export default {
             }
         });
 
-         function transform_data(fulldate) {
-            let day=fulldate.getDate() < 10 ? ''+fulldate.getDate() : fulldate.getDate()
-            let month= fulldate.getMonth()+1 < 10 ? ''+fulldate.getMonth()+1 : fulldate.getMonth()+1
-            let year=fulldate.getFullYear()
-            return year+'-'+month+'-'+day
-         }
+      function action_reserved(table,event,option) {
+         console.log(table.Id)
+         console.log(transform_data(event))
+         console.log(value_comensal.value)
+         var position = (() => {
+            for (let i=0; i < hour_options.length;i++) {
+               if (hour_options[i].name === option.name) {
+                  return i
+               }
+            }
+         })()
+         console.log(position);
+
+         
+      }
+
+      function transform_data(fulldate) {
+         let day=fulldate.getDate() < 10 ? ''+fulldate.getDate() : fulldate.getDate()
+         let month= fulldate.getMonth()+1 < 10 ? ''+fulldate.getMonth()+1 : fulldate.getMonth()+1
+         let year=fulldate.getFullYear()
+         return year+'-'+month+'-'+day
+      }
       function get_data_selected(date,table_id) {  
          hour_options.map(i=>i.disabled=false)
          // console.log(transform_data(date))
@@ -108,7 +125,7 @@ export default {
       }  
       store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
 
-      return {state,hour_options,value_comensal, get_data_selected}
+      return {state,hour_options,value_comensal, get_data_selected, action_reserved}
    },
 
 }

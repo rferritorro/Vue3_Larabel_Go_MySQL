@@ -3,17 +3,19 @@ package Services
 import (
 	"go-restaurant/Config"
 	"go-restaurant/Models"
+	"fmt"
 )
 
 func GetAllReserved(reserve *[]Models.Reserved) (err error) {
-	if err = Config.DB.Find(reserve).Error; err != nil {
+	if err = Config.DB.Where("reserved = ?", true).Find(reserve).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 //CreateUser ... Insert New data
-func CreateReserved(reserved *Models.User) (err error) {
+func CreateReserved(reserved *Models.Reserved) (err error) {
+	fmt.Println(reserved)
 	if err = Config.DB.Create(reserved).Error; err != nil {
 		return err
 	}

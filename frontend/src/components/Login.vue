@@ -1,15 +1,4 @@
 <template>
-    <!-- <div>
-        <form>
-            <input type="text" name="name" id="name" v-model="state.login.username" required/><br>
-            <span style="color:aqua">{{state.username_error}}</span><br>
-            <input type="password" name="password" id="password" v-model="state.login.password" required><br>
-            <span style="color:aqua">{{state.password_error}}</span><br>
-            <input type="button" value="Enviar" @click="submit_login()">
-        </form>
-        <button v-on:click="go_register()">Register</button>
-    </div> -->
-	
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
