@@ -5,11 +5,11 @@ import secret from '../../secret.json'
 export default {
     //check the correct CONNECTION TO CORS Vue--Laravel
     addTable(data) {
-        return Api(`${secret.url_admin_ip}`).post("api/tables", data)
+        return Api(`${secret.url_admin}`).post("api/tables", data)
     },
 
     getTable() {
-        return Api(`${secret.url_admin_ip}`).get("api/tables")
+        return Api(`${secret.url_admin}`).get("api/tables")
     },
 
     getTableReserved(data) {
@@ -17,10 +17,10 @@ export default {
     },
 
     putTable(id, data) {
-        return Api(`${secret.url_admin_ip}`).put("api/tables/" + id, data)
+        return Api(`${secret.url_admin}`).put("api/tables/" + id, data)
     },
 
     deleteTable(id) {
-        return Api(`${secret.url_admin_ip}`).delete("api/tables/" + id)
+        return Api(`${secret.url_admin}`).delete("api/tables/" + id)
     }
 }
