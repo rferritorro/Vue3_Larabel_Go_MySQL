@@ -13,7 +13,7 @@ export default {
     },
 
     getTableReserved(data) {
-        return Api(`${secret.url_admin_ip}`).get("api/tables_filter/"+ data)
+        return Api(`${secret.url_admin}`).get("api/tables_filter/"+ data)
     },
 
     putTable(id, data) {

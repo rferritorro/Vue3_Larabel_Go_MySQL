@@ -19,7 +19,7 @@ export const user = {
         },
         [Constant.LOGIN_CLIENT]: (state, payload) => {
             if (payload) {
-                console.log(payload)
+                console.log(state)
                 state.user = payload;
                 state.isAuth = true;
                 localStorage.setItem("token", payload);
@@ -61,11 +61,14 @@ export const user = {
     },
     actions: {
         [Constant.REGISTER_CLIENT]: (store, payload) => {
+            console.log(store)
+            console.log(payload)
             UserService.register_client(payload)
             .then(function (res) {
-                if (res.status === 200) {
-                    store.commit(Constant.REGISTER_CLIENT, true);
-                }
+                console.log(res)
+                // if (res.status === 200) {
+                //     store.commit(Constant.REGISTER_CLIENT, true);
+                // }
             })
             .catch(function () {
                 //toaster.error('The username or email already exists');

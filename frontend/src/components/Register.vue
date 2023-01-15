@@ -27,7 +27,7 @@
                                 Username
                             </strong>
                         </label>
-                        <input id="user" type="text" class="input" v-on:keyup="change_avatar(state.register.username)" v-model="state.register.username" required>
+                        <input id="user" type="text" class="input" v-on:keyup="change_avatar(state.register.username) && submit_register()" v-model="state.register.username"  required>
                         <span style="color:red">{{state.username_error}}</span>
                     </div>
                     <div class="group">
@@ -36,7 +36,7 @@
                                 Email Address
                             </strong>
                         </label>
-                        <input id="pass" type="text" class="input" v-model="state.register.email" required>
+                        <input id="pass" type="text" class="input" v-model="state.register.email" v-on:keyup="submit_register()" required>
                         <span style="color:red">{{state.email_error}}</span>
                     </div>
                     <div class="group">
@@ -44,8 +44,8 @@
                             <strong>
                                 Password
                             </strong>
-                        </label>
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.passwd" required>
+                        </label> 
+                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.passwd" v-on:keyup="submit_register()" required>
                         <span style="color:red">{{state.passwd_error}}</span>
                     </div>
                     <div class="group">
@@ -54,11 +54,11 @@
                                 Confirm Password
                             </strong>
                         </label>
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.confirm_password" required>
+                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.confirm_password" v-on:keyup="submit_register()" required>
                         <span style="color:red">{{state.confirm_password_error}}</span><br>
                     </div>
                     <div class="group">
-                        <input type="button" class="button" value="Sign Up" @click="submit_register()">
+                        <input type="button" class="button" value="Sign Up" @click="$emit('registerform',state.register)">
                     </div>
                     <div class="hr"></div>
                     <input type="checkbox" name="default_avatar_check" id="default_avatar_check" v-on:change="change_avatar(state.register.username)" v-model="check_default_avatar"><span>Default Avatar</span>
@@ -131,8 +131,8 @@ export default {
                     state.passwd_error = "*Passwd is required";
                 }
                 //state.passwd_error = "a";
-                const data = { username: state.register.username, password: state.register.passwd };
-                console.log(data);
+                // const data = { username: state.register.username, password: state.register.passwd };
+                console.log(state.register);
                 //emit('onSubmit', data);
             }
             if (state.error_register.username.$invalid != true) {

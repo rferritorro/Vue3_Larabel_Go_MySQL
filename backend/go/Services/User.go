@@ -23,6 +23,7 @@ func CheckUser(user *Models.User) (id uint, err error) {
     Config.DB.Where("username = ?", user.Username).Find(&userBBDD)
     // Comparar contraseñas
     err = bcrypt.CompareHashAndPassword([]byte(userBBDD.Password), []byte(user.Password))
+	
     if err != nil {
         log.Println("Error al comparar contraseñas: ", err)
         return 0, err
