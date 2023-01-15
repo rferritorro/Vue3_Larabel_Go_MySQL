@@ -1,20 +1,4 @@
 <template>
-    <!-- <div>
-        <form>
-            <input type="text" name="name" id="name" placeholder="username" v-on:keyup="change_avatar(state.register.username)" v-model="state.register.username" required><br>
-            <span style="color:aqua">{{state.username_error}}</span><br>
-            <input type="email" name="email" id="email" placeholder="email@example.com" v-model="state.register.email" required><br>
-            <span style="color:aqua">{{state.email_error}}</span><br>
-            <input type="password" name="password" id="password" placeholder="password" v-model="state.register.passwd" required><br>
-            <span style="color:aqua">{{state.passwd_error}}</span><br>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" v-model="state.register.confirm_password" required><br>
-            <span style="color:aqua">{{state.confirm_password_error}}</span><br>
-            <input type="checkbox" name="default_avatar_check" id="default_avatar_check" v-on:change="change_avatar(state.register.username)" v-model="check_default_avatar"><span>Default Avatar</span>
-            <img class="w-25" :src="default_avatar" alt="avatar">
-            <input type="button" value="Enviar" @click="submit_register()">
-        </form>
-        <button v-on:click="go_login()">Login</button>
-    </div> -->
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab" v-on:click="go_login()">Sign In</label>
@@ -27,7 +11,7 @@
                                 Username
                             </strong>
                         </label>
-                        <input id="user" type="text" class="input" v-on:keyup="change_avatar(state.register.username)" v-model="state.register.username" required>
+                        <input id="user" type="text" class="input bg-light" v-on:keyup="change_avatar(state.register.username)" v-model="state.register.username" required>
                         <span style="color:red">{{state.username_error}}</span>
                     </div>
                     <div class="group">
@@ -36,7 +20,7 @@
                                 Email Address
                             </strong>
                         </label>
-                        <input id="pass" type="text" class="input" v-model="state.register.email" required>
+                        <input id="pass" type="text" class="input bg-light" v-model="state.register.email" required>
                         <span style="color:red">{{state.email_error}}</span>
                     </div>
                     <div class="group">
@@ -45,7 +29,7 @@
                                 Password
                             </strong>
                         </label>
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.passwd" required>
+                        <input id="pass" type="password" class="input bg-light" data-type="password" v-model="state.register.passwd" required>
                         <span style="color:red">{{state.passwd_error}}</span>
                     </div>
                     <div class="group">
@@ -54,15 +38,18 @@
                                 Confirm Password
                             </strong>
                         </label>
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.confirm_password" required>
+                        <input id="pass" type="password" class="input  bg-light" data-type="password" v-model="state.register.confirm_password" required>
                         <span style="color:red">{{state.confirm_password_error}}</span><br>
+                    </div>
+                    <div class="group">
+                        <input type="checkbox" name="default_avatar_check" id="default_avatar_check" v-on:change="change_avatar(state.register.username)" v-model="check_default_avatar"><span>Default Avatar</span>
+                        <br>
+                        <img class="w-25" :src="default_avatar" alt="avatar">
                     </div>
                     <div class="group">
                         <input type="button" class="button" value="Sign Up" @click="submit_register()">
                     </div>
                     <div class="hr"></div>
-                    <input type="checkbox" name="default_avatar_check" id="default_avatar_check" v-on:change="change_avatar(state.register.username)" v-model="check_default_avatar"><span>Default Avatar</span>
-                    <img class="w-25" :src="default_avatar" alt="avatar">
                 </div>
             </div>
         </div>
@@ -175,7 +162,7 @@ a{color:inherit;text-decoration:none}
 	width:100%;
 	margin:auto;
 	max-width:525px;
-	min-height:670px;
+	min-height:700px;
 	position:relative;
 	background:url(https://cdn4.vectorstock.com/i/1000x1000/51/38/sushi-seamless-background-vector-22655138.jpg) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
@@ -236,6 +223,7 @@ a{color:inherit;text-decoration:none}
 	width:100%;
 	color:rgb(0, 0, 0);
 	display:block;
+    
 }
 .login-form .group .input,
 .login-form .group .button{

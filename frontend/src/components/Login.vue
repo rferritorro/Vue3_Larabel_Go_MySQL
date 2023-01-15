@@ -1,15 +1,4 @@
 <template>
-    <!-- <div>
-        <form>
-            <input type="text" name="name" id="name" v-model="state.login.username" required/><br>
-            <span style="color:aqua">{{state.username_error}}</span><br>
-            <input type="password" name="passwd" id="passwd" v-model="state.login.passwd" required><br>
-            <span style="color:aqua">{{state.passwd_error}}</span><br>
-            <input type="button" value="Enviar" @click="submit_login()">
-        </form>
-        <button v-on:click="go_register()">Register</button>
-    </div> -->
-	
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -18,12 +7,12 @@
                 <div class="sign-in-htm">
                     <div class="group">
                         <label for="user" class="label"><strong>Username</strong></label>
-                        <input id="user" type="text" class="input" v-model="state.login.username" required><br>
+                        <input id="user" type="text" class="input bg-light" v-model="state.login.username" required><br>
                         <span style="color:red">{{state.username_error}}</span><br>
                     </div>
                     <div class="group">
                         <label for="pass" class="label"><strong>Password</strong></label>
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.login.passwd" required><br>
+                        <input id="pass" type="password" class="input  bg-light" data-type="password" v-model="state.login.passwd" required><br>
                         <span style="color:red">{{state.passwd_error}}</span><br>
                     </div>
                     <div class="group">
