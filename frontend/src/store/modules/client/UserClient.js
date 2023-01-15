@@ -1,6 +1,6 @@
 import Constant from '../../../Constant';
 import router from '../../../router/index.js';
-import UserService from "@/services/client/UserService";
+import UserService from "@/services/client/UserServiceClient";
 
 
 export const user = {
@@ -13,17 +13,18 @@ export const user = {
     mutations: {
         [Constant.REGISTER_CLIENT]: (state, payload) => {
             if (payload) {
-                toaster.success('Registered successfuly. Login for now.');
+                //toaster.success('Registered successfuly. Login for now.');
                 router.push({ name: 'login' });
             }
         },
         [Constant.LOGIN_CLIENT]: (state, payload) => {
             if (payload) {
-                state.user = payload.user;
+                console.log(payload)
+                state.user = payload;
                 state.isAuth = true;
-                localStorage.setItem("token", payload.token);
+                localStorage.setItem("token", payload);
                 localStorage.setItem("isAuth", true);
-                toaster.success('Loged successfuly');
+                //toaster.success('Loged successfuly');
                 router.push({ name: 'home' });
             }
         },
@@ -35,7 +36,7 @@ export const user = {
             localStorage.removeItem('isAuth');
             localStorage.removeItem('tokenAdmin');
             localStorage.removeItem('isAdmin');
-            toaster.success('Loged out successfuly');
+           // toaster.success('Loged out successfuly');
             router.push({ name: 'home' });
         },
         [Constant.LOGIN_ADMIN]: (state, payload) => {
@@ -44,7 +45,7 @@ export const user = {
                 localStorage.setItem("isAdmin", true);
                 state.user = payload.user;
                 state.isAdmin = true;
-                toaster.success('Admin loged successfuly');
+                //toaster.success('Admin loged successfuly');
                 router.push({ name: 'home' });
             }
         },
@@ -67,25 +68,27 @@ export const user = {
                 }
             })
             .catch(function () {
-                toaster.error('The username or email already exists');
+                //toaster.error('The username or email already exists');
             })
         },
         [Constant.LOGIN_CLIENT]: (store, payload) => {
+            console.log(store)
             UserService.login_client(payload)
             .then(function (res) {
+                console.log(res)
                 if (res.status === 200) {
                     store.commit(Constant.LOGIN_CLIENT, res.data);
-                    if (res.data.user.type == "1") {
-                        UserService.login_admin(payload)
-                        .then(function (response) {
-                            if (response.status === 200) {
-                                store.commit(Constant.LOGIN_ADMIN, response.data);
-                            }
-                        })
-                        .catch(function () {
-                            toaster.error('Admin login error.');
-                        })
-                    }
+                    // if (res.data.user.type == "1") {
+                    //     UserService.login_admin(payload)
+                    //     .then(function (response) {
+                    //         if (response.status === 200) {
+                    //             store.commit(Constant.LOGIN_ADMIN, response.data);
+                    //         }
+                    //     })
+                    //     .catch(function () {
+                    //         toaster.error('Admin login error.');
+                    //     })
+                    // }
                 }
             })
             .catch(function (error) {
@@ -120,7 +123,7 @@ export const user = {
         GetUser: (state) => {
             return state.user;
         },
-        GetIsAuth: (state) => {
+        GetIsLogin: (state) => {
             return state.isAuth;
         },
         GetIsAdmin: (state) => {

@@ -24,6 +24,7 @@ export default {
         const state = reactive({ 
             routes : computed(() => route.name) 
         });
+        console.log("APP")
         //const bool = state.routes.fullPath.startsWith('/dashboard');
         return { state };
   }
