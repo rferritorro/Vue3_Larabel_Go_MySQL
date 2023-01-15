@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\TableResource;
 use App\Http\Requests\StoreTableRequest;
 use App\Models\Table;
+use Illuminate\Support\Facades\DB;
 
 class TableController extends Controller 
 {
@@ -17,6 +18,14 @@ class TableController extends Controller
     //CREATE DATA INTO TABLE TABLES
     public function store(StoreTableRequest $request){
         return TableResource::make(Table::create($request->validated()));
+    }
+
+    public function get_tables_reserved($data) {
+        $filter_tables = DB::table('Table_')
+        ->selectRaw('*')
+        ->where('reserved', '=', $data)
+        ->get();
+        return $filter_tables;
     }
 
     //UPDATE DATA INTO TABLE TABLES

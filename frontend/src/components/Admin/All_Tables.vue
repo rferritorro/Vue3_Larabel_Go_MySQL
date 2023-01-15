@@ -7,7 +7,30 @@
             </button>
         </router-link>
     </p>
-    <div class="align_menu">
+    <div class="filter_table">
+        <Filter @closefilters="quit_filter" @filters="tables_filter" :tables_reserved="listTables"/>
+    </div>
+    <div class="align_menu" v-if="state.tablesFilter.length != 0">
+        <div class="containeradmin" v-for="alltables in state.tablesFilter" :key="alltables.id" >
+            <div class="div1admin">
+                <!-- <img class="menu_img" src="../../assets/img/traditional_menu.jpg"/> -->
+                <img class="menu_img" :src="alltables.img" />
+                <div class="infor_menuadmin">
+                    <p>Table {{ alltables.id }}</p>
+                    <p>{{ alltables.place }}</p>
+                    <p v-if="alltables.reserved === 1">RESERVED</p>
+                    <p v-if="alltables.reserved === 0">NOT RESERVED</p>
+                    <span type="button" @click.stop="editMenu(alltables.id)">
+                        <font-awesome-icon icon="fa-solid fa-pen" title="EDIT TABLE" size="2x" class="icon1" />
+                    </span>&nbsp;&nbsp;
+                    <span type="button" @click.stop="deleteMenu(alltables.id)">
+                        <font-awesome-icon icon="fa-solid fa-trash" title="DELETE TABLE" size="2x" class="icon1" />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="align_menu" v-if="state.tablesFilter.length === 0">
         <div class="containeradmin" v-for="alltables in listTables" :key="alltables.id" >
             <div class="div1admin">
                 <!-- <img class="menu_img" src="../../assets/img/traditional_menu.jpg"/> -->
@@ -15,7 +38,8 @@
                 <div class="infor_menuadmin">
                     <p>Table {{ alltables.id }}</p>
                     <p>{{ alltables.place }}</p>
-                    <p>{{ alltables.reserved }}</p>
+                    <p v-if="alltables.reserved === 1">RESERVED</p>
+                    <p v-if="alltables.reserved === 0">NOT RESERVED</p>
                     <span type="button" @click.stop="editMenu(alltables.id)">
                         <font-awesome-icon icon="fa-solid fa-pen" title="EDIT TABLE" size="2x" class="icon1" />
                     </span>&nbsp;&nbsp;
@@ -32,10 +56,13 @@
 import Constant from '../../Constant';
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
+import {defineAsyncComponent, reactive} from 'vue';
 
 export default {
     components: {
-       
+        Filter: defineAsyncComponent(() =>
+        import('../../components/Filter')
+        )
     },
     props: {
         listTables: Object
@@ -47,16 +74,26 @@ export default {
         })
         const store = useStore();
         const router = useRouter();
-       
+        const state = reactive({ 
+            tablesFilter : ""
+        });
         const editMenu = (id) => {
             router.push({ name: 'updateTables', params: { id } })
         }
         const deleteMenu = (id) => {
             store.dispatch("tables/" + Constant.DELETE_TABLES, { id });
         }
+        function tables_filter (value){
+            state.tablesFilter = value;
+            console.log(value)
+        }
+        function quit_filter (){
+            state.tablesFilter = "";
+            router.push({ path: "/dashboard/tables/" });
+        }
 
         
-        return { deleteMenu, editMenu }
+        return { deleteMenu, editMenu, tables_filter, state, quit_filter }
     }
 }
 </script>

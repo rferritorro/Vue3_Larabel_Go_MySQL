@@ -36,6 +36,7 @@ Route::resource('order_reserved', OrderReservedController::class);
 Route::get('/public/{image}', [ImageController::class, 'getImages']);
 Route::get('/_reserved/', [OrderReservedController::class, 'get_order']);
 Route::get('/menus_search/{data}', [MenuController::class, 'get_menus_search']);
+Route::get('/tables_filter/{data}', [TableController::class, 'get_tables_reserved']);
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');

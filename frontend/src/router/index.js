@@ -42,6 +42,9 @@ const routes = [
         path:"tables", name:"TablesAdmin", component: TablesAdmin
       },
       {
+        path:"tables/:filter", name:"TablesAdminFilter", component: TablesAdmin
+      },
+      {
         path:"tables/add", name:"addTables", component: AddTables
       },
       {
@@ -51,7 +54,7 @@ const routes = [
         path:"reserved/update/:id", name:"UpdateReservation", component: UpdateReservation 
       },
       {
-        path:":search", name:"SearchMenu", component: HomeAdmin
+        path:"menu/:search", name:"SearchMenu", component: ListMenu
       }
     ]
   },
