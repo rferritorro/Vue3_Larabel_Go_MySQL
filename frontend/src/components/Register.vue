@@ -29,8 +29,8 @@
                                 Password
                             </strong>
                         </label> 
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.passwd" v-on:keyup="submit_register()" required>
-                        <span style="color:red">{{state.passwd_error}}</span>
+                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.password" v-on:keyup="submit_register()" required>
+                        <span style="color:red">{{state.password_error}}</span>
                     </div>
                     <div class="group">
                         <label for="pass" class="label">
@@ -38,8 +38,13 @@
                                 Confirm Password
                             </strong>
                         </label>
-                        <input id="pass" type="password" class="input" data-type="password" v-model="state.register.confirm_password" v-on:keyup="submit_register()" required>
+                        <input id="pass" type="password" class="input" data-type="password" v-model="state.confirm.confirm_password" v-on:keyup="submit_register()" required>
                         <span style="color:red">{{state.confirm_password_error}}</span><br>
+                    </div>
+                    <div class="group">
+                        <input type="checkbox" name="default_avatar_check" id="default_avatar_check" v-on:change="change_avatar(state.register.username)" v-model="check_default_avatar"><span>Default Avatar</span>
+                        <br>
+                        <img class="w-25" :src="default_avatar" alt="avatar">
                     </div>
                     <div class="group">
                         <input type="button" class="button" value="Sign Up" @click="$emit('registerform',state.register)">
@@ -76,44 +81,44 @@ export default {
             router.push({ name:"login"});            
         }
         const state = reactive({
-                register: { username: "", email: "",  passwd: "", confirm_password: "" },
-                error_register: { username: "", email: "", passwd: "", confirm_password: "" },
+                register: { username: "", password: "", email: "",  avatar: default_avatar.value, type_: "0"  },
+                error_register: { username: "", email: "", password: "", confirm_password: "" },
+                confirm: {confirm_password: ""}
                 //bounce: props.type,
         })
         const rules = {
                 username: { required, minLength: minLength(5) },
                 email: { required, email },
-                passwd: { required, minLength: minLength(6) },
+                password: { required, minLength: minLength(6) },
                 confirm_password: { required, minLength: minLength(6) },
         }
         state.error_register = useVuelidate(rules, state.register);
         
         function submit_register() {
-            console.log(state.error_register.passwd.$invalid)
+            console.log(state.error_register.password.$invalid)
             if (state.error_register.email.$invalid == true) {
                     state.email_error = "*Email format is incorrect and requierd";
                     //validate = false;
             } else {
                     state.email_error = "";
             }
-            if (state.error_register.passwd.$invalid != true) {
-                state.passwd_error = ""
+            if (state.error_register.password.$invalid != true) {
+                state.password_error = ""
                     if (state.error_register.confirm_password.$model == "") {
                         state.confirm_password_error = "*Confirm password please";
-                    }else if (state.register.passwd != state.register.confirm_password) {
+                    }else if (state.register.password != state.confirm.confirm_password) {
                         state.confirm_password_error = "*Two passwords there are not the same";
-                        console.log(state.register.confirm_password +" " + state.register.passwd)
                     }else {
                         state.confirm_password_error = "";
                     }
             } else {
-                if (state.error_register.passwd.$model != "") {
-                    state.passwd_error = "*Passwd is invalid. Please min 6 characters";
+                if (state.error_register.password.$model != "") {
+                    state.password_error = "*password is invalid. Please min 6 characters";
                 } else {
-                    state.passwd_error = "*Passwd is required";
+                    state.password_error = "*password is required";
                 }
-                //state.passwd_error = "a";
-                // const data = { username: state.register.username, password: state.register.passwd };
+                //state.password_error = "a";
+                // const data = { username: state.register.username, password: state.register.password };
                 console.log(state.register);
                 //emit('onSubmit', data);
             }

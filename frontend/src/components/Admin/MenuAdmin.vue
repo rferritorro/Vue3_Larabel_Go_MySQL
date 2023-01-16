@@ -55,7 +55,10 @@ import Constant from '../../Constant';
 import { useStore } from 'vuex'
 import { reactive, defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router';
-
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({
+    position: "top-right"
+});
 export default {
     components: {
         Search: defineAsyncComponent(() =>
@@ -77,9 +80,11 @@ export default {
         });
         const editMenu = (id) => {
             router.push({ name: 'updateMenu', params: { id } })
+            toaster.success(`Menu Updated!`);
         }
         const deleteMenu = (id) => {
             store.dispatch("menu/" + Constant.DELETE_MENU, { id });
+            toaster.success(`Menu Deleted!`);
         }
         
         function menus_search (value){

@@ -16,11 +16,11 @@ export default {
     },
 
     login_admin(data) {
-        return Api(`${secret.url_admin}`).post('login', data);
+        return Api(`${secret.url_admin}`).post('api/login', data);
     },
 
     logout_admin() {
-        return Api(`${secret.url_admin}`).post('logout');
+        return Api(`${secret.url_admin}`).post('api/logout');
     },
 
     profile() {
@@ -28,7 +28,7 @@ export default {
     },
 
     checkAdmin() {
-        return Api(`${secret.url_admin}`).get('isAdmin');
+        return Api(`${secret.url_admin}`).get('api/isAdmin');
     },
 
 }

@@ -15,14 +15,14 @@
                 <span class="span" title="ADMIN">Admin</span>
             </router-link>
             <router-link class="nav-link" to="/login" >
-                <font-awesome-icon v-if="state.isAuth === null" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
+                <font-awesome-icon v-if="token === null" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
         </div>
     </nav>
 </template>
 
 <script>
-import { reactive, computed } from 'vue';
+import { reactive, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 export default {
     setup() {
@@ -32,6 +32,7 @@ export default {
             isToken: computed(() => store.getters['user/GetIsLogin']),
             isAuth: localStorage.getItem("isAuth")
         })
+        const token = ref(localStorage.getItem('isAuth'))
         const navClass = computed(() => state.isNavShow ? "collapse navbar-collapse show" : "collapse navbar-collapse")
         const changeIsNavShow = () => {
             state.isNavShow = !state.isNavShow;
@@ -48,7 +49,7 @@ export default {
             }
         })
 
-        return { state, changeIsNavShow, navClass, store };
+        return { state, changeIsNavShow, navClass, store, token };
     }
 
 }

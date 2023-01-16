@@ -57,7 +57,10 @@ import Constant from '../../Constant';
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
 import {defineAsyncComponent, reactive} from 'vue';
-
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({
+    position: "top-right"
+});
 export default {
     components: {
         Filter: defineAsyncComponent(() =>
@@ -79,9 +82,11 @@ export default {
         });
         const editMenu = (id) => {
             router.push({ name: 'updateTables', params: { id } })
+            toaster.success(`Table Updated!`);
         }
         const deleteMenu = (id) => {
             store.dispatch("tables/" + Constant.DELETE_TABLES, { id });
+            toaster.success(`Table Deleted!`);
         }
         function tables_filter (value){
             state.tablesFilter = value;

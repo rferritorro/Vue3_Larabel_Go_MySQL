@@ -13,6 +13,7 @@ import HomeAdmin from '../views/Admin/HomeAdmin';
 import About from '../views/About';
 import Tables from '../views/Client/Tables/Tables';
 import NotFound from '../views/NotFound';
+import AuthGuards from '../services/AuthGuard/AuthGuard';
 
 const routes = [
   { path:"", redirect:{ name:"home" } },
@@ -25,6 +26,7 @@ const routes = [
     path:"/dashboard", 
     name:"dashboard", 
     component: HomeAdmin,
+    beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true },
     children: [
       {
         path:"menu/add", name:"addMenu", component: AddMenu
@@ -58,8 +60,8 @@ const routes = [
       }
     ]
   },
-  { path: "/login", name: "login", component: () => import('../views/Login/Login.vue') },
-  { path: "/register", name: "register", component: () => import('../views/Login/Register.vue') }
+  { path: "/login", name: "login", component: () => import('../views/Login/Login.vue'), beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true } },
+  { path: "/register", name: "register", component: () => import('../views/Login/Register.vue'),  beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true }}
 ];
 
 const router = createRouter({

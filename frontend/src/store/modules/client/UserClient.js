@@ -1,6 +1,10 @@
 import Constant from '../../../Constant';
 import router from '../../../router/index.js';
 import UserService from "@/services/client/UserServiceClient";
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({
+    position: "top-right"
+});
 
 
 export const user = {
@@ -13,8 +17,11 @@ export const user = {
     mutations: {
         [Constant.REGISTER_CLIENT]: (state, payload) => {
             if (payload) {
-                //toaster.success('Registered successfuly. Login for now.');
-                router.push({ name: 'login' });
+                console.log(state)
+                console.log(payload)
+                localStorage.setItem("token", payload);
+                localStorage.setItem("isAuth", true);
+                //router.push({ name: 'login' });
             }
         },
         [Constant.LOGIN_CLIENT]: (state, payload) => {
@@ -24,7 +31,8 @@ export const user = {
                 state.isAuth = true;
                 localStorage.setItem("token", payload);
                 localStorage.setItem("isAuth", true);
-                //toaster.success('Loged successfuly');
+                
+                toaster.success(`Welcome! Loged Succesfully`);
                 router.push({ name: 'home' });
             }
         },
@@ -66,11 +74,12 @@ export const user = {
             UserService.register_client(payload)
             .then(function (res) {
                 console.log(res)
-                // if (res.status === 200) {
-                //     store.commit(Constant.REGISTER_CLIENT, true);
-                // }
+                if (res.status === 200) {
+                    store.commit(Constant.REGISTER_CLIENT, true);
+                }
             })
-            .catch(function () {
+            .catch(function (err) {
+                console.log(err)
                 //toaster.error('The username or email already exists');
             })
         },
@@ -81,20 +90,22 @@ export const user = {
                 console.log(res)
                 if (res.status === 200) {
                     store.commit(Constant.LOGIN_CLIENT, res.data);
-                    // if (res.data.user.type == "1") {
-                    //     UserService.login_admin(payload)
-                    //     .then(function (response) {
-                    //         if (response.status === 200) {
-                    //             store.commit(Constant.LOGIN_ADMIN, response.data);
-                    //         }
-                    //     })
-                    //     .catch(function () {
-                    //         toaster.error('Admin login error.');
-                    //     })
-                    // }
+                    UserService.login_admin(payload)
+                    .then(function (response) {
+                        console.log(response.data)
+                        if (response.data.user.type_ === 1) {
+                            store.commit(Constant.LOGIN_ADMIN, response.data);
+                        }else {
+                            console.log("NOT ADMIN")
+                        }
+                    })
+                    .catch(function () {
+                        
+                    }) 
                 }
             })
             .catch(function (error) {
+                toaster.error('The username or password are incorrect');
                 console.log(error)
             })
         },
