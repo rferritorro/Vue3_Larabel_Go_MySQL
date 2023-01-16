@@ -23,8 +23,8 @@ export default {
         return Api(`${secret.url_admin}`).post('api/logout');
     },
 
-    profile() {
-        return Api(`${secret.url_client}`).get('user-api/profile');
+    profile(data) {
+        return Api(`${secret.url_client}`).post('user-api/profile', data);
     },
 
     checkAdmin() {

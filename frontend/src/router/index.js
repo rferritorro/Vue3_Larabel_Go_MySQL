@@ -13,6 +13,7 @@ import HomeAdmin from '../views/Admin/HomeAdmin';
 import About from '../views/About';
 import Tables from '../views/Client/Tables/Tables';
 import NotFound from '../views/NotFound';
+import Profile from '../views/Profile';
 import AuthGuards from '../services/AuthGuard/AuthGuard';
 
 const routes = [
@@ -20,6 +21,7 @@ const routes = [
   { path:"/home", name:"home", component: Home },
   { path:"/about", name:"about", component: About },
   { path:"/reserved/add", name:"addReservation", component: AddReservation },
+  { path:"/profile", name:"profile", component: Profile },
   { path:"/tables", name:"Tables", component: Tables },
   { path:"/:catchAll(.*)", component: NotFound },
   { 

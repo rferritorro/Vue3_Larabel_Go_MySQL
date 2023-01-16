@@ -36,6 +36,18 @@ func CreateUser(c *gin.Context) {
 	}
 }
 
+func UpdatePassword(c *gin.Context) {
+	var user Models.User
+	c.BindJSON(&user)
+	check,err := Services.UpdatePassword(user.Id,user.Password)
+	if err != nil {
+		//fmt.Println(err.Error())
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, check)
+	}
+}
+
 func LoginUser(c *gin.Context) {
 	var user Models.User
 	c.BindJSON(&user)

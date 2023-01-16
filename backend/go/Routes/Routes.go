@@ -27,6 +27,7 @@ func AddRouter() *gin.Engine {
 		grp1.GET("user", Controllers.GetUsers)
 		grp1.GET("user/:id", Controllers.GetUserByID)
 		grp1.POST("user", Controllers.CreateUser)
+		grp1.POST("profile", Controllers.UpdatePassword)
 		grp1.POST("users_login", Controllers.LoginUser)
 		// grp1.PUT("user/:id", Controllers.UpdateUser)
 		// grp1.DELETE("user/:id", Controllers.DeleteUser)

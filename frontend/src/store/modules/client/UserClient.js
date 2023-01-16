@@ -117,9 +117,9 @@ export const user = {
                 console.log(error);
             }
         },
-        [Constant.PROFILE]: (store) => {
+        [Constant.PROFILE]: (store,payload) => {
             try {
-                UserService.profile()
+                UserService.profile(payload)
                 .then(function (res) {
                     if (res.status === 200) {
                         store.commit(Constant.PROFILE, res.data);

@@ -31,6 +31,20 @@ func CheckUser(user *Models.User) (id uint, err error) {
     return userBBDD.Id, nil
 }
 
+func UpdatePassword(id uint, password string) (check bool,err error) {
+	var userBBDD Models.User
+    Config.DB.Where("id = ?", id).Find(&userBBDD)
+	err = bcrypt.CompareHashAndPassword([]byte(userBBDD.Password), []byte(password))
+	if err == nil {
+		log.Println("Las contraseñas son iguales", err)
+		return false,nil
+	}
+	bytePassword := []byte(password)
+	// Make sure the second param `bcrypt generator cost` between [4, 32)
+	PasswordHash, _ := bcrypt.GenerateFromPassword(bytePassword, bcrypt.DefaultCost)
+	Config.DB.Model(&Models.User{}).Where("id = ?", id).Update("password",string(PasswordHash))
+	return true,nil
+}
 func SetPassword(user *Models.User, password string) error {
 	if len(password) == 0 {
 		return errors.New("Password should not be empty!")
