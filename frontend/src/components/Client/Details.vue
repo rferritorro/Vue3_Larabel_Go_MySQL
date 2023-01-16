@@ -1,24 +1,26 @@
 <template>
-   <div v-if="Object.keys(table).length === 0" class="bg-primary w-50 text-white p-3">
-      <h1>Select table</h1>
+   <div v-if="Object.keys(table).length === 0" class="w-75 text-white p-3">
+      <Carousel :carrousel="carrousel"></Carousel>
    </div>
-   <div v-else class="bg-primary w-50 text-white p-3">
+   <div v-else class="w-75 text-white p-3">
       <div class="h-100 w-100">
          <!-- <img src="{{ table.img }}" alt=""> -->
-         <img class="float-left w-50 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
+         <img class="float-left w-75 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
          
-         <div class="float-right w-50 bg-dark d-flex justify-content-center flex-column">
-            <input class="w-50" type="text" v-model="usuario" name="name" id="name" placeholder="Name">
-            <input class="w-50" type="number" v-model="value_comensal" name="comander" id="comander" :max="5" :min="1" >
+         <div class="float-right w-25 h-100 d-flex justify-content-center align-items-center flex-column flex-wrap">
+            <input class="w-50 m-3 rounded" type="text" v-model="usuario" name="name" id="name" placeholder="Name">
+            <label for="comander">NºComensales</label>
+            <input class="w-25 m-3 rounded" type="number" v-model="value_comensal" name="comander" id="comander" :max="5" :min="1" >
             <!-- carrousel-menu -->
             <Datepicker
+            class="w-100 m-3 rounded"
             v-model="event"
             :disabledDates="state.disabledDates"
             v-on="get_data_selected(event,table.id)"
             />
-            <v-select class="bg-light text-dark" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
-            <v-select class="bg-light text-dark" v-model="menu" :options="state.menuList.menu" label="nombre" />
-            <button class="btn btn-dark" v-on:click="action_reserved(table,event,usuario,select,menu)">Reserved</button>
+            <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Horas a reservar" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
+            <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Elige Menu" v-model="menu" :options="state.menuList.menu" label="nombre" />
+            <button class="btn btn-dark w-75 m-3 rounded" v-on:click="action_reserved(table,event,usuario,select,menu)">Reserved</button>
          </div>
       </div>
       <span id="table_id" style="display:none">{{ table }}</span>
@@ -26,6 +28,7 @@
 </template>
 
 <script>
+import Carousel from '../Carousel'
 import { ref } from 'vue';
 import Constant from '../../Constant';
 import { computed, reactive } from 'vue';
@@ -43,6 +46,7 @@ export default {
    },
     components: {
         Datepicker,
+        Carousel
    },
    data() {
       return {
@@ -53,6 +57,11 @@ export default {
       // onUpdated(() => {
       // console.log(document.getElementById('table_id').textContent)
       // })
+      const carrousel = [
+            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg",
+            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg",
+            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg"
+        ]
       const value_comensal = ref(1)
       const toaster = createToaster({
          position: "top-right"
@@ -160,7 +169,7 @@ export default {
       }
 
       store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
-      return {state,hour_options,value_comensal, get_data_selected, action_reserved}
+      return {state,hour_options,value_comensal,carrousel, get_data_selected, action_reserved}
    },
 
 }
