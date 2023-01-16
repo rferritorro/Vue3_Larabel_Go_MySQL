@@ -14,6 +14,9 @@
             <router-link class="nav-link" to="/dashboard">
                 <span class="span" v-if="state.isAdmin" title="ADMIN">Admin</span>
             </router-link>
+            <router-link class="nav-link" to="/profile">
+                <span class="span" title="Profile">Profile</span>
+            </router-link>
             <router-link class="nav-link" to="/login" >
                 <font-awesome-icon v-if="!state.isAuth" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
