@@ -12,7 +12,8 @@ export const user = {
     state: {
         user: [],
         isAuth: false,
-        isAdmin: false
+        isAdmin: false,
+        isAuthStorage: localStorage.getItem("isAuth")
     },
     mutations: {
         [Constant.REGISTER_CLIENT]: (state, payload) => {
@@ -136,6 +137,14 @@ export const user = {
         },
         GetIsLogin: (state) => {
             return state.isAuth;
+        },
+        GetIsLoginStorage: (state) => {
+            if (!state.isAuthStorage) {
+                return state.isAuth;
+            }
+            else {
+                return state.isAuthStorage;
+            }
         },
         GetIsAdmin: (state) => {
             return state.isAdmin;

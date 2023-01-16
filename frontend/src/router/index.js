@@ -21,7 +21,7 @@ const routes = [
   { path:"/home", name:"home", component: Home },
   { path:"/about", name:"about", component: About },
   { path:"/reserved/add", name:"addReservation", component: AddReservation },
-  { path:"/profile", name:"profile", component: Profile },
+  { path:"/profile", name:"profile", component: Profile, beforeEnter: AuthGuards.AuthGuard, meta: { requiresAuth: true } },
   { path:"/tables", name:"Tables", component: Tables },
   { path:"/:catchAll(.*)", component: NotFound },
   { 

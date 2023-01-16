@@ -4,7 +4,7 @@ import store from "@/store";
 export default {
 
     AuthGuard(to, from, next) {
-        if (store.getters['user/GetIsAuth'] && localStorage.getItem('isAuth')) {
+        if (localStorage.getItem('isAuth')) {
             next();
         } else {
             next('/home');

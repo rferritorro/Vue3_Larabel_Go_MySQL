@@ -15,13 +15,13 @@
                 <span class="span" v-if="state.isAdmin" title="ADMIN">Admin</span>
             </router-link>
             <router-link class="nav-link" to="/profile">
-                <span class="span" title="Profile">Profile</span>
+                <span class="span" v-if="state.isToken" title="Profile">Profile</span>
             </router-link>
             <router-link class="nav-link" to="/login" >
-                <font-awesome-icon v-if="!state.isAuth" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
+                <font-awesome-icon v-if="!state.isToken" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
             <button class="logout" @click="logout">
-                <font-awesome-icon v-if="state.isAuth" icon="fa-solid fa-right-from-bracket" title="DASHBOARD" size="2x" class="iconuser" />
+                <font-awesome-icon v-if="state.isToken" icon="fa-solid fa-right-from-bracket" title="DASHBOARD" size="2x" class="iconuser" />
             </button>
         </div>
     </nav>
@@ -37,7 +37,7 @@ export default {
         const state = reactive({
             isNavShow: false,
             isAuth: computed(() => store.getters['user/GetIsLogin']),
-            //isToken: computed(() => localStorage.getItem("isAuth")),
+            isToken: computed(() => store.getters['user/GetIsLoginStorage']),
             isAdmin: computed(() => store.getters['user/GetIsAdmin'])
         })
         //const token = ref(localStorage.getItem('isAuth'))
