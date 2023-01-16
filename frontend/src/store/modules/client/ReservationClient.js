@@ -26,8 +26,10 @@ export const reservationclient = {
     },
     actions : {
         [Constant.ADD_RESERVATION]: (store, payload) => {
-          ReservationService.addReserved(payload.reservation_form)
+          console.log(payload)
+          ReservationService.addReserved(payload)
             .then(function (result) {
+              console.log("dale")
               console.log(result)
               store.commit(Constant.ADD_RESERVATION, result.data.data);
             })

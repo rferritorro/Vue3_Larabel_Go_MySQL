@@ -5,7 +5,7 @@ import (
 	"go-restaurant/Services"
 	"net/http"
 
-	// "fmt"
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -32,6 +32,7 @@ func GetReservedByID(c *gin.Context) {
 func CreateReserved(c *gin.Context) {
 	var reserved Models.Reserved
 	c.BindJSON(&reserved)
+	fmt.Println(&reserved)
 	err := Services.CreateReserved(&reserved)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)

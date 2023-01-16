@@ -99,8 +99,6 @@ export default {
          });
       
       store.dispatch("menuclient/" + Constant.INITIALIZE_ALLMENUS);
-      console.log("hola");
-      console.log(state.menuList)
       
       function action_reserved(table,event,usuario,option,menu) {
          var msg = ""
@@ -126,11 +124,21 @@ export default {
          }
 
          if (!msg) {
-            console.log(table.Id)
-            console.log(usuario)
-            console.log(transform_data(event))
-            console.log(value_comensal.value)
-            console.log(position);
+            // console.log(table.Id)
+            // console.log(usuario)
+            // console.log()
+            // console.log(value_comensal.value)
+            // console.log(position);
+            //usuario se cambia por id del token
+            var reserva = {
+               user_id: 1,
+               table_id: table.Id,
+               menu_id: menu.Id,
+               date: transform_data(event),
+               hour: position,
+               n_comensales: value_comensal.value
+            }
+            store.dispatch("reservationclient/" + Constant.ADD_RESERVATION, reserva);
          } else {
             toaster.error(msg)
          }
