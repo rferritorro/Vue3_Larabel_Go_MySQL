@@ -16,8 +16,9 @@
             :disabledDates="state.disabledDates"
             v-on="get_data_selected(event,table.id)"
             />
-            <v-select class="bg-light text-dark" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name"></v-select>
-            <button class="btn btn-dark" v-on:click="action_reserved(table,event,select)">Reserved</button>
+            <v-select class="bg-light text-dark" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
+            <v-select class="bg-light text-dark" v-model="menu" :options="state.menuList.menu" label="nombre" />
+            <button class="btn btn-dark" v-on:click="action_reserved(table,event,select,menu.Id)">Reserved</button>
          </div>
       </div>
       <span id="table_id" style="display:none">{{ table }}</span>
@@ -30,6 +31,7 @@ import Constant from '../../Constant';
 import { computed, reactive } from 'vue';
 import { useStore } from 'vuex'
 import Datepicker from "vue3-datepicker";
+// import { useRoute } from 'vue-router';
 // import { add } from 'date-fns'
 
 export default {
@@ -50,6 +52,7 @@ export default {
       // console.log(document.getElementById('table_id').textContent)
       // })
       const value_comensal = ref(1)
+
       const hour_options=[
          {
             name: '13:00-14:00',
@@ -75,12 +78,11 @@ export default {
             name: '23:00-24:00',
             disabled: false 
          }]
+      const store = useStore();
       var array = []
       for (let i=1;i <= new Date().getDate();i++) {
          array.push(new Date(new Date().getFullYear(),new Date().getMonth(),i))
       }
-
-      const store = useStore();
       // const timebydate = reactive(
       //    computed(() => store.getters['tablesclient/getTables'])      
       // )
@@ -88,10 +90,15 @@ export default {
             allreservation: computed(() => store.getters['reservationclient/getAllReservation']),
             disabledDates: {
                dates: array
-            }
-        });
-
-      function action_reserved(table,event,option) {
+            },
+            menuList: computed(() => store.getters['menuclient/getAllMenusClient'])
+         });
+      
+      store.dispatch("menuclient/" + Constant.INITIALIZE_ALLMENUS);
+      console.log("hola");
+      console.log(state.menuList)
+      
+      function action_reserved(table,event,option,menu_id) {
          console.log(table.Id)
          console.log(transform_data(event))
          console.log(value_comensal.value)
@@ -102,9 +109,8 @@ export default {
                }
             }
          })()
+         console.log(menu_id)
          console.log(position);
-
-         
       }
 
       function transform_data(fulldate) {
@@ -115,16 +121,14 @@ export default {
       }
       function get_data_selected(date,table_id) {  
          hour_options.map(i=>i.disabled=false)
-         // console.log(transform_data(date))
-         // console.log(state.allreservation[1].date.split('T00')[0])
+
          var current_tables=state.allreservation.filter(i=> i.Table_id == table_id  && transform_data(date)===i.date.split('T00')[0])     
          current_tables.forEach(e => {
             hour_options[e.hour].disabled = true
          });
-         console.log(hour_options)
-      }  
-      store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
+      }
 
+      store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
       return {state,hour_options,value_comensal, get_data_selected, action_reserved}
    },
 
