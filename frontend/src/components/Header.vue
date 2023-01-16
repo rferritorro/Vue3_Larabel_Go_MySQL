@@ -14,26 +14,30 @@
             <router-link class="nav-link" to="/dashboard">
                 <span class="span" title="ADMIN">Admin</span>
             </router-link>
-            <router-link class="nav-link" to="/login">
-                <font-awesome-icon icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
+            <router-link class="nav-link" to="/login" >
+                <font-awesome-icon v-if="token === null" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
         </div>
     </nav>
 </template>
 
 <script>
-import { reactive, computed } from 'vue';
-
+import { reactive, computed, ref } from 'vue';
+import { useStore } from 'vuex';
 export default {
     setup() {
+        const store = useStore();
         const state = reactive({
-            isNavShow: false
+            isNavShow: false,
+            isToken: computed(() => store.getters['user/GetIsLogin']),
+            isAuth: localStorage.getItem("isAuth")
         })
+        const token = ref(localStorage.getItem('isAuth'))
         const navClass = computed(() => state.isNavShow ? "collapse navbar-collapse show" : "collapse navbar-collapse")
         const changeIsNavShow = () => {
             state.isNavShow = !state.isNavShow;
         }
-
+        console.log(state.isAuth)
         window.addEventListener('scroll', () => {
             let menu = document.getElementById("header_nav")
             if (window.scrollY > 80) {
@@ -45,7 +49,7 @@ export default {
             }
         })
 
-        return { state, changeIsNavShow, navClass };
+        return { state, changeIsNavShow, navClass, store, token };
     }
 
 }

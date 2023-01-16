@@ -12,6 +12,10 @@ export default {
         return Api(`${secret.url_admin}`).get("api/tables")
     },
 
+    getTableReserved(data) {
+        return Api(`${secret.url_admin}`).get("api/tables_filter/"+ data)
+    },
+
     putTable(id, data) {
         return Api(`${secret.url_admin}`).put("api/tables/" + id, data)
     },

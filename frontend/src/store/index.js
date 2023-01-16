@@ -6,6 +6,7 @@ import {menuclient}  from "./modules/client/MenuClient"
 import {tablesclient}  from "./modules/client/TablesClient"
 import {reservationclient}  from "./modules/client/ReservationClient"
 import {order}  from "./modules/admin/OrderAdmin"
+import {user} from "./modules/client/UserClient"
 
 export default Vuex.createStore({
     modules: {
@@ -15,6 +16,7 @@ export default Vuex.createStore({
         tables: tables,
         tablesclient: tablesclient,
         reservationclient: reservationclient,
-        order: order
+        order: order,
+        user: user
     }
 });

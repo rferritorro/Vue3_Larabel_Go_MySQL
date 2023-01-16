@@ -32,6 +32,10 @@ import { reactive } from 'vue'
 import { useStore } from 'vuex'
 import Constant from '../../../Constant';
 import { useRouter } from 'vue-router';
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({
+    position: "top-right"
+});
 export default {
     setup() {
         const store = useStore();
@@ -48,7 +52,8 @@ export default {
         const addMenu = () => {
           console.log(form.menu_form)
           store.dispatch("menu/" + Constant.ADD_MENU, { menu_form : form.menu_form })
-          //this.$toast.show(`Hey! I'm here`);
+          toaster.success(`Menu created!`);
+          
           router.push({ name:"dashboard" });
         }
 

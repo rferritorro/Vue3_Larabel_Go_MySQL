@@ -16,7 +16,7 @@
 <script>
 import { ref, reactive,defineComponent } from 'vue'
 import {useSearch} from '../composables/useSearch'
-//import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
     props: ['menus_nombres']
@@ -27,7 +27,7 @@ export default defineComponent({
         })
         
         // const route = useRoute();
-        //const router = useRouter();
+        const router = useRouter();
 
         const state = reactive({
             menu: useSearch(),
@@ -45,12 +45,11 @@ export default defineComponent({
         
         function search_submit(){
             state.menu = useSearch(input_search.value);
-            // setTimeout(() => {
-            //     const search_url = btoa(JSON.stringify(state.menu));
-            //     router.push({ path: `/dashboard/${search_url}` });
-            // }, 9000);
             console.log(input_search.value)
-            console.log(state.menu);
+            const search_url = btoa(JSON.stringify(input_search.value));
+            router.push({ path: `/dashboard/menu/${search_url}` });
+            // setTimeout(() => {
+            // }, 9000);
         } 
 
         function click_menu() {

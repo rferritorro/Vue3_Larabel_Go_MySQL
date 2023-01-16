@@ -6,6 +6,7 @@
         <td>{{ allreservation.date }}</td>
         <td>{{ allreservation.hour }}</td>
         <td>{{ allreservation.n_comensales }}</td>
+        <td>{{ allreservation.reserved }}</td>
         <td>
             <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>
             <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">DELETE</span>
@@ -18,6 +19,7 @@ import Constant from '../../Constant';
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
 
+
 export default {
     props: {
         allreservation: Object
@@ -25,7 +27,6 @@ export default {
     setup() {
         const store = useStore();
         const router = useRouter();
-
         const checked = (done) => {
             return { "list-group-item":true, "list-group-item-success":done };
         }

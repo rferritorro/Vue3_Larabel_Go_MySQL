@@ -7,7 +7,7 @@
                 <div class="sign-in-htm">
                     <div class="group">
                         <label for="user" class="label"><strong>Username</strong></label>
-                        <input id="user" type="text" class="input bg-light" v-model="state.login.username" required><br>
+                        <input id="user" type="text" class="input" v-model="state.login.username" v-on:keyup="submit_login()" required><br>
                         <span style="color:red">{{state.username_error}}</span><br>
                     </div>
                     <div class="group">
@@ -16,7 +16,7 @@
                         <span style="color:red">{{state.passwd_error}}</span><br>
                     </div>
                     <div class="group">
-                        <input type="button" class="button" value="Sign In" @click="submit_login()">
+                        <input type="button" class="button" value="Sign In" @click="$emit('loginform',state.login)">
                     </div>
                     <div class="hr"></div>
                 </div>
@@ -38,33 +38,32 @@ export default {
             router.push({ name: "register" });
         }
         const state = reactive({
-            login: { username: "", passwd: "" },
-            error_login: { username: "", passwd: "" },
+            login: { username: "", password: "" },
+            error_login: { username: "", password: "" },
             //bounce: props.type,
         })
         const rules = {
             username: { required, minLength: minLength(5) },
-            passwd: { required, minLength: minLength(6) },
+            password: { required, minLength: minLength(6) },
         }
 
         state.error_login = useVuelidate(rules, state.login);
 
 
         function submit_login() {
-            console.log(state.error_login.passwd.$invalid)
+            console.log(state.error_login.password.$invalid)
             if (state.error_login.username.$invalid != true) {
                 state.username_error = "";
-                if (state.error_login.passwd.$invalid != true) {
-                    state.passwd_error = ""
+                if (state.error_login.password.$invalid != true) {
+                    state.password_error = ""
+					console.log(state.login)
                 } else {
-                    if (state.error_login.passwd.$model != "") {
-                        state.passwd_error = "*Passwd is invalid";
+                    if (state.error_login.password.$model != "") {
+                        state.password_error = "*password is invalid. Please min 6 characters";
                     } else {
-                        state.passwd_error = "*Passwd is required";
+                        state.password_error = "*password is required";
                     }
                     
-                    const data = { username: state.login.username, password: state.login.passwd };
-                    console.log(data);
                     
                 }
             } else {

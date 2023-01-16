@@ -57,6 +57,13 @@
                                                 <!-- <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 6" size="1x" /> -->
                                             </div>
                                         </th>
+                                        <th @click="order(6)">
+                                            CHECK RESERVATION:
+                                            <div v-for="order_ in state.orderList.order" :key="order_.id">
+                                                <!-- <font-awesome-icon icon="fa-solid fa-arrow-up" v-if="order_.order_ === 1 && order_.id === 6" size="1x" /> -->
+                                                <!-- <font-awesome-icon icon="fa-solid fa-arrow-down" v-if="order_.order_ === -1 && order_.id === 6" size="1x" /> -->
+                                            </div>
+                                        </th>
                                         <th>OPERATIONS:</th>
                                     </thead>
                                     <AllReservations v-for="allreservation in state.reservationList.reservation" :key="allreservation.id" :allreservation="allreservation" />

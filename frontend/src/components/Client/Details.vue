@@ -8,7 +8,7 @@
          <img class="float-left w-50 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
          
          <div class="float-right w-50 bg-dark d-flex justify-content-center flex-column">
-            <input class="w-50" type="text" name="name" id="name" placeholder="Name">
+            <input class="w-50" type="text" v-model="usuario" name="name" id="name" placeholder="Name">
             <input class="w-50" type="number" v-model="value_comensal" name="comander" id="comander" :max="5" :min="1" >
             <!-- carrousel-menu -->
             <Datepicker
@@ -18,7 +18,7 @@
             />
             <v-select class="bg-light text-dark" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
             <v-select class="bg-light text-dark" v-model="menu" :options="state.menuList.menu" label="nombre" />
-            <button class="btn btn-dark" v-on:click="action_reserved(table,event,select,menu.Id)">Reserved</button>
+            <button class="btn btn-dark" v-on:click="action_reserved(table,event,usuario,select,menu)">Reserved</button>
          </div>
       </div>
       <span id="table_id" style="display:none">{{ table }}</span>
@@ -31,6 +31,8 @@ import Constant from '../../Constant';
 import { computed, reactive } from 'vue';
 import { useStore } from 'vuex'
 import Datepicker from "vue3-datepicker";
+import { createToaster } from "@meforma/vue-toaster";
+
 // import { useRoute } from 'vue-router';
 // import { add } from 'date-fns'
 
@@ -52,7 +54,9 @@ export default {
       // console.log(document.getElementById('table_id').textContent)
       // })
       const value_comensal = ref(1)
-
+      const toaster = createToaster({
+         position: "top-right"
+      });
       const hour_options=[
          {
             name: '13:00-14:00',
@@ -98,19 +102,38 @@ export default {
       console.log("hola");
       console.log(state.menuList)
       
-      function action_reserved(table,event,option,menu_id) {
-         console.log(table.Id)
-         console.log(transform_data(event))
-         console.log(value_comensal.value)
-         var position = (() => {
-            for (let i=0; i < hour_options.length;i++) {
-               if (hour_options[i].name === option.name) {
-                  return i
+      function action_reserved(table,event,usuario,option,menu) {
+         var msg = ""
+
+         if (!menu) {
+            msg = "Selecione menu o deje la opción de no especificar"
+         }
+
+         if (option) {
+            var position = (() => {
+               for (let i=0; i < hour_options.length;i++) {
+                  if (hour_options[i].name === option.name) {
+                     return i
+                  }
                }
-            }
-         })()
-         console.log(menu_id)
-         console.log(position);
+            })()
+         } else {
+            msg = "Selecione hora para hacer la reserva"
+         }
+
+         if (!usuario || usuario == undefined || usuario === "") {
+            msg = "Rellene el campo de nombre de reserva"
+         }
+
+         if (!msg) {
+            console.log(table.Id)
+            console.log(usuario)
+            console.log(transform_data(event))
+            console.log(value_comensal.value)
+            console.log(position);
+         } else {
+            toaster.error(msg)
+         }
       }
 
       function transform_data(fulldate) {
