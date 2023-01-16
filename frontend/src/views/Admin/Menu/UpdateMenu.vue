@@ -32,6 +32,10 @@ import { reactive } from 'vue'
 import { useStore } from 'vuex'
 import Constant from '../../../Constant';
 import { useRouter, useRoute } from 'vue-router';
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({
+    position: "top-right"
+});
 export default {
     setup() {
         const store = useStore();
@@ -51,6 +55,7 @@ export default {
         console.log(state.thisMenu)
         const editMenu = () => {
             store.dispatch("menu/" +  Constant.UPDATE_MENU, { menuitem: state.thisMenu });
+            toaster.success(`Menu Updated!`);
             router.push({ name:"dashboard" });
         }
 

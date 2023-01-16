@@ -80,7 +80,6 @@ export default {
         });
         const editMenu = (id) => {
             router.push({ name: 'updateMenu', params: { id } })
-            toaster.success(`Menu Updated!`);
         }
         const deleteMenu = (id) => {
             store.dispatch("menu/" + Constant.DELETE_MENU, { id });

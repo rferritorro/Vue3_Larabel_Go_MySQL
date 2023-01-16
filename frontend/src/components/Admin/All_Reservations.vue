@@ -6,7 +6,11 @@
         <td>{{ allreservation.date }}</td>
         <td>{{ allreservation.hour }}</td>
         <td>{{ allreservation.n_comensales }}</td>
-        <td>{{ allreservation.reserved }}</td>
+        <td>
+            <input type="checkbox" v-if="allreservation.reserved === 1" checked/>
+            <input @click="confirm(allreservation.id)" type="checkbox" v-if="allreservation.reserved === 0" />
+        </td>
+            
         <td>
             <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>
             <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">DELETE</span>
@@ -18,7 +22,10 @@
 import Constant from '../../Constant';
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
-
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({
+    position: "top-right"
+});
 
 export default {
     props: {
@@ -27,6 +34,14 @@ export default {
     setup() {
         const store = useStore();
         const router = useRouter();
+        function confirm(id) {
+            console.log(id)
+            const reservation_confirm = ({
+                "reserved": "1"
+            })
+            store.dispatch("reservation/" + Constant.CHECK_RESERVATION, { id, reservation_confirm });
+            toaster.success(`Reserved Confirmed`);
+        }
         const checked = (done) => {
             return { "list-group-item":true, "list-group-item-success":done };
         }
@@ -41,7 +56,7 @@ export default {
             store.dispatch("reservation/" + Constant.DELETE_RESERVATION, { id });
         }
 
-        return { getReservation, deleteReservation, updateReservation, checked }
+        return { getReservation, deleteReservation, updateReservation, checked, confirm }
     }
 }
 </script>

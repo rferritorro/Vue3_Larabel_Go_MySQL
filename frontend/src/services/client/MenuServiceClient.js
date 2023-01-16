@@ -4,6 +4,6 @@ import secret from '../../secret.json'
 
 export default {
     getMenu() {
-        return Api(`${secret.url_client}`).get("menu-api/menu")
+        return Api(`${secret.url_client_ip}`).get("menu-api/menu")
     }
 }

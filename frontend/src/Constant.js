@@ -4,6 +4,7 @@ export default {
     ADD_RESERVATION : "addReservation",
     UPDATE_RESERVATION : "updateReservation",
     GET_RESERVATION : "getReservation",
+    CHECK_RESERVATION: "checkReservation",
     DELETE_RESERVATION : "deleteReservation",
     INITIALIZE_ALLRESERVATIONS : "initializeAllReservations",
 

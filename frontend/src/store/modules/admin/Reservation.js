@@ -11,6 +11,9 @@ export const reservation = {
           console.log(state.reservation)
           //state.reservation.push({ ...payload});
         },
+        [Constant.CHECK_RESERVATION]: (state) => {
+          console.log(state.reservation)
+        },
         [Constant.UPDATE_RESERVATION]: (state, payload) => {
           let index = state.reservation.findIndex(
             (item) => item.table_id === payload.table_id
@@ -43,6 +46,18 @@ export const reservation = {
             .then(function (result) {
               console.log(result)
               store.commit(Constant.ADD_RESERVATION, result.data.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
+        [Constant.CHECK_RESERVATION]: (store, payload) => {
+          console.log(payload)
+          console.log(store)
+          ReservationService.checkReserved(payload.id, payload.reservation_confirm)
+            .then(function (result) {
+              console.log(result)
+              store.commit(Constant.CHECK_RESERVATION, result.data);
             })
             .catch(function (error) {
               console.log(error);

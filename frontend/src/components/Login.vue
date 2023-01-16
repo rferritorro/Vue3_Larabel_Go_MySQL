@@ -12,7 +12,7 @@
                     </div>
                     <div class="group">
                         <label for="pass" class="label"><strong>Password</strong></label>
-                        <input id="pass" type="password" class="input bg-light" data-type="password" v-model="state.login.passwd" required><br>
+                        <input id="pass" type="password" class="input bg-light" data-type="password" v-model="state.login.password" required><br>
                         <span style="color:red">{{state.passwd_error}}</span><br>
                     </div>
                     <div class="group">

@@ -27,6 +27,22 @@ class ReservedController extends Controller
         return $reserved;
     }
 
+    public function check_reserved($data, Request $request) {
+      if (Reserved::where('id', $data)->exists()) {
+        $reserved = Reserved::find($data);
+        $reserved->reserved = $request->reserved;
+        $reserved->save();
+        return response()->json([
+          "message" => "Reserved updated successfully"
+        ], 200);
+      } else {
+        return response()->json([
+          "message" => "Reserved not found"
+        ], 404);
+      }
+      return $data;
+    }
+
     public function show($id) {
       // SELECT User.username, Table_id, Menu.nombre, User_table_reserved.date, User_table_reserved.hour, User_table_reserved.n_comensales
         // FROM `User_table_reserved`

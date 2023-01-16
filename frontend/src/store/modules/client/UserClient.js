@@ -44,15 +44,16 @@ export const user = {
             localStorage.removeItem('isAuth');
             localStorage.removeItem('tokenAdmin');
             localStorage.removeItem('isAdmin');
-           // toaster.success('Loged out successfuly');
+            toaster.success(`Good Bye! Logout Succesfully`);
             router.push({ name: 'home' });
         },
         [Constant.LOGIN_ADMIN]: (state, payload) => {
             if (payload) {
-                localStorage.setItem("tokenAdmin", payload.token);
+                localStorage.setItem("tokenAdmin", payload);
                 localStorage.setItem("isAdmin", true);
                 state.user = payload.user;
                 state.isAdmin = true;
+                state.isAuth = true;
                 //toaster.success('Admin loged successfuly');
                 router.push({ name: 'home' });
             }
@@ -70,17 +71,13 @@ export const user = {
     actions: {
         [Constant.REGISTER_CLIENT]: (store, payload) => {
             console.log(store)
-            console.log(payload)
             UserService.register_client(payload)
             .then(function (res) {
                 console.log(res)
-                if (res.status === 200) {
-                    store.commit(Constant.REGISTER_CLIENT, true);
-                }
             })
-            .catch(function (err) {
-                console.log(err)
-                //toaster.error('The username or email already exists');
+            .catch(function (error) {
+                toaster.error('The username or password are incorrect');
+                console.log(error)
             })
         },
         [Constant.LOGIN_CLIENT]: (store, payload) => {
@@ -111,7 +108,7 @@ export const user = {
         },
         [Constant.LOGOUT]: (store) => {
             try {
-                UserService.logout_client();
+                //UserService.logout_client();
                 store.commit(Constant.LOGOUT);
             } catch (error) {
                 console.log(error);

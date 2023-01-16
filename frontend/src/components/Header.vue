@@ -12,32 +12,39 @@
                 <span class="span" title="TABLES">Table</span>
             </router-link>
             <router-link class="nav-link" to="/dashboard">
-                <span class="span" title="ADMIN">Admin</span>
+                <span class="span" v-if="state.isAdmin" title="ADMIN">Admin</span>
             </router-link>
             <router-link class="nav-link" to="/login" >
-                <font-awesome-icon v-if="token === null" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
+                <font-awesome-icon v-if="!state.isAuth" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
             </router-link>
+            <button class="logout" @click="logout">
+                <font-awesome-icon v-if="state.isAuth" icon="fa-solid fa-right-from-bracket" title="DASHBOARD" size="2x" class="iconuser" />
+            </button>
         </div>
     </nav>
 </template>
 
 <script>
-import { reactive, computed, ref } from 'vue';
+import { reactive, computed } from 'vue';
+import Constant from "../Constant";
 import { useStore } from 'vuex';
 export default {
     setup() {
         const store = useStore();
         const state = reactive({
             isNavShow: false,
-            isToken: computed(() => store.getters['user/GetIsLogin']),
-            isAuth: localStorage.getItem("isAuth")
+            isAuth: computed(() => store.getters['user/GetIsLogin']),
+            //isToken: computed(() => localStorage.getItem("isAuth")),
+            isAdmin: computed(() => store.getters['user/GetIsAdmin'])
         })
-        const token = ref(localStorage.getItem('isAuth'))
+        //const token = ref(localStorage.getItem('isAuth'))
+        //console.log(state.isToken)
+        
+        
         const navClass = computed(() => state.isNavShow ? "collapse navbar-collapse show" : "collapse navbar-collapse")
         const changeIsNavShow = () => {
             state.isNavShow = !state.isNavShow;
         }
-        console.log(state.isAuth)
         window.addEventListener('scroll', () => {
             let menu = document.getElementById("header_nav")
             if (window.scrollY > 80) {
@@ -48,8 +55,11 @@ export default {
                 menu.classList.remove("header_scroll_nav")
             }
         })
+        function logout() {
+            store.dispatch("user/" + Constant.LOGOUT );
+        }
 
-        return { state, changeIsNavShow, navClass, store, token };
+        return { state, changeIsNavShow, navClass, store, logout };
     }
 
 }
@@ -71,6 +81,11 @@ img {
     position: absolute;
     z-index: 101;
     width: 97%;
+}
+
+.logout {
+    background-color: transparent; 
+    border: none;
 }
 
 .header_scroll_nav {
