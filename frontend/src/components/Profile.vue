@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref,reactive,computed } from 'vue';
 import { useStore } from 'vuex';
 import { createToaster } from "@meforma/vue-toaster";
 import Constant from '../Constant';
@@ -35,15 +35,18 @@ import Constant from '../Constant';
                 type2.value  = type2.value  === 'password' ? 'text' : 'password'
             }
         }
-        function change_password(pass,repass,usuario) {
+        async function change_password(pass,repass,usuario) {
             if ( pass === repass ) {
                 var data = {
                     Id: usuario.Id,
                     password: pass
                 }
-                let check = store.dispatch("user/" + Constant.PROFILE, data);
-                if (check) {
-                    toaster.error("Se ha cambiado la contraseña")
+                store.dispatch("user/" + Constant.PROFILE, data);
+                const state = reactive({ 
+                    checked : computed(() => store.getters["user/GetState"]) 
+                });
+                if (state.checked) {
+                    toaster.success("Se ha cambiado la contraseña")
                 } else {
                     toaster.error("La contraseña es la misma")
                 }

@@ -133,12 +133,6 @@ export default {
          }
 
          if (!msg) {
-            // console.log(table.Id)
-            // console.log(usuario)
-            // console.log()
-            // console.log(value_comensal.value)
-            // console.log(position);
-            //usuario se cambia por id del token
             var reserva = {
                user_id: 1,
                table_id: table.Id,

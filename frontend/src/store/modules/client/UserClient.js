@@ -61,6 +61,7 @@ export const user = {
         },
         [Constant.PROFILE]: (state, payload) => {
             if (payload) {
+                state.check = payload
                 state.user = payload;
                 state.isAuth = true;
                 state.isAdmin = payload.type === 'admin';
@@ -145,6 +146,9 @@ export const user = {
             else {
                 return state.isAuthStorage;
             }
+        },
+        GetState: (state) => {
+            return state.check
         },
         GetIsAdmin: (state) => {
             return state.isAdmin;
