@@ -7,13 +7,13 @@
         <td>{{ allreservation.hour }}</td>
         <td>{{ allreservation.n_comensales }}</td>
         <td>
-            <input type="checkbox" v-if="allreservation.reserved === 1" checked/>
+            <input type="checkbox" v-if="allreservation.reserved === 1" v-model="checker" checked disabled/>
             <input @click="confirm(allreservation.id)" type="checkbox" v-if="allreservation.reserved === 0" />
         </td>
             
         <td>
             <span class="badge badge-secondary pointer ml-1" @click.stop="updateReservation(allreservation.id)">EDIT</span>
-            <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">DELETE</span>
+            <span class="badge badge-secondary pointer ml-1" @click.stop="deleteReservation(allreservation.id)">CANCEL</span>
         </td>
     </tbody>
 </template>
@@ -41,6 +41,7 @@ export default {
             })
             store.dispatch("reservation/" + Constant.CHECK_RESERVATION, { id, reservation_confirm });
             toaster.success(`Reserved Confirmed`);
+            router.push({ name: 'dashboard'})
         }
         const checked = (done) => {
             return { "list-group-item":true, "list-group-item-success":done };
@@ -54,6 +55,8 @@ export default {
         }
         const deleteReservation = (id) => {
             store.dispatch("reservation/" + Constant.DELETE_RESERVATION, { id });
+            toaster.success(`Reserved Canceled`);
+            router.push({ name: 'dashboard'})
         }
 
         return { getReservation, deleteReservation, updateReservation, checked, confirm }

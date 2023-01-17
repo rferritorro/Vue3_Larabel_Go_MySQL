@@ -81,7 +81,7 @@ export default {
             router.push({ name:"login"});            
         }
         const state = reactive({
-                register: { username: "", password: "", email: "",  avatar: default_avatar.value, type_: "0"  },
+                register: { username: "", password: "", email: "",  avatar: default_avatar.value  },
                 error_register: { username: "", email: "", password: "", confirm_password: "" },
                 confirm: {confirm_password: ""}
                 //bounce: props.type,

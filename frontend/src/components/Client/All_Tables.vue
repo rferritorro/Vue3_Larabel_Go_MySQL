@@ -4,11 +4,11 @@
         <!-- <img :src="'/img/'+ alltables.img" class="img_tables"/> -->
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <p class="card-text">Mesa {{ table.id }}</p>
+                <p class="card-text">Mesa {{ table.Id }}</p>
                 <img class="card-img-top"
                     :src="table.img"
                     alt="">
-                <button class="btn btn-dark mt-2" @click="detail(table)" >Reserved</button>
+                <button class="btn btn-dark mt-2" @click="detail(table)" >Add Reserved</button>
             </div>
         </div>
     </div>

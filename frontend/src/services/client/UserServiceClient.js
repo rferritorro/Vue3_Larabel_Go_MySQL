@@ -23,10 +23,13 @@ export default {
         return Api(`${secret.url_admin}`).post('api/logout');
     },
 
-    profile() {
-        return Api(`${secret.url_client}`).get('user-api/profile');
+    profile(data) {
+        return Api(`${secret.url_client}`).post('user-api/profile', data);
     },
 
+    getUserProfile(id) {
+        return Api(`${secret.url_client}`).get('user-api/user/'+ id);
+    },
     checkAdmin() {
         return Api(`${secret.url_admin}`).get('api/isAdmin');
     },

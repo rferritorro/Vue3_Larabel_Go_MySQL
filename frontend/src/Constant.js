@@ -32,5 +32,6 @@ export default {
     LOGIN_CLIENT: "loginClient",
     LOGOUT: "logout",
     LOGIN_ADMIN: "loginAdmin",
-    PROFILE: "profile"
+    PROFILE: "profile",
+    USER_DATA: "userData"
 }

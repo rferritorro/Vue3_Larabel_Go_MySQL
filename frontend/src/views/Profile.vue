@@ -1,26 +1,31 @@
 <template>
     <div class="card card-body profile_div">
-        <Profile :usuario="usuario"></Profile>
+        <Profile :usuario="state.data.user"></Profile>
     </div>
 </template>
 
 <script>
 import Profile from '../components/Profile'
-
+import { reactive, computed } from 'vue'
+import { useStore } from 'vuex'
+import Constant from '../Constant';
+import VueJwtDecode from 'vue-jwt-decode'
 export default {
     components: {
         Profile
     },
     setup() {
-        const usuario = {
-            Id:1,
-            username:"reif400",
-            password: "$2a$10$3URNG4pSHX9rFAXdljn8I.xkzVm187I/8vLx07OjQ32AcuBqMqpMa",
-            email: "reif400@gmail.com",
-            avatar: "https://avatars.dicebear.com/api/adventurer-neutral/rft400.svg"
-        }
+        const store = useStore();
+        const state = reactive({ 
+          data: computed(() => store.getters['user/GetUser']),
+          token: computed(() => localStorage.getItem("token"))
+        });
+        console.log(state.token)
+        const id = VueJwtDecode.decode(state.token)
+        store.dispatch("user/" + Constant.USER_DATA, { id: id.id });
 
-        return {usuario}
+
+        return {store,state}
     }
 }
 </script>

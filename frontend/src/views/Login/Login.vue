@@ -19,6 +19,9 @@ import { useRouter } from 'vue-router';
             )
         },
         setup() {   
+            window.scroll({
+                top: 0
+            })
             const router = useRouter();
             const store = useStore();
             

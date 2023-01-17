@@ -20,9 +20,11 @@ export const user = {
             if (payload) {
                 console.log(state)
                 console.log(payload)
+                state.isAuth = true;
                 localStorage.setItem("token", payload);
                 localStorage.setItem("isAuth", true);
-                //router.push({ name: 'login' });
+                toaster.success(`Welcome! Registered Succesfully`);
+                router.push({ name: 'home' });
             }
         },
         [Constant.LOGIN_CLIENT]: (state, payload) => {
@@ -68,6 +70,11 @@ export const user = {
                 localStorage.setItem("isAdmin", payload.type === 'admin');
             }
         },
+        [Constant.USER_DATA]: (state, payload) => {
+            if (payload) {
+                state.user = payload;
+            }
+        },
     },
     actions: {
         [Constant.REGISTER_CLIENT]: (store, payload) => {
@@ -75,6 +82,7 @@ export const user = {
             UserService.register_client(payload)
             .then(function (res) {
                 console.log(res)
+                store.commit(Constant.REGISTER_CLIENT, res.data);
             })
             .catch(function (error) {
                 toaster.error('The username or password are incorrect');
@@ -115,6 +123,22 @@ export const user = {
                 console.log(error);
             }
         },
+        [Constant.USER_DATA]: (store,payload) => {
+            console.log(store)
+            console.log(payload)
+            try {
+                UserService.getUserProfile(payload.id)
+                .then(function (res) {
+                   console.log(res)
+                   store.commit(Constant.USER_DATA, res.data);
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+            } catch (error) {
+                console.error(error);
+            }
+        },
         [Constant.PROFILE]: (store,payload) => {
             try {
                 UserService.profile(payload)
@@ -133,7 +157,7 @@ export const user = {
     },
     getters: {
         GetUser: (state) => {
-            return state.user;
+            return state;
         },
         GetIsLogin: (state) => {
             return state.isAuth;

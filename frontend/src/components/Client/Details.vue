@@ -8,7 +8,6 @@
          <img class="float-left w-75 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
          
          <div class="float-right w-25 h-100 d-flex justify-content-center align-items-center flex-column flex-wrap">
-            <input class="w-50 m-3 rounded" type="text" v-model="usuario" name="name" id="name" placeholder="Name">
             <label for="comander">NºComensales</label>
             <input class="w-25 m-3 rounded" type="number" v-model="value_comensal" name="comander" id="comander" :max="5" :min="1" >
             <!-- carrousel-menu -->
@@ -20,7 +19,7 @@
             />
             <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Horas a reservar" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
             <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Elige Menu" v-model="menu" :options="state.menuList.menu" label="nombre" />
-            <button class="btn btn-dark w-75 m-3 rounded" v-on:click="action_reserved(table,event,usuario,select,menu)">Reserved</button>
+            <button class="btn btn-dark w-75 m-3 rounded" v-on:click="action_reserved(table,event,select,menu)">Reserved</button>
          </div>
       </div>
       <span id="table_id" style="display:none">{{ table }}</span>
@@ -35,7 +34,8 @@ import { computed, reactive } from 'vue';
 import { useStore } from 'vuex'
 import Datepicker from "vue3-datepicker";
 import { createToaster } from "@meforma/vue-toaster";
-
+import router from '../../router';
+import VueJwtDecode from 'vue-jwt-decode'
 // import { useRoute } from 'vue-router';
 // import { add } from 'date-fns'
 
@@ -104,12 +104,17 @@ export default {
             disabledDates: {
                dates: array
             },
-            menuList: computed(() => store.getters['menuclient/getAllMenusClient'])
+            menuList: computed(() => store.getters['menuclient/getAllMenusClient']),
+            token: computed(() => localStorage.getItem("token"))
          });
       
       store.dispatch("menuclient/" + Constant.INITIALIZE_ALLMENUS);
-      
-      function action_reserved(table,event,usuario,option,menu) {
+      function action_reserved(table,event,option,menu) {
+         if (!state.token) {
+            router.push({name: "login"})
+            toaster.error("Debes iniciar sesion para reservar una mesa")
+            return 0
+         }
          var msg = ""
 
          if (!menu) {
@@ -128,25 +133,20 @@ export default {
             msg = "Selecione hora para hacer la reserva"
          }
 
-         if (!usuario || usuario == undefined || usuario === "") {
-            msg = "Rellene el campo de nombre de reserva"
-         }
-
          if (!msg) {
-            // console.log(table.Id)
-            // console.log(usuario)
-            // console.log()
-            // console.log(value_comensal.value)
-            // console.log(position);
-            //usuario se cambia por id del token
+            const id = VueJwtDecode.decode(state.token)
+            console.log(id)
             var reserva = {
-               user_id: 1,
+               user_id: id.id,
                table_id: table.Id,
                menu_id: menu.Id,
                date: transform_data(event),
                hour: position,
                n_comensales: value_comensal.value
             }
+            router.push({name: "home"})
+            toaster.success("Mesa "+ reserva.table_id + " reservada correctamente" )
+            toaster.warning("Pendiente de confirmar el Admin")
             store.dispatch("reservationclient/" + Constant.ADD_RESERVATION, reserva);
          } else {
             toaster.error(msg)
