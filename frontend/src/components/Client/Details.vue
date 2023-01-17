@@ -16,7 +16,7 @@
             class="w-100 m-3 rounded"
             v-model="event"
             :disabledDates="state.disabledDates"
-            v-on="get_data_selected(event,table.id)"
+            v-on="get_data_selected(event,table.Id)"
             />
             <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Horas a reservar" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
             <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Elige Menu" v-model="menu" :options="state.menuList.menu" label="nombre" />
@@ -155,11 +155,14 @@ export default {
       }
       function get_data_selected(date,table_id) {  
          hour_options.map(i=>i.disabled=false)
-
-         var current_tables=state.allreservation.filter(i=> i.Table_id == table_id  && transform_data(date)===i.date.split('T00')[0])     
+         // console.log(transform_data(date))   
+         // console.log(state.allreservation[6].date.split('T00')[0])
+         var current_tables=state.allreservation.filter(i=> i.Table_id == table_id  && transform_data(date)===i.date.split('T00')[0])
+         // console.log(current_tables)
          current_tables.forEach(e => {
             hour_options[e.hour].disabled = true
          });
+         console.log(hour_options)
       }
 
       store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);
