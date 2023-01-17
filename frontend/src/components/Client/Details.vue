@@ -59,8 +59,8 @@ export default {
       // })
       const carrousel = [
             "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg",
-            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg",
-            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg"
+            "https://cdn.vox-cdn.com/thumbor/zSwlAVYnzQBO8hTx6ZE6C-7u6io=/1400x788/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22213168/134301527_150986323476283_8160139784797337975_o.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-s/24/f3/98/d5/caption.jpg"
         ]
       const value_comensal = ref(1)
       const toaster = createToaster({

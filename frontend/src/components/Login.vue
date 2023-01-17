@@ -63,8 +63,6 @@ export default {
                     } else {
                         state.password_error = "*password is required";
                     }
-                    
-                    
                 }
             } else {
                 if (state.error_login.username.$model != "") {

@@ -3,8 +3,8 @@
         <img class="w-25" :src="usuario.avatar" alt="avatar">
         <div class="pl-5">
             <input type="text" disabled :value="usuario.username"><br>
-            <input :type="type1" v-model="password" placeholder="New password"/><button class="btn btn-warning" @click="change_value(1)">See</button><br>
-            <input :type="type2" v-model="repassword" placeholder="Confirm password"/><button class="btn btn-warning" @click="change_value(2)">See</button><br>
+            <input :type="type1" v-model="password" placeholder="New password"/><button class="btn btn-warning" @click="change_value(1)" required>See</button><br>
+            <input :type="type2" v-model="repassword" placeholder="Confirm password"/><button class="btn btn-warning" @click="change_value(2)" required>See</button><br>
             <button class="btn btn-danger" @click="change_password(password,repassword,usuario)"> Change Password</button>
         </div>
     </div>
