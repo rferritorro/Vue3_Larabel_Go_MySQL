@@ -1,7 +1,6 @@
 <template>
     <div class="card card-body bg-transparent">
         <div class="mt-5">
-            <h2 class="about_h2">Register</h2>
             <Register @registerform="register_data"></Register>
         </div>
     </div>

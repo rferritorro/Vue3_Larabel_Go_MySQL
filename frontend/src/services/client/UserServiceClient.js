@@ -30,6 +30,10 @@ export default {
     getUserProfile(id) {
         return Api(`${secret.url_client}`).get('user-api/user/'+ id);
     },
+
+    getUserReservation(id) {
+        return Api(`${secret.url_client}`).get('reserved-api/user_reserved/'+ id);
+    },
     checkAdmin() {
         return Api(`${secret.url_admin}`).get('api/isAdmin');
     },

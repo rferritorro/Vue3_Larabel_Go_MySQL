@@ -11,17 +11,18 @@
             <router-link class="nav-link" to="/tables">
                 <span class="span" title="TABLES">Table</span>
             </router-link>
-            <router-link class="nav-link" to="/dashboard">
-                <span class="span" v-if="state.isAdmin" title="ADMIN">Admin</span>
+            <router-link class="nav-link" to="/dashboard" v-if="state.isAdminStorage">
+                <span class="span"  title="ADMIN">Admin</span>
             </router-link>
-            <router-link class="nav-link" to="/profile">
-                <span class="span" v-if="state.isToken" title="Profile">Profile</span>
+            <router-link class="nav-link" to="/profile" v-if="state.isToken">
+                <!-- <span class="span"  title="Profile">Profile</span> -->
+                <img :src="state.data.user.avatar" v-if="state.isToken" class="w-25" style="width: 20%;"/>
             </router-link>
-            <router-link class="nav-link" to="/login" >
-                <font-awesome-icon v-if="!state.isToken" icon="fa-solid fa-user" title="DASHBOARD" size="2x" class="iconuser" />
+            <router-link class="nav-link" to="/login" v-if="!state.isToken" >
+                <font-awesome-icon  icon="fa-solid fa-user" title="Login" size="2x" class="iconuser" />
             </router-link>
-            <button class="logout" @click="logout">
-                <font-awesome-icon v-if="state.isToken" icon="fa-solid fa-right-from-bracket" title="DASHBOARD" size="2x" class="iconuser" />
+            <button class="logout" @click="logout" v-if="state.isToken">
+                <font-awesome-icon  icon="fa-solid fa-right-from-bracket" title="DASHBOARD" size="2x" class="iconuser" />
             </button>
         </div>
     </nav>
@@ -31,6 +32,7 @@
 import { reactive, computed } from 'vue';
 import Constant from "../Constant";
 import { useStore } from 'vuex';
+import VueJwtDecode from 'vue-jwt-decode'
 export default {
     setup() {
         const store = useStore();
@@ -38,10 +40,16 @@ export default {
             isNavShow: false,
             isAuth: computed(() => store.getters['user/GetIsLogin']),
             isToken: computed(() => store.getters['user/GetIsLoginStorage']),
-            isAdmin: computed(() => store.getters['user/GetIsAdmin'])
+            isAdmin: computed(() => store.getters['user/GetIsAdmin']),
+            isAdminStorage: computed(() => store.getters['user/GetIsAdminStorage']),
+            data: computed(() => store.getters['user/GetUser']),
+            token: computed(() => localStorage.getItem("token")),
         })
         //const token = ref(localStorage.getItem('isAuth'))
-        //console.log(state.isToken)
+        if (state.token) {
+            const id = VueJwtDecode.decode(state.token)
+            store.dispatch("user/" + Constant.USER_DATA, { id: id.id });
+        }
         
         
         const navClass = computed(() => state.isNavShow ? "collapse navbar-collapse show" : "collapse navbar-collapse")

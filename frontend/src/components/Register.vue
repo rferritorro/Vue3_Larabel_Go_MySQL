@@ -11,7 +11,7 @@
                                 Username
                             </strong>
                         </label>
-                        <input id="user" type="text" class="input" v-on:keyup="change_avatar(state.register.username) && submit_register()" v-model="state.register.username"  required>
+                        <input id="user" type="text" class="input" v-on:keyup="change_avatar(state.register.username)" v-model="state.register.username"  required>
                         <span style="color:red">{{state.username_error}}</span>
                     </div>
                     <div class="group">
@@ -44,7 +44,8 @@
                     <div class="group">
                         <input type="checkbox" name="default_avatar_check" id="default_avatar_check" v-on:change="change_avatar(state.register.username)" v-model="check_default_avatar"><span>Default Avatar</span>
                         <br>
-                        <img class="w-25" :src="default_avatar" alt="avatar">
+                        <!-- <img class="w-25" :src="default_avatar" alt="avatar" v-on:change="state.register.avatar=default_avatar"> -->
+                        <img class="w-25" :src="state.register.avatar" alt="avatar"/>
                     </div>
                     <div class="group">
                         <input type="button" class="button" value="Sign Up" @click="$emit('registerform',state.register)">
@@ -62,30 +63,36 @@ import { useRouter } from 'vue-router';
 import { reactive } from 'vue'; //getCurrentInstance
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength } from '@vuelidate/validators';
+//import { createToaster } from "@meforma/vue-toaster";
 export default {
  
     setup() { 
         
         const router = useRouter();
-        const url_avatar_default= "https://api.dicebear.com/5.x/adventurer-neutral/svg?seed=Baby&flip=true&backgroundColor=d1d4f9&eyebrows[]&eyes[]&glasses=variant01&glassesProbability=100&mouth[]"
-        const default_avatar = ref(url_avatar_default)
-        const check_default_avatar = ref(false)
-        function change_avatar(username) {
-            if (!check_default_avatar.value) {
-                default_avatar.value="https://api.dicebear.com/5.x/adventurer-neutral/svg?seed="+username
-            } else {
-                default_avatar.value=url_avatar_default
-            }
-            }
-        function go_login() {
-            router.push({ name:"login"});            
-        }
         const state = reactive({
-                register: { username: "", password: "", email: "",  avatar: default_avatar.value  },
+                register: { username: "", password: "", email: "",  avatar: ""  },
                 error_register: { username: "", email: "", password: "", confirm_password: "" },
                 confirm: {confirm_password: ""}
                 //bounce: props.type,
         })
+        const url_avatar_default= "https://api.dicebear.com/5.x/adventurer-neutral/svg?seed=Baby&flip=true&backgroundColor=d1d4f9&eyebrows[]&eyes[]&glasses=variant01&glassesProbability=100&mouth[]"
+        state.register.avatar = ref(url_avatar_default)
+        const check_default_avatar = ref(false)
+        // const toaster = createToaster({
+        //  position: "top-right"
+        // });
+        function change_avatar(username) {
+            if (!check_default_avatar.value) {
+                state.register.avatar="https://api.dicebear.com/5.x/adventurer-neutral/svg?seed="+username
+                
+            } else {
+                state.register.avatar=url_avatar_default
+            }
+        }
+        function go_login() {
+            router.push({ name:"login"});            
+        }
+
         const rules = {
                 username: { required, minLength: minLength(5) },
                 email: { required, email },
@@ -135,7 +142,6 @@ export default {
         }
         
         return {
-            default_avatar,
             check_default_avatar,
             change_avatar,
             go_login,

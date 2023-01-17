@@ -13,7 +13,8 @@ export const user = {
         user: [],
         isAuth: false,
         isAdmin: false,
-        isAuthStorage: localStorage.getItem("isAuth")
+        isAuthStorage: localStorage.getItem("isAuth"),
+        isAdminStorage: localStorage.getItem("isAdmin")
     },
     mutations: {
         [Constant.REGISTER_CLIENT]: (state, payload) => {
@@ -62,19 +63,13 @@ export const user = {
             }
         },
         [Constant.PROFILE]: (state, payload) => {
-            if (payload) {
-                state.check = payload
-                state.user = payload;
-                state.isAuth = true;
-                state.isAdmin = payload.type === 'admin';
-                localStorage.setItem("isAuth", true);
-                localStorage.setItem("isAdmin", payload.type === 'admin');
-            }
+            state.check = payload
         },
         [Constant.USER_DATA]: (state, payload) => {
-            if (payload) {
-                state.user = payload;
-            }
+            state.user = payload;
+        },
+        [Constant.USER_DATA_RESERVATION]: (state, payload) => {
+            state.userReservation = payload;
         },
     },
     actions: {
@@ -140,6 +135,22 @@ export const user = {
                 console.error(error);
             }
         },
+        [Constant.USER_DATA_RESERVATION]: (store,payload) => {
+            console.log(store)
+            console.log(payload)
+            try {
+                UserService.getUserReservation(payload.id)
+                .then(function (res) {
+                   console.log(res)
+                   store.commit(Constant.USER_DATA_RESERVATION, res.data);
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+            } catch (error) {
+                console.error(error);
+            }
+        },
         [Constant.PROFILE]: (store,payload) => {
             try {
                 UserService.profile(payload)
@@ -177,5 +188,15 @@ export const user = {
         GetIsAdmin: (state) => {
             return state.isAdmin;
         },
+        GetIsAdminStorage: (state) => {
+            if (!state.isAdminStorage) {
+                return state.isAdmin;
+            }else {
+                return state.isAdminStorage;
+            }
+        },
+        GetUserReservations: (state) => {
+            return state.userReservation
+        }
     }
 }

@@ -33,5 +33,6 @@ export default {
     LOGOUT: "logout",
     LOGIN_ADMIN: "loginAdmin",
     PROFILE: "profile",
-    USER_DATA: "userData"
+    USER_DATA: "userData",
+    USER_DATA_RESERVATION: "userDataReservation"
 }

@@ -8,6 +8,7 @@
          <img class="float-left w-75 p-2" src="https://www.gastroactitud.com/wp-content/uploads/2019/09/nozomi_.jpg" alt="">
          
          <div class="float-right w-25 h-100 d-flex justify-content-center align-items-center flex-column flex-wrap">
+            <h3 style="color: aliceblue;">MESA: {{ table.Id }}</h3><hr>
             <label for="comander">NºComensales</label>
             <input class="w-25 m-3 rounded" type="number" v-model="value_comensal" name="comander" id="comander" :max="5" :min="1" >
             <!-- carrousel-menu -->

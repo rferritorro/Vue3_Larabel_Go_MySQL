@@ -19,9 +19,9 @@
                         </div>
                     </div>
                     <div class="card" style="width: 18rem;">
-                        <img src="https://api.dicebear.com/5.x/adventurer-neutral/svg?seed=king" class="card-img-top" alt="...">
+                        <img src="https://api.dicebear.com/5.x/adventurer-neutral/svg?seed=mioskin" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                            <p class="card-text">Sergio Biosca Beneyto</p>
+                            <p class="card-text">Sergi Biosca Beneyto</p>
                     </div>
                 </div>
             </div>

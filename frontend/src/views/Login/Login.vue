@@ -1,7 +1,6 @@
 <template>
     <div class="card card-body bg-transparent">
         <div class="mt-5">
-            <h2 class="about_h2">Login</h2>
             <Login @loginform="login_data"></Login>
         </div>
     </div>
