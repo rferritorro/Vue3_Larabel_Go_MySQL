@@ -15,7 +15,7 @@
             class="w-100 m-3 rounded"
             v-model="event"
             :disabledDates="state.disabledDates"
-            v-on="get_data_selected(event,table.id)"
+            v-on="get_data_selected(event,table.Id)"
             />
             <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Horas a reservar" v-model="select" :options="hour_options" :selectable="hour=> !hour.disabled" label="name" />
             <v-select class="bg-light text-dark w-75 m-3 rounded" placeholder="Elige Menu" v-model="menu" :options="state.menuList.menu" label="nombre" />
@@ -59,8 +59,8 @@ export default {
       // })
       const carrousel = [
             "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg",
-            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg",
-            "https://7televalencia.com/wp-content/uploads/2019/04/sushi-e1556275361391.jpg"
+            "https://cdn.vox-cdn.com/thumbor/zSwlAVYnzQBO8hTx6ZE6C-7u6io=/1400x788/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22213168/134301527_150986323476283_8160139784797337975_o.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-s/24/f3/98/d5/caption.jpg"
         ]
       const value_comensal = ref(1)
       const toaster = createToaster({
@@ -161,11 +161,14 @@ export default {
       }
       function get_data_selected(date,table_id) {  
          hour_options.map(i=>i.disabled=false)
-
-         var current_tables=state.allreservation.filter(i=> i.Table_id == table_id  && transform_data(date)===i.date.split('T00')[0])     
+         // console.log(transform_data(date))   
+         // console.log(state.allreservation[6].date.split('T00')[0])
+         var current_tables=state.allreservation.filter(i=> i.Table_id == table_id  && transform_data(date)===i.date.split('T00')[0])
+         // console.log(current_tables)
          current_tables.forEach(e => {
             hour_options[e.hour].disabled = true
          });
+         console.log(hour_options)
       }
 
       store.dispatch("reservationclient/" + Constant.INITIALIZE_ALLRESERVATIONS);

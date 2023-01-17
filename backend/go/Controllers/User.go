@@ -39,6 +39,7 @@ func CreateUser(c *gin.Context) {
 func UpdatePassword(c *gin.Context) {
 	var user Models.User
 	c.BindJSON(&user)
+	// fmt.Println(&+user)
 	check,err := Services.UpdatePassword(user.Id,user.Password)
 	if err != nil {
 		//fmt.Println(err.Error())
