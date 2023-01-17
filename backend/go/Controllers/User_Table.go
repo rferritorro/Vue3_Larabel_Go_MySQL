@@ -29,6 +29,19 @@ func GetReservedByID(c *gin.Context) {
 		c.JSON(http.StatusOK, reserved)
 	}
 }
+
+
+func GetAllUserReservedByID(c *gin.Context) {
+	id := c.Params.ByName("id")
+	var reserve []Models.Reserved
+	err := Services.GetAllUserReservedByID(&reserve, id)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, reserve)
+	}
+}
+
 func CreateReserved(c *gin.Context) {
 	var reserved Models.Reserved
 	c.BindJSON(&reserved)

@@ -46,7 +46,8 @@ func AddRouter() *gin.Engine {
 	{
 		grp4.GET("reserved", Controllers.GetReserved)
 		grp4.GET("reserved/:id", Controllers.GetReservedByID)
+		grp4.GET("user_reserved/:id", Controllers.GetAllUserReservedByID)
 		grp4.POST("reserved", Controllers.CreateReserved)
 	}
-	return r
+	return r	
 }
