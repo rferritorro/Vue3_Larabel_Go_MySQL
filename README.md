@@ -5,8 +5,9 @@ _Proyecto de 2DAW sobre un resturante de sushi_
 ## Video presentación
 
  @@
- ![video](./assets/)
-
+ ![video](./frontend/src/assets/Actions_Client&Admin2)
+ ![video](./frontend/src/assets/Actions_Sin_Logear2)
+ 
 ## Comenzando 🚀
 
 ### Pre-requisitos 📋
