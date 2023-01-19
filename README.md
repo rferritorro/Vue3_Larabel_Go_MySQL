@@ -5,6 +5,7 @@ _Proyecto de 2DAW sobre un resturante de sushi_
 ## Video presentación
 
  @@
+ ![video](./assets/)
 
 ## Comenzando 🚀
 
