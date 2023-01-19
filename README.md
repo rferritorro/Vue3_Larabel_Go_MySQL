@@ -1,13 +1,18 @@
 # UsedNapkin
 
-_Proyecto de 2DAW sobre un resturante de sushi_
+_Proyecto de 2DAW sobre un resturante de sushi. Consiste en una pagina web del restaurante usedNapkin, donde puedes reservar cualquier mesa a tu disposición siempre y cuando la mesa este disponible en nuestro horario.
+En este readme os presentamos las tecnologías que hemos gastado y unos videos básicos mostrando la funcionalidad de nuestra aplicación._
 
 ## Video presentación
 
-
- 
-
+### Primer video:
+Acciones en la aplicación web sin haber iniciado sesión. No puedes crear ninguna reserva, solo observar el Home, About y Mesas disponibles:
 https://user-images.githubusercontent.com/102309782/213531945-be4acd1b-bec4-467e-9742-14808828a5f7.mp4
+
+### Segundo video:
+Acciones en la aplicación web con el usuario iniciado ya sea cliente o admin le correspondera las diferentes acciones disponibles, reservar mesas, profile, administrador desde el panel dashboard puede crear, actualizar y eliminar las reservas, mesas y menus disponibles en nuestro restaurante.
+https://user-images.githubusercontent.com/102309782/213532051-372eaece-7e62-4c7e-8b59-7fe661398051.mp4
+
 
 
 ## Comenzando 🚀
@@ -72,10 +77,13 @@ _Usamos Phpmyadmin para poder acceder a la base de datos y realizar las configur
 
 ![image](https://user-images.githubusercontent.com/102603519/213495698-94ff2f54-2afc-47ca-aa94-ac22097f21a1.png)
 
+## ESTRUCTURA PROYECTO:
+_Nuestro proyecto cuenta con dos apartados Backend y Frontend, en la parte de Frontend tenemos todo el proyecto de la parte cliente gastado con Vue, y dentro de Vue tenemos los distintos componentes, composables, views, store y rutas del proyecto en Vue. Y en la parte de Backend tenemos dos tecnologías como son Laravel y Go, laravel la gastamos para el panel admin donde el administrador podrá realizar varias acciones y en Go las acciones que realizará un cliente sin derechos a administrador._
+
 ## Autores ✒️
 
 _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
 * **Rafa Ferri** - *rferritorro* - [rferritorro](https://github.com/rferritorro)
-* **Sergio Biosca** - *sbiosca* - [sbiosca](https://github.com/sbiosca)
+* **Sergi Biosca** - *sbiosca* - [sbiosca](https://github.com/sbiosca)
 
